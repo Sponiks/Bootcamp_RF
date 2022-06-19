@@ -1,0 +1,1141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.10.4 on linux)" generated="20220620 01:51:23.480" rpa="false" schemaversion="3">
+<suite id="s1" name="Sofia" source="/home/sofia">
+<suite id="s1-s1" name="PycharmProjects" source="/home/sofia/PycharmProjects">
+<suite id="s1-s1-s1" name="Hometask 2" source="/home/sofia/PycharmProjects/Hometask_2">
+<suite id="s1-s1-s1-s1" name="Changing Data Categories" source="/home/sofia/PycharmProjects/Hometask_2/changing_data_categories.robot">
+<test id="s1-s1-s1-s1-t1" name="Changing data" line="10">
+<kw name="Test Setup" library="resource" type="SETUP">
+<msg timestamp="20220620 01:51:23.773" level="TRACE">Arguments: [  ]</msg>
+<kw name="Create Session" library="Req">
+<arg>alias</arg>
+<arg>http://localhost:3000</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20220620 01:51:23.774" level="TRACE">Arguments: [ 'alias' | 'http://localhost:3000' ]</msg>
+<msg timestamp="20220620 01:51:23.774" level="INFO">Creating Session using : alias=alias, url=http://localhost:3000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20220620 01:51:23.774" level="DEBUG">Creating session: alias</msg>
+<msg timestamp="20220620 01:51:23.774" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7f560c52e1a0&gt;</msg>
+<status status="PASS" starttime="20220620 01:51:23.773" endtime="20220620 01:51:23.774"/>
+</kw>
+<kw name="Connect To Postgresql" library="DB">
+<arg>app_db</arg>
+<arg>app_user</arg>
+<arg>password</arg>
+<arg>localhost</arg>
+<arg>5432</arg>
+<doc>Connection to Postgres DB.</doc>
+<msg timestamp="20220620 01:51:23.775" level="TRACE">Arguments: [ 'app_db' | 'app_user' | 'password' | 'localhost' | '5432' ]</msg>
+<msg timestamp="20220620 01:51:23.775" level="DEBUG">Connecting using : dbhost=localhost, dbport=5432, dbname=app_db, dbusername=app_user, dbpassword=password, alias=None</msg>
+<msg timestamp="20220620 01:51:23.794" level="TRACE">Return: 1</msg>
+<status status="PASS" starttime="20220620 01:51:23.774" endtime="20220620 01:51:23.795"/>
+</kw>
+<msg timestamp="20220620 01:51:23.795" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:23.773" endtime="20220620 01:51:23.795"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${new_data}</var>
+<arg>category=17</arg>
+<arg>categoryname=Thriller</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220620 01:51:23.795" level="TRACE">Arguments: [ 'category=17' | 'categoryname=Thriller' ]</msg>
+<msg timestamp="20220620 01:51:23.796" level="TRACE">Return: {'category': '17', 'categoryname': 'Thriller'}</msg>
+<msg timestamp="20220620 01:51:23.796" level="INFO">${new_data} = {'category': '17', 'categoryname': 'Thriller'}</msg>
+<status status="PASS" starttime="20220620 01:51:23.795" endtime="20220620 01:51:23.796"/>
+</kw>
+<kw name="Add new data">
+<arg>${new_data}</arg>
+<msg timestamp="20220620 01:51:23.796" level="TRACE">Arguments: [ ${new_data}={'category': '17', 'categoryname': 'Thriller'} ]</msg>
+<kw name="POST On Session" library="Req">
+<var>${resp_post}</var>
+<arg>alias</arg>
+<arg>/categories?</arg>
+<arg>data=${new_data}</arg>
+<arg>json=application/json</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20220620 01:51:23.797" level="TRACE">Arguments: [ 'alias' | '/categories?' | data={'category': '17', 'categoryname': 'Thriller'} | json='application/json' ]</msg>
+<msg timestamp="20220620 01:51:23.799" level="DEBUG">Starting new HTTP connection (1): localhost:3000</msg>
+<msg timestamp="20220620 01:51:23.888" level="DEBUG">http://localhost:3000 "POST /categories HTTP/1.1" 201 None</msg>
+<msg timestamp="20220620 01:51:23.889" level="INFO">POST Request : url=http://localhost:3000/categories 
+ path_url=/categories 
+ headers={'User-Agent': 'python-requests/2.28.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '33', 'Content-Type': 'application/x-www-form-urlencoded'} 
+ body=category=17&amp;categoryname=Thriller 
+ </msg>
+<msg timestamp="20220620 01:51:23.889" level="INFO">POST Response : url=http://localhost:3000/categories 
+ status=201, reason=Created 
+ headers={'Transfer-Encoding': 'chunked', 'Date': 'Sun, 19 Jun 2022 22:51:23 GMT', 'Server': 'postgrest/9.0.0', 'Content-Range': '*/*'} 
+ body=None 
+ </msg>
+<msg timestamp="20220620 01:51:23.889" level="TRACE">Return: &lt;Response [201]&gt;</msg>
+<msg timestamp="20220620 01:51:23.889" level="INFO">${resp_post} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20220620 01:51:23.796" endtime="20220620 01:51:23.889"/>
+</kw>
+<msg timestamp="20220620 01:51:23.889" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:23.796" endtime="20220620 01:51:23.889"/>
+</kw>
+<kw name="Test Teardown" library="resource" type="TEARDOWN">
+<msg timestamp="20220620 01:51:23.890" level="TRACE">Arguments: [  ]</msg>
+<kw name="Delete All Sessions" library="Req">
+<doc>Removes all the session objects</doc>
+<msg timestamp="20220620 01:51:23.890" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20220620 01:51:23.890" level="INFO">Deleting All Sessions</msg>
+<msg timestamp="20220620 01:51:23.891" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:23.890" endtime="20220620 01:51:23.891"/>
+</kw>
+<kw name="Disconnect From Postgresql" library="DB">
+<doc>Close active PostgreSQL connection.
+You will have to manually open or switch to a new connection.
+Due to how ConnectionCache works, connection's index and alias are not removed from cache, so you are able to switch to
+closed connection, if it was closed with Disconnect from Postgresql. It will still remain closed though.</doc>
+<msg timestamp="20220620 01:51:23.891" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20220620 01:51:23.891" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:23.891" endtime="20220620 01:51:23.891"/>
+</kw>
+<msg timestamp="20220620 01:51:23.891" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:23.890" endtime="20220620 01:51:23.891"/>
+</kw>
+<status status="PASS" starttime="20220620 01:51:23.772" endtime="20220620 01:51:23.891"/>
+</test>
+<test id="s1-s1-s1-s1-t2" name="Check Horizontal Filtering" line="13">
+<kw name="Test Setup" library="resource" type="SETUP">
+<msg timestamp="20220620 01:51:23.893" level="TRACE">Arguments: [  ]</msg>
+<kw name="Create Session" library="Req">
+<arg>alias</arg>
+<arg>http://localhost:3000</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20220620 01:51:23.893" level="TRACE">Arguments: [ 'alias' | 'http://localhost:3000' ]</msg>
+<msg timestamp="20220620 01:51:23.893" level="INFO">Creating Session using : alias=alias, url=http://localhost:3000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20220620 01:51:23.893" level="DEBUG">Creating session: alias</msg>
+<msg timestamp="20220620 01:51:23.893" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7f560c52fd60&gt;</msg>
+<status status="PASS" starttime="20220620 01:51:23.893" endtime="20220620 01:51:23.894"/>
+</kw>
+<kw name="Connect To Postgresql" library="DB">
+<arg>app_db</arg>
+<arg>app_user</arg>
+<arg>password</arg>
+<arg>localhost</arg>
+<arg>5432</arg>
+<doc>Connection to Postgres DB.</doc>
+<msg timestamp="20220620 01:51:23.894" level="TRACE">Arguments: [ 'app_db' | 'app_user' | 'password' | 'localhost' | '5432' ]</msg>
+<msg timestamp="20220620 01:51:23.894" level="DEBUG">Connecting using : dbhost=localhost, dbport=5432, dbname=app_db, dbusername=app_user, dbpassword=password, alias=None</msg>
+<msg timestamp="20220620 01:51:23.911" level="TRACE">Return: 2</msg>
+<status status="PASS" starttime="20220620 01:51:23.894" endtime="20220620 01:51:23.911"/>
+</kw>
+<msg timestamp="20220620 01:51:23.911" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:23.892" endtime="20220620 01:51:23.911"/>
+</kw>
+<kw name="Get category and categoryname From PostgRest">
+<var>${category}</var>
+<var>${categoryname}</var>
+<arg>table=categories</arg>
+<msg timestamp="20220620 01:51:23.912" level="TRACE">Arguments: [ ${table}='categories' ]</msg>
+<kw name="GET On Session" library="Req">
+<var>${resp_get}</var>
+<arg>alias</arg>
+<arg>/${table}?</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20220620 01:51:23.912" level="TRACE">Arguments: [ 'alias' | '/categories?' ]</msg>
+<msg timestamp="20220620 01:51:23.913" level="DEBUG">Starting new HTTP connection (1): localhost:3000</msg>
+<msg timestamp="20220620 01:51:23.916" level="DEBUG">http://localhost:3000 "GET /categories HTTP/1.1" 200 None</msg>
+<msg timestamp="20220620 01:51:23.916" level="INFO">GET Request : url=http://localhost:3000/categories 
+ path_url=/categories 
+ headers={'User-Agent': 'python-requests/2.28.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20220620 01:51:23.916" level="INFO">GET Response : url=http://localhost:3000/categories 
+ status=200, reason=OK 
+ headers={'Transfer-Encoding': 'chunked', 'Date': 'Sun, 19 Jun 2022 22:51:23 GMT', 'Server': 'postgrest/9.0.0', 'Content-Range': '0-16/*', 'Content-Location': '/categories', 'Content-Type': 'application/json; charset=utf-8'} 
+ body=[{"category":1,"categoryname":"Action"}, 
+ {"category":2,"categoryname":"Animation"}, 
+ {"category":3,"categoryname":"Children"}, 
+ {"category":4,"categoryname":"Classics"}, 
+ {"category":5,"categoryname":"Comedy"}, 
+ {"category":6,"categoryname":"Documentary"}, 
+ {"category":7,"categoryname":"Drama"}, 
+ {"category":8,"categoryname":"Family"}, 
+ {"category":9,"categoryname":"Foreign"}, 
+ {"category":10,"categoryname":"Games"}, 
+ {"category":11,"categoryname":"Horror"}, 
+ {"category":12,"categoryname":"Music"}, 
+ {"category":13,"categoryname":"New"}, 
+ {"category":14,"categoryname":"Sci-Fi"}, 
+ {"category":15,"categoryname":"Sports"}, 
+ {"category":16,"categoryname":"Travel"}, 
+ {"category":17,"categoryname":"Thriller"}] 
+ </msg>
+<msg timestamp="20220620 01:51:23.916" level="TRACE">Return: &lt;Response [200]&gt;</msg>
+<msg timestamp="20220620 01:51:23.916" level="INFO">${resp_get} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220620 01:51:23.912" endtime="20220620 01:51:23.916"/>
+</kw>
+<kw name="Get Elements" library="Js">
+<var>${category}</var>
+<arg>${resp_get.json()}</arg>
+<arg>$..category</arg>
+<doc>Get list of elements from _json_source_, matching [http://goessner.net/articles/JsonPath/|JSONPath] expression.</doc>
+<msg timestamp="20220620 01:51:23.917" level="TRACE">Arguments: [ [{'category': 1, 'categoryname': 'Action'},
+ {'category': 2, 'categoryname': 'Animation'},
+ {'category': 3, 'categoryname': 'Children'},
+ {'category': 4, 'categoryname': 'Classics'},
+ {'category': 5, 'categoryname': 'Comedy'},
+ {'category': 6, 'categoryname': 'Documentary'},
+ {'category': 7, 'categoryname': 'Drama'},
+ {'category': 8, 'categoryname': 'Family'},
+ {'category': 9, 'categoryname': 'Foreign'},
+ {'category': 10, 'categoryname': 'Games'},
+ {'category': 11, 'categoryname': 'Horror'},
+ {'category': 12, 'categoryname': 'Music'},
+ {'category': 13, 'categoryname': 'New'},
+ {'category': 14, 'categoryname': 'Sci-Fi'},
+ {'category': 15, 'categoryname': 'Sports'},
+ {'category': 16, 'categoryname': 'Travel'},
+ {'category': 17, 'categoryname': 'Thriller'}] | '$..category' ]</msg>
+<msg timestamp="20220620 01:51:23.960" level="TRACE">Return: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]</msg>
+<msg timestamp="20220620 01:51:23.960" level="INFO">${category} = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]</msg>
+<status status="PASS" starttime="20220620 01:51:23.916" endtime="20220620 01:51:23.960"/>
+</kw>
+<kw name="Get Elements" library="Js">
+<var>${categoryname}</var>
+<arg>${resp_get.json()}</arg>
+<arg>$..categoryname</arg>
+<doc>Get list of elements from _json_source_, matching [http://goessner.net/articles/JsonPath/|JSONPath] expression.</doc>
+<msg timestamp="20220620 01:51:23.961" level="TRACE">Arguments: [ [{'category': 1, 'categoryname': 'Action'},
+ {'category': 2, 'categoryname': 'Animation'},
+ {'category': 3, 'categoryname': 'Children'},
+ {'category': 4, 'categoryname': 'Classics'},
+ {'category': 5, 'categoryname': 'Comedy'},
+ {'category': 6, 'categoryname': 'Documentary'},
+ {'category': 7, 'categoryname': 'Drama'},
+ {'category': 8, 'categoryname': 'Family'},
+ {'category': 9, 'categoryname': 'Foreign'},
+ {'category': 10, 'categoryname': 'Games'},
+ {'category': 11, 'categoryname': 'Horror'},
+ {'category': 12, 'categoryname': 'Music'},
+ {'category': 13, 'categoryname': 'New'},
+ {'category': 14, 'categoryname': 'Sci-Fi'},
+ {'category': 15, 'categoryname': 'Sports'},
+ {'category': 16, 'categoryname': 'Travel'},
+ {'category': 17, 'categoryname': 'Thriller'}] | '$..categoryname' ]</msg>
+<msg timestamp="20220620 01:51:24.008" level="TRACE">Return: ['Action',
+ 'Animation',
+ 'Children',
+ 'Classics',
+ 'Comedy',
+ 'Documentary',
+ 'Drama',
+ 'Family',
+ 'Foreign',
+ 'Games',
+ 'Horror',
+ 'Music',
+ 'New',
+ 'Sci-Fi',
+ 'Sports',
+ 'Travel',
+ 'Thriller']</msg>
+<msg timestamp="20220620 01:51:24.008" level="INFO">${categoryname} = ['Action', 'Animation', 'Children', 'Classics', 'Comedy', 'Documentary', 'Drama', 'Family', 'Foreign', 'Games', 'Horror', 'Music', 'New', 'Sci-Fi', 'Sports', 'Travel', 'Thriller']</msg>
+<status status="PASS" starttime="20220620 01:51:23.960" endtime="20220620 01:51:24.008"/>
+</kw>
+<msg timestamp="20220620 01:51:24.009" level="TRACE">Return: [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
+ ['Action',
+  'Animation',
+  'Children',
+  'Classics',
+  'Comedy',
+  'Documentary',
+  'Drama',
+  'Family',
+  'Foreign',
+  'Games',
+  'Horror',
+  'Music',
+  'New',
+  'Sci-Fi',
+  'Sports',
+  'Travel',
+  'Thriller']]</msg>
+<msg timestamp="20220620 01:51:24.009" level="INFO">${category} = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]</msg>
+<msg timestamp="20220620 01:51:24.009" level="INFO">${categoryname} = ['Action', 'Animation', 'Children', 'Classics', 'Comedy', 'Documentary', 'Drama', 'Family', 'Foreign', 'Games', 'Horror', 'Music', 'New', 'Sci-Fi', 'Sports', 'Travel', 'Thriller']</msg>
+<status status="PASS" starttime="20220620 01:51:23.911" endtime="20220620 01:51:24.009"/>
+</kw>
+<kw name="Get category and categoryname From DB">
+<var>@{result}</var>
+<msg timestamp="20220620 01:51:24.009" level="TRACE">Arguments: [  ]</msg>
+<kw name="Execute Sql String Mapped" library="DB">
+<var>@{result}</var>
+<arg>${SQL QUERY}</arg>
+<doc>SQL query execution where each result row is mapped as a dict with column names as keys.</doc>
+<msg timestamp="20220620 01:51:24.010" level="TRACE">Arguments: [ 'SELECT * FROM bootcamp.categories' ]</msg>
+<msg timestamp="20220620 01:51:24.010" level="INFO" html="true">&lt;details&gt;&lt;summary&gt;Running PL/PGSQL statement&lt;/summary&gt;&lt;p&gt;SELECT * FROM bootcamp.categories&lt;/p&gt;&lt;/details&gt;</msg>
+<msg timestamp="20220620 01:51:24.011" level="INFO" html="true">&lt;details&gt;&lt;summary&gt;SQL Query Result&lt;/summary&gt;&lt;p&gt;[{&amp;#x27;category&amp;#x27;: 1, &amp;#x27;categoryname&amp;#x27;: &amp;#x27;Action&amp;#x27;}, {&amp;#x27;category&amp;#x27;: 2, &amp;#x27;categoryname&amp;#x27;: &amp;#x27;Animation&amp;#x27;}, {&amp;#x27;category&amp;#x27;: 3, &amp;#x27;categoryname&amp;#x27;: &amp;#x27;Children&amp;#x27;}, {&amp;#x27;category&amp;#x27;: 4, &amp;#x27;categoryname&amp;#x27;: &amp;#x27;Classics&amp;#x27;}, {&amp;#x27;category&amp;#x27;: 5, &amp;#x27;categoryname&amp;#x27;: &amp;#x27;Comedy&amp;#x27;}, {&amp;#x27;category&amp;#x27;: 6, &amp;#x27;categoryname&amp;#x27;: &amp;#x27;Documentary&amp;#x27;}, {&amp;#x27;category&amp;#x27;: 7, &amp;#x27;categoryname&amp;#x27;: &amp;#x27;Drama&amp;#x27;}, {&amp;#x27;category&amp;#x27;: 8, &amp;#x27;categoryname&amp;#x27;: &amp;#x27;Family&amp;#x27;}, {&amp;#x27;category&amp;#x27;: 9, &amp;#x27;categoryname&amp;#x27;: &amp;#x27;Foreign&amp;#x27;}, {&amp;#x27;category&amp;#x27;: 10, &amp;#x27;categoryname&amp;#x27;: &amp;#x27;Games&amp;#x27;}]&lt;/p&gt;&lt;/details&gt;</msg>
+<msg timestamp="20220620 01:51:24.012" level="TRACE">Return: [{'category': 1, 'categoryname': 'Action'},
+ {'category': 2, 'categoryname': 'Animation'},
+ {'category': 3, 'categoryname': 'Children'},
+ {'category': 4, 'categoryname': 'Classics'},
+ {'category': 5, 'categoryname': 'Comedy'},
+ {'category': 6, 'categoryname': 'Documentary'},
+ {'category': 7, 'categoryname': 'Drama'},
+ {'category': 8, 'categoryname': 'Family'},
+ {'category': 9, 'categoryname': 'Foreign'},
+ {'category': 10, 'categoryname': 'Games'},
+ {'category': 11, 'categoryname': 'Horror'},
+ {'category': 12, 'categoryname': 'Music'},
+ {'category': 13, 'categoryname': 'New'},
+ {'category': 14, 'categoryname': 'Sci-Fi'},
+ {'category': 15, 'categoryname': 'Sports'},
+ {'category': 16, 'categoryname': 'Travel'},
+ {'category': 17, 'categoryname': 'Thriller'}]</msg>
+<msg timestamp="20220620 01:51:24.012" level="INFO">@{result} = [ {'category': 1, 'categoryname': 'Action'} | {'category': 2, 'categoryname': 'Animation'} | {'category': 3, 'categoryname': 'Children'} | {'category': 4, 'categoryname': 'Classics'} | {'category': 5,...</msg>
+<status status="PASS" starttime="20220620 01:51:24.009" endtime="20220620 01:51:24.012"/>
+</kw>
+<msg timestamp="20220620 01:51:24.013" level="TRACE">Return: [{'category': 1, 'categoryname': 'Action'},
+ {'category': 2, 'categoryname': 'Animation'},
+ {'category': 3, 'categoryname': 'Children'},
+ {'category': 4, 'categoryname': 'Classics'},
+ {'category': 5, 'categoryname': 'Comedy'},
+ {'category': 6, 'categoryname': 'Documentary'},
+ {'category': 7, 'categoryname': 'Drama'},
+ {'category': 8, 'categoryname': 'Family'},
+ {'category': 9, 'categoryname': 'Foreign'},
+ {'category': 10, 'categoryname': 'Games'},
+ {'category': 11, 'categoryname': 'Horror'},
+ {'category': 12, 'categoryname': 'Music'},
+ {'category': 13, 'categoryname': 'New'},
+ {'category': 14, 'categoryname': 'Sci-Fi'},
+ {'category': 15, 'categoryname': 'Sports'},
+ {'category': 16, 'categoryname': 'Travel'},
+ {'category': 17, 'categoryname': 'Thriller'}]</msg>
+<msg timestamp="20220620 01:51:24.013" level="INFO">@{result} = [ {'category': 1, 'categoryname': 'Action'} | {'category': 2, 'categoryname': 'Animation'} | {'category': 3, 'categoryname': 'Children'} | {'category': 4, 'categoryname': 'Classics'} | {'category': 5,...</msg>
+<status status="PASS" starttime="20220620 01:51:24.009" endtime="20220620 01:51:24.013"/>
+</kw>
+<kw name="Compare results">
+<arg>${result}</arg>
+<arg>${category}</arg>
+<arg>${categoryname}</arg>
+<msg timestamp="20220620 01:51:24.014" level="TRACE">Arguments: [ ${result_from_db}=[{'category': 1, 'categoryname': 'Action'},
+ {'category': 2, 'categoryname': 'Animation'},
+ {'category': 3, 'categoryname': 'Children'},
+ {'category': 4, 'categoryname': 'Classics'},
+ {'category': 5, 'categoryname': 'Comedy'},
+ {'category': 6, 'categoryname': 'Documentary'},
+ {'category': 7, 'categoryname': 'Drama'},
+ {'category': 8, 'categoryname': 'Family'},
+ {'category': 9, 'categoryname': 'Foreign'},
+ {'category': 10, 'categoryname': 'Games'},
+ {'category': 11, 'categoryname': 'Horror'},
+ {'category': 12, 'categoryname': 'Music'},
+ {'category': 13, 'categoryname': 'New'},
+ {'category': 14, 'categoryname': 'Sci-Fi'},
+ {'category': 15, 'categoryname': 'Sports'},
+ {'category': 16, 'categoryname': 'Travel'},
+ {'category': 17, 'categoryname': 'Thriller'}] | ${category}=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17] | ${categoryname}=['Action',
+ 'Animation',
+ 'Children',
+ 'Classics',
+ 'Comedy',
+ 'Documentary',
+ 'Drama',
+ 'Family',
+ 'Foreign',
+ 'Games',
+ 'Horror',
+ 'Music',
+ 'New',
+ 'Sci-Fi',
+ 'Sports',
+ 'Travel',
+ 'Thriller'] ]</msg>
+<kw name="Create List" library="BuiltIn">
+<var>${category_db}</var>
+<doc>Returns a list containing given items.</doc>
+<msg timestamp="20220620 01:51:24.015" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20220620 01:51:24.015" level="TRACE">Return: []</msg>
+<msg timestamp="20220620 01:51:24.015" level="INFO">${category_db} = []</msg>
+<status status="PASS" starttime="20220620 01:51:24.015" endtime="20220620 01:51:24.015"/>
+</kw>
+<kw name="Create List" library="BuiltIn">
+<var>${categoryname_db}</var>
+<doc>Returns a list containing given items.</doc>
+<msg timestamp="20220620 01:51:24.015" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20220620 01:51:24.015" level="TRACE">Return: []</msg>
+<msg timestamp="20220620 01:51:24.015" level="INFO">${categoryname_db} = []</msg>
+<status status="PASS" starttime="20220620 01:51:24.015" endtime="20220620 01:51:24.015"/>
+</kw>
+<for flavor="IN">
+<var>${k}</var>
+<value>@{result_from_db}</value>
+<iter>
+<var name="${k}">{'category': 1, 'categoryname': 'Action'}</var>
+<kw name="Convert To Number" library="BuiltIn">
+<var>${k2}</var>
+<arg>${k}[category]</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<msg timestamp="20220620 01:51:24.016" level="TRACE">Arguments: [ 1 ]</msg>
+<msg timestamp="20220620 01:51:24.016" level="DEBUG">Argument types are:
+&lt;class 'int'&gt;</msg>
+<msg timestamp="20220620 01:51:24.016" level="TRACE">Return: 1.0</msg>
+<msg timestamp="20220620 01:51:24.016" level="INFO">${k2} = 1.0</msg>
+<status status="PASS" starttime="20220620 01:51:24.016" endtime="20220620 01:51:24.016"/>
+</kw>
+<kw name="Append To List" library="Col">
+<arg>${categoryname_db}</arg>
+<arg>${k}[categoryname]</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<msg timestamp="20220620 01:51:24.016" level="TRACE">Arguments: [ [] | 'Action' ]</msg>
+<msg timestamp="20220620 01:51:24.017" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.016" endtime="20220620 01:51:24.017"/>
+</kw>
+<kw name="Append To List" library="Col">
+<arg>${category_db}</arg>
+<arg>${k2}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<msg timestamp="20220620 01:51:24.017" level="TRACE">Arguments: [ [] | 1.0 ]</msg>
+<msg timestamp="20220620 01:51:24.017" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.017" endtime="20220620 01:51:24.017"/>
+</kw>
+<status status="PASS" starttime="20220620 01:51:24.016" endtime="20220620 01:51:24.017"/>
+</iter>
+<iter>
+<var name="${k}">{'category': 2, 'categoryname': 'Animation'}</var>
+<kw name="Convert To Number" library="BuiltIn">
+<var>${k2}</var>
+<arg>${k}[category]</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<msg timestamp="20220620 01:51:24.017" level="TRACE">Arguments: [ 2 ]</msg>
+<msg timestamp="20220620 01:51:24.018" level="DEBUG">Argument types are:
+&lt;class 'int'&gt;</msg>
+<msg timestamp="20220620 01:51:24.018" level="TRACE">Return: 2.0</msg>
+<msg timestamp="20220620 01:51:24.018" level="INFO">${k2} = 2.0</msg>
+<status status="PASS" starttime="20220620 01:51:24.017" endtime="20220620 01:51:24.018"/>
+</kw>
+<kw name="Append To List" library="Col">
+<arg>${categoryname_db}</arg>
+<arg>${k}[categoryname]</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<msg timestamp="20220620 01:51:24.018" level="TRACE">Arguments: [ ['Action'] | 'Animation' ]</msg>
+<msg timestamp="20220620 01:51:24.018" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.018" endtime="20220620 01:51:24.018"/>
+</kw>
+<kw name="Append To List" library="Col">
+<arg>${category_db}</arg>
+<arg>${k2}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<msg timestamp="20220620 01:51:24.018" level="TRACE">Arguments: [ [1.0] | 2.0 ]</msg>
+<msg timestamp="20220620 01:51:24.019" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.018" endtime="20220620 01:51:24.019"/>
+</kw>
+<status status="PASS" starttime="20220620 01:51:24.017" endtime="20220620 01:51:24.019"/>
+</iter>
+<iter>
+<var name="${k}">{'category': 3, 'categoryname': 'Children'}</var>
+<kw name="Convert To Number" library="BuiltIn">
+<var>${k2}</var>
+<arg>${k}[category]</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<msg timestamp="20220620 01:51:24.019" level="TRACE">Arguments: [ 3 ]</msg>
+<msg timestamp="20220620 01:51:24.019" level="DEBUG">Argument types are:
+&lt;class 'int'&gt;</msg>
+<msg timestamp="20220620 01:51:24.019" level="TRACE">Return: 3.0</msg>
+<msg timestamp="20220620 01:51:24.019" level="INFO">${k2} = 3.0</msg>
+<status status="PASS" starttime="20220620 01:51:24.019" endtime="20220620 01:51:24.019"/>
+</kw>
+<kw name="Append To List" library="Col">
+<arg>${categoryname_db}</arg>
+<arg>${k}[categoryname]</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<msg timestamp="20220620 01:51:24.020" level="TRACE">Arguments: [ ['Action', 'Animation'] | 'Children' ]</msg>
+<msg timestamp="20220620 01:51:24.020" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.019" endtime="20220620 01:51:24.020"/>
+</kw>
+<kw name="Append To List" library="Col">
+<arg>${category_db}</arg>
+<arg>${k2}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<msg timestamp="20220620 01:51:24.020" level="TRACE">Arguments: [ [1.0, 2.0] | 3.0 ]</msg>
+<msg timestamp="20220620 01:51:24.020" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.020" endtime="20220620 01:51:24.020"/>
+</kw>
+<status status="PASS" starttime="20220620 01:51:24.019" endtime="20220620 01:51:24.020"/>
+</iter>
+<iter>
+<var name="${k}">{'category': 4, 'categoryname': 'Classics'}</var>
+<kw name="Convert To Number" library="BuiltIn">
+<var>${k2}</var>
+<arg>${k}[category]</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<msg timestamp="20220620 01:51:24.020" level="TRACE">Arguments: [ 4 ]</msg>
+<msg timestamp="20220620 01:51:24.020" level="DEBUG">Argument types are:
+&lt;class 'int'&gt;</msg>
+<msg timestamp="20220620 01:51:24.021" level="TRACE">Return: 4.0</msg>
+<msg timestamp="20220620 01:51:24.021" level="INFO">${k2} = 4.0</msg>
+<status status="PASS" starttime="20220620 01:51:24.020" endtime="20220620 01:51:24.021"/>
+</kw>
+<kw name="Append To List" library="Col">
+<arg>${categoryname_db}</arg>
+<arg>${k}[categoryname]</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<msg timestamp="20220620 01:51:24.021" level="TRACE">Arguments: [ ['Action', 'Animation', 'Children'] | 'Classics' ]</msg>
+<msg timestamp="20220620 01:51:24.021" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.021" endtime="20220620 01:51:24.021"/>
+</kw>
+<kw name="Append To List" library="Col">
+<arg>${category_db}</arg>
+<arg>${k2}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<msg timestamp="20220620 01:51:24.021" level="TRACE">Arguments: [ [1.0, 2.0, 3.0] | 4.0 ]</msg>
+<msg timestamp="20220620 01:51:24.021" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.021" endtime="20220620 01:51:24.021"/>
+</kw>
+<status status="PASS" starttime="20220620 01:51:24.020" endtime="20220620 01:51:24.022"/>
+</iter>
+<iter>
+<var name="${k}">{'category': 5, 'categoryname': 'Comedy'}</var>
+<kw name="Convert To Number" library="BuiltIn">
+<var>${k2}</var>
+<arg>${k}[category]</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<msg timestamp="20220620 01:51:24.022" level="TRACE">Arguments: [ 5 ]</msg>
+<msg timestamp="20220620 01:51:24.022" level="DEBUG">Argument types are:
+&lt;class 'int'&gt;</msg>
+<msg timestamp="20220620 01:51:24.022" level="TRACE">Return: 5.0</msg>
+<msg timestamp="20220620 01:51:24.022" level="INFO">${k2} = 5.0</msg>
+<status status="PASS" starttime="20220620 01:51:24.022" endtime="20220620 01:51:24.022"/>
+</kw>
+<kw name="Append To List" library="Col">
+<arg>${categoryname_db}</arg>
+<arg>${k}[categoryname]</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<msg timestamp="20220620 01:51:24.023" level="TRACE">Arguments: [ ['Action', 'Animation', 'Children', 'Classics'] | 'Comedy' ]</msg>
+<msg timestamp="20220620 01:51:24.023" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.022" endtime="20220620 01:51:24.023"/>
+</kw>
+<kw name="Append To List" library="Col">
+<arg>${category_db}</arg>
+<arg>${k2}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<msg timestamp="20220620 01:51:24.023" level="TRACE">Arguments: [ [1.0, 2.0, 3.0, 4.0] | 5.0 ]</msg>
+<msg timestamp="20220620 01:51:24.023" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.023" endtime="20220620 01:51:24.023"/>
+</kw>
+<status status="PASS" starttime="20220620 01:51:24.022" endtime="20220620 01:51:24.023"/>
+</iter>
+<iter>
+<var name="${k}">{'category': 6, 'categoryname': 'Documentary'}</var>
+<kw name="Convert To Number" library="BuiltIn">
+<var>${k2}</var>
+<arg>${k}[category]</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<msg timestamp="20220620 01:51:24.023" level="TRACE">Arguments: [ 6 ]</msg>
+<msg timestamp="20220620 01:51:24.024" level="DEBUG">Argument types are:
+&lt;class 'int'&gt;</msg>
+<msg timestamp="20220620 01:51:24.024" level="TRACE">Return: 6.0</msg>
+<msg timestamp="20220620 01:51:24.024" level="INFO">${k2} = 6.0</msg>
+<status status="PASS" starttime="20220620 01:51:24.023" endtime="20220620 01:51:24.024"/>
+</kw>
+<kw name="Append To List" library="Col">
+<arg>${categoryname_db}</arg>
+<arg>${k}[categoryname]</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<msg timestamp="20220620 01:51:24.024" level="TRACE">Arguments: [ ['Action', 'Animation', 'Children', 'Classics', 'Comedy'] | 'Documentary' ]</msg>
+<msg timestamp="20220620 01:51:24.024" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.024" endtime="20220620 01:51:24.024"/>
+</kw>
+<kw name="Append To List" library="Col">
+<arg>${category_db}</arg>
+<arg>${k2}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<msg timestamp="20220620 01:51:24.024" level="TRACE">Arguments: [ [1.0, 2.0, 3.0, 4.0, 5.0] | 6.0 ]</msg>
+<msg timestamp="20220620 01:51:24.025" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.024" endtime="20220620 01:51:24.025"/>
+</kw>
+<status status="PASS" starttime="20220620 01:51:24.023" endtime="20220620 01:51:24.025"/>
+</iter>
+<iter>
+<var name="${k}">{'category': 7, 'categoryname': 'Drama'}</var>
+<kw name="Convert To Number" library="BuiltIn">
+<var>${k2}</var>
+<arg>${k}[category]</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<msg timestamp="20220620 01:51:24.027" level="TRACE">Arguments: [ 7 ]</msg>
+<msg timestamp="20220620 01:51:24.027" level="DEBUG">Argument types are:
+&lt;class 'int'&gt;</msg>
+<msg timestamp="20220620 01:51:24.027" level="TRACE">Return: 7.0</msg>
+<msg timestamp="20220620 01:51:24.028" level="INFO">${k2} = 7.0</msg>
+<status status="PASS" starttime="20220620 01:51:24.027" endtime="20220620 01:51:24.028"/>
+</kw>
+<kw name="Append To List" library="Col">
+<arg>${categoryname_db}</arg>
+<arg>${k}[categoryname]</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<msg timestamp="20220620 01:51:24.028" level="TRACE">Arguments: [ ['Action', 'Animation', 'Children', 'Classics', 'Comedy', 'Documentary'] | 'Drama' ]</msg>
+<msg timestamp="20220620 01:51:24.029" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.028" endtime="20220620 01:51:24.029"/>
+</kw>
+<kw name="Append To List" library="Col">
+<arg>${category_db}</arg>
+<arg>${k2}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<msg timestamp="20220620 01:51:24.030" level="TRACE">Arguments: [ [1.0, 2.0, 3.0, 4.0, 5.0, 6.0] | 7.0 ]</msg>
+<msg timestamp="20220620 01:51:24.031" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.029" endtime="20220620 01:51:24.031"/>
+</kw>
+<status status="PASS" starttime="20220620 01:51:24.025" endtime="20220620 01:51:24.031"/>
+</iter>
+<iter>
+<var name="${k}">{'category': 8, 'categoryname': 'Family'}</var>
+<kw name="Convert To Number" library="BuiltIn">
+<var>${k2}</var>
+<arg>${k}[category]</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<msg timestamp="20220620 01:51:24.032" level="TRACE">Arguments: [ 8 ]</msg>
+<msg timestamp="20220620 01:51:24.032" level="DEBUG">Argument types are:
+&lt;class 'int'&gt;</msg>
+<msg timestamp="20220620 01:51:24.032" level="TRACE">Return: 8.0</msg>
+<msg timestamp="20220620 01:51:24.032" level="INFO">${k2} = 8.0</msg>
+<status status="PASS" starttime="20220620 01:51:24.031" endtime="20220620 01:51:24.032"/>
+</kw>
+<kw name="Append To List" library="Col">
+<arg>${categoryname_db}</arg>
+<arg>${k}[categoryname]</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<msg timestamp="20220620 01:51:24.033" level="TRACE">Arguments: [ ['Action',
+ 'Animation',
+ 'Children',
+ 'Classics',
+ 'Comedy',
+ 'Documentary',
+ 'Drama'] | 'Family' ]</msg>
+<msg timestamp="20220620 01:51:24.033" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.033" endtime="20220620 01:51:24.033"/>
+</kw>
+<kw name="Append To List" library="Col">
+<arg>${category_db}</arg>
+<arg>${k2}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<msg timestamp="20220620 01:51:24.034" level="TRACE">Arguments: [ [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0] | 8.0 ]</msg>
+<msg timestamp="20220620 01:51:24.034" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.033" endtime="20220620 01:51:24.034"/>
+</kw>
+<status status="PASS" starttime="20220620 01:51:24.031" endtime="20220620 01:51:24.034"/>
+</iter>
+<iter>
+<var name="${k}">{'category': 9, 'categoryname': 'Foreign'}</var>
+<kw name="Convert To Number" library="BuiltIn">
+<var>${k2}</var>
+<arg>${k}[category]</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<msg timestamp="20220620 01:51:24.034" level="TRACE">Arguments: [ 9 ]</msg>
+<msg timestamp="20220620 01:51:24.034" level="DEBUG">Argument types are:
+&lt;class 'int'&gt;</msg>
+<msg timestamp="20220620 01:51:24.034" level="TRACE">Return: 9.0</msg>
+<msg timestamp="20220620 01:51:24.035" level="INFO">${k2} = 9.0</msg>
+<status status="PASS" starttime="20220620 01:51:24.034" endtime="20220620 01:51:24.035"/>
+</kw>
+<kw name="Append To List" library="Col">
+<arg>${categoryname_db}</arg>
+<arg>${k}[categoryname]</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<msg timestamp="20220620 01:51:24.035" level="TRACE">Arguments: [ ['Action',
+ 'Animation',
+ 'Children',
+ 'Classics',
+ 'Comedy',
+ 'Documentary',
+ 'Drama',
+ 'Family'] | 'Foreign' ]</msg>
+<msg timestamp="20220620 01:51:24.035" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.035" endtime="20220620 01:51:24.035"/>
+</kw>
+<kw name="Append To List" library="Col">
+<arg>${category_db}</arg>
+<arg>${k2}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<msg timestamp="20220620 01:51:24.035" level="TRACE">Arguments: [ [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0] | 9.0 ]</msg>
+<msg timestamp="20220620 01:51:24.036" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.035" endtime="20220620 01:51:24.036"/>
+</kw>
+<status status="PASS" starttime="20220620 01:51:24.034" endtime="20220620 01:51:24.036"/>
+</iter>
+<iter>
+<var name="${k}">{'category': 10, 'categoryname': 'Games'}</var>
+<kw name="Convert To Number" library="BuiltIn">
+<var>${k2}</var>
+<arg>${k}[category]</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<msg timestamp="20220620 01:51:24.036" level="TRACE">Arguments: [ 10 ]</msg>
+<msg timestamp="20220620 01:51:24.036" level="DEBUG">Argument types are:
+&lt;class 'int'&gt;</msg>
+<msg timestamp="20220620 01:51:24.036" level="TRACE">Return: 10.0</msg>
+<msg timestamp="20220620 01:51:24.036" level="INFO">${k2} = 10.0</msg>
+<status status="PASS" starttime="20220620 01:51:24.036" endtime="20220620 01:51:24.036"/>
+</kw>
+<kw name="Append To List" library="Col">
+<arg>${categoryname_db}</arg>
+<arg>${k}[categoryname]</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<msg timestamp="20220620 01:51:24.037" level="TRACE">Arguments: [ ['Action',
+ 'Animation',
+ 'Children',
+ 'Classics',
+ 'Comedy',
+ 'Documentary',
+ 'Drama',
+ 'Family',
+ 'Foreign'] | 'Games' ]</msg>
+<msg timestamp="20220620 01:51:24.037" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.036" endtime="20220620 01:51:24.037"/>
+</kw>
+<kw name="Append To List" library="Col">
+<arg>${category_db}</arg>
+<arg>${k2}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<msg timestamp="20220620 01:51:24.037" level="TRACE">Arguments: [ [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0] | 10.0 ]</msg>
+<msg timestamp="20220620 01:51:24.037" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.037" endtime="20220620 01:51:24.037"/>
+</kw>
+<status status="PASS" starttime="20220620 01:51:24.036" endtime="20220620 01:51:24.037"/>
+</iter>
+<iter>
+<var name="${k}">{'category': 11, 'categoryname': 'Horror'}</var>
+<kw name="Convert To Number" library="BuiltIn">
+<var>${k2}</var>
+<arg>${k}[category]</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<msg timestamp="20220620 01:51:24.038" level="TRACE">Arguments: [ 11 ]</msg>
+<msg timestamp="20220620 01:51:24.038" level="DEBUG">Argument types are:
+&lt;class 'int'&gt;</msg>
+<msg timestamp="20220620 01:51:24.038" level="TRACE">Return: 11.0</msg>
+<msg timestamp="20220620 01:51:24.038" level="INFO">${k2} = 11.0</msg>
+<status status="PASS" starttime="20220620 01:51:24.038" endtime="20220620 01:51:24.038"/>
+</kw>
+<kw name="Append To List" library="Col">
+<arg>${categoryname_db}</arg>
+<arg>${k}[categoryname]</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<msg timestamp="20220620 01:51:24.038" level="TRACE">Arguments: [ ['Action',
+ 'Animation',
+ 'Children',
+ 'Classics',
+ 'Comedy',
+ 'Documentary',
+ 'Drama',
+ 'Family',
+ 'Foreign',
+ 'Games'] | 'Horror' ]</msg>
+<msg timestamp="20220620 01:51:24.039" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.038" endtime="20220620 01:51:24.039"/>
+</kw>
+<kw name="Append To List" library="Col">
+<arg>${category_db}</arg>
+<arg>${k2}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<msg timestamp="20220620 01:51:24.039" level="TRACE">Arguments: [ [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0] | 11.0 ]</msg>
+<msg timestamp="20220620 01:51:24.039" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.039" endtime="20220620 01:51:24.039"/>
+</kw>
+<status status="PASS" starttime="20220620 01:51:24.037" endtime="20220620 01:51:24.039"/>
+</iter>
+<iter>
+<var name="${k}">{'category': 12, 'categoryname': 'Music'}</var>
+<kw name="Convert To Number" library="BuiltIn">
+<var>${k2}</var>
+<arg>${k}[category]</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<msg timestamp="20220620 01:51:24.039" level="TRACE">Arguments: [ 12 ]</msg>
+<msg timestamp="20220620 01:51:24.039" level="DEBUG">Argument types are:
+&lt;class 'int'&gt;</msg>
+<msg timestamp="20220620 01:51:24.040" level="TRACE">Return: 12.0</msg>
+<msg timestamp="20220620 01:51:24.040" level="INFO">${k2} = 12.0</msg>
+<status status="PASS" starttime="20220620 01:51:24.039" endtime="20220620 01:51:24.040"/>
+</kw>
+<kw name="Append To List" library="Col">
+<arg>${categoryname_db}</arg>
+<arg>${k}[categoryname]</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<msg timestamp="20220620 01:51:24.040" level="TRACE">Arguments: [ ['Action',
+ 'Animation',
+ 'Children',
+ 'Classics',
+ 'Comedy',
+ 'Documentary',
+ 'Drama',
+ 'Family',
+ 'Foreign',
+ 'Games',
+ 'Horror'] | 'Music' ]</msg>
+<msg timestamp="20220620 01:51:24.040" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.040" endtime="20220620 01:51:24.040"/>
+</kw>
+<kw name="Append To List" library="Col">
+<arg>${category_db}</arg>
+<arg>${k2}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<msg timestamp="20220620 01:51:24.040" level="TRACE">Arguments: [ [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0] | 12.0 ]</msg>
+<msg timestamp="20220620 01:51:24.041" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.040" endtime="20220620 01:51:24.041"/>
+</kw>
+<status status="PASS" starttime="20220620 01:51:24.039" endtime="20220620 01:51:24.041"/>
+</iter>
+<iter>
+<var name="${k}">{'category': 13, 'categoryname': 'New'}</var>
+<kw name="Convert To Number" library="BuiltIn">
+<var>${k2}</var>
+<arg>${k}[category]</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<msg timestamp="20220620 01:51:24.041" level="TRACE">Arguments: [ 13 ]</msg>
+<msg timestamp="20220620 01:51:24.041" level="DEBUG">Argument types are:
+&lt;class 'int'&gt;</msg>
+<msg timestamp="20220620 01:51:24.041" level="TRACE">Return: 13.0</msg>
+<msg timestamp="20220620 01:51:24.041" level="INFO">${k2} = 13.0</msg>
+<status status="PASS" starttime="20220620 01:51:24.041" endtime="20220620 01:51:24.041"/>
+</kw>
+<kw name="Append To List" library="Col">
+<arg>${categoryname_db}</arg>
+<arg>${k}[categoryname]</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<msg timestamp="20220620 01:51:24.042" level="TRACE">Arguments: [ ['Action',
+ 'Animation',
+ 'Children',
+ 'Classics',
+ 'Comedy',
+ 'Documentary',
+ 'Drama',
+ 'Family',
+ 'Foreign',
+ 'Games',
+ 'Horror',
+ 'Music'] | 'New' ]</msg>
+<msg timestamp="20220620 01:51:24.042" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.042" endtime="20220620 01:51:24.042"/>
+</kw>
+<kw name="Append To List" library="Col">
+<arg>${category_db}</arg>
+<arg>${k2}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<msg timestamp="20220620 01:51:24.043" level="TRACE">Arguments: [ [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0] | 13.0 ]</msg>
+<msg timestamp="20220620 01:51:24.044" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.043" endtime="20220620 01:51:24.044"/>
+</kw>
+<status status="PASS" starttime="20220620 01:51:24.041" endtime="20220620 01:51:24.044"/>
+</iter>
+<iter>
+<var name="${k}">{'category': 14, 'categoryname': 'Sci-Fi'}</var>
+<kw name="Convert To Number" library="BuiltIn">
+<var>${k2}</var>
+<arg>${k}[category]</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<msg timestamp="20220620 01:51:24.045" level="TRACE">Arguments: [ 14 ]</msg>
+<msg timestamp="20220620 01:51:24.045" level="DEBUG">Argument types are:
+&lt;class 'int'&gt;</msg>
+<msg timestamp="20220620 01:51:24.045" level="TRACE">Return: 14.0</msg>
+<msg timestamp="20220620 01:51:24.045" level="INFO">${k2} = 14.0</msg>
+<status status="PASS" starttime="20220620 01:51:24.044" endtime="20220620 01:51:24.045"/>
+</kw>
+<kw name="Append To List" library="Col">
+<arg>${categoryname_db}</arg>
+<arg>${k}[categoryname]</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<msg timestamp="20220620 01:51:24.046" level="TRACE">Arguments: [ ['Action',
+ 'Animation',
+ 'Children',
+ 'Classics',
+ 'Comedy',
+ 'Documentary',
+ 'Drama',
+ 'Family',
+ 'Foreign',
+ 'Games',
+ 'Horror',
+ 'Music',
+ 'New'] | 'Sci-Fi' ]</msg>
+<msg timestamp="20220620 01:51:24.046" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.046" endtime="20220620 01:51:24.046"/>
+</kw>
+<kw name="Append To List" library="Col">
+<arg>${category_db}</arg>
+<arg>${k2}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<msg timestamp="20220620 01:51:24.046" level="TRACE">Arguments: [ [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0] | 14.0 ]</msg>
+<msg timestamp="20220620 01:51:24.047" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.046" endtime="20220620 01:51:24.047"/>
+</kw>
+<status status="PASS" starttime="20220620 01:51:24.044" endtime="20220620 01:51:24.047"/>
+</iter>
+<iter>
+<var name="${k}">{'category': 15, 'categoryname': 'Sports'}</var>
+<kw name="Convert To Number" library="BuiltIn">
+<var>${k2}</var>
+<arg>${k}[category]</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<msg timestamp="20220620 01:51:24.047" level="TRACE">Arguments: [ 15 ]</msg>
+<msg timestamp="20220620 01:51:24.047" level="DEBUG">Argument types are:
+&lt;class 'int'&gt;</msg>
+<msg timestamp="20220620 01:51:24.047" level="TRACE">Return: 15.0</msg>
+<msg timestamp="20220620 01:51:24.047" level="INFO">${k2} = 15.0</msg>
+<status status="PASS" starttime="20220620 01:51:24.047" endtime="20220620 01:51:24.047"/>
+</kw>
+<kw name="Append To List" library="Col">
+<arg>${categoryname_db}</arg>
+<arg>${k}[categoryname]</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<msg timestamp="20220620 01:51:24.048" level="TRACE">Arguments: [ ['Action',
+ 'Animation',
+ 'Children',
+ 'Classics',
+ 'Comedy',
+ 'Documentary',
+ 'Drama',
+ 'Family',
+ 'Foreign',
+ 'Games',
+ 'Horror',
+ 'Music',
+ 'New',
+ 'Sci-Fi'] | 'Sports' ]</msg>
+<msg timestamp="20220620 01:51:24.048" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.047" endtime="20220620 01:51:24.048"/>
+</kw>
+<kw name="Append To List" library="Col">
+<arg>${category_db}</arg>
+<arg>${k2}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<msg timestamp="20220620 01:51:24.048" level="TRACE">Arguments: [ [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0] | 15.0 ]</msg>
+<msg timestamp="20220620 01:51:24.048" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.048" endtime="20220620 01:51:24.048"/>
+</kw>
+<status status="PASS" starttime="20220620 01:51:24.047" endtime="20220620 01:51:24.048"/>
+</iter>
+<iter>
+<var name="${k}">{'category': 16, 'categoryname': 'Travel'}</var>
+<kw name="Convert To Number" library="BuiltIn">
+<var>${k2}</var>
+<arg>${k}[category]</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<msg timestamp="20220620 01:51:24.049" level="TRACE">Arguments: [ 16 ]</msg>
+<msg timestamp="20220620 01:51:24.049" level="DEBUG">Argument types are:
+&lt;class 'int'&gt;</msg>
+<msg timestamp="20220620 01:51:24.049" level="TRACE">Return: 16.0</msg>
+<msg timestamp="20220620 01:51:24.049" level="INFO">${k2} = 16.0</msg>
+<status status="PASS" starttime="20220620 01:51:24.049" endtime="20220620 01:51:24.049"/>
+</kw>
+<kw name="Append To List" library="Col">
+<arg>${categoryname_db}</arg>
+<arg>${k}[categoryname]</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<msg timestamp="20220620 01:51:24.049" level="TRACE">Arguments: [ ['Action',
+ 'Animation',
+ 'Children',
+ 'Classics',
+ 'Comedy',
+ 'Documentary',
+ 'Drama',
+ 'Family',
+ 'Foreign',
+ 'Games',
+ 'Horror',
+ 'Music',
+ 'New',
+ 'Sci-Fi',
+ 'Sports'] | 'Travel' ]</msg>
+<msg timestamp="20220620 01:51:24.049" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.049" endtime="20220620 01:51:24.049"/>
+</kw>
+<kw name="Append To List" library="Col">
+<arg>${category_db}</arg>
+<arg>${k2}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<msg timestamp="20220620 01:51:24.050" level="TRACE">Arguments: [ [1.0,
+ 2.0,
+ 3.0,
+ 4.0,
+ 5.0,
+ 6.0,
+ 7.0,
+ 8.0,
+ 9.0,
+ 10.0,
+ 11.0,
+ 12.0,
+ 13.0,
+ 14.0,
+ 15.0] | 16.0 ]</msg>
+<msg timestamp="20220620 01:51:24.050" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.050" endtime="20220620 01:51:24.050"/>
+</kw>
+<status status="PASS" starttime="20220620 01:51:24.048" endtime="20220620 01:51:24.050"/>
+</iter>
+<iter>
+<var name="${k}">{'category': 17, 'categoryname': 'Thriller'}</var>
+<kw name="Convert To Number" library="BuiltIn">
+<var>${k2}</var>
+<arg>${k}[category]</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<msg timestamp="20220620 01:51:24.050" level="TRACE">Arguments: [ 17 ]</msg>
+<msg timestamp="20220620 01:51:24.050" level="DEBUG">Argument types are:
+&lt;class 'int'&gt;</msg>
+<msg timestamp="20220620 01:51:24.051" level="TRACE">Return: 17.0</msg>
+<msg timestamp="20220620 01:51:24.051" level="INFO">${k2} = 17.0</msg>
+<status status="PASS" starttime="20220620 01:51:24.050" endtime="20220620 01:51:24.051"/>
+</kw>
+<kw name="Append To List" library="Col">
+<arg>${categoryname_db}</arg>
+<arg>${k}[categoryname]</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<msg timestamp="20220620 01:51:24.051" level="TRACE">Arguments: [ ['Action',
+ 'Animation',
+ 'Children',
+ 'Classics',
+ 'Comedy',
+ 'Documentary',
+ 'Drama',
+ 'Family',
+ 'Foreign',
+ 'Games',
+ 'Horror',
+ 'Music',
+ 'New',
+ 'Sci-Fi',
+ 'Sports',
+ 'Travel'] | 'Thriller' ]</msg>
+<msg timestamp="20220620 01:51:24.051" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.051" endtime="20220620 01:51:24.051"/>
+</kw>
+<kw name="Append To List" library="Col">
+<arg>${category_db}</arg>
+<arg>${k2}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<msg timestamp="20220620 01:51:24.052" level="TRACE">Arguments: [ [1.0,
+ 2.0,
+ 3.0,
+ 4.0,
+ 5.0,
+ 6.0,
+ 7.0,
+ 8.0,
+ 9.0,
+ 10.0,
+ 11.0,
+ 12.0,
+ 13.0,
+ 14.0,
+ 15.0,
+ 16.0] | 17.0 ]</msg>
+<msg timestamp="20220620 01:51:24.052" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.051" endtime="20220620 01:51:24.052"/>
+</kw>
+<status status="PASS" starttime="20220620 01:51:24.050" endtime="20220620 01:51:24.052"/>
+</iter>
+<status status="PASS" starttime="20220620 01:51:24.015" endtime="20220620 01:51:24.052"/>
+</for>
+<kw name="Lists Should Be Equal" library="Col">
+<arg>${category}</arg>
+<arg>${category_db}</arg>
+<doc>Fails if given lists are unequal.</doc>
+<msg timestamp="20220620 01:51:24.052" level="TRACE">Arguments: [ [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17] | [1.0,
+ 2.0,
+ 3.0,
+ 4.0,
+ 5.0,
+ 6.0,
+ 7.0,
+ 8.0,
+ 9.0,
+ 10.0,
+ 11.0,
+ 12.0,
+ 13.0,
+ 14.0,
+ 15.0,
+ 16.0,
+ 17.0] ]</msg>
+<msg timestamp="20220620 01:51:24.052" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.052" endtime="20220620 01:51:24.052"/>
+</kw>
+<kw name="Lists Should Be Equal" library="Col">
+<arg>${categoryname}</arg>
+<arg>${categoryname_db}</arg>
+<doc>Fails if given lists are unequal.</doc>
+<msg timestamp="20220620 01:51:24.053" level="TRACE">Arguments: [ ['Action',
+ 'Animation',
+ 'Children',
+ 'Classics',
+ 'Comedy',
+ 'Documentary',
+ 'Drama',
+ 'Family',
+ 'Foreign',
+ 'Games',
+ 'Horror',
+ 'Music',
+ 'New',
+ 'Sci-Fi',
+ 'Sports',
+ 'Travel',
+ 'Thriller'] | ['Action',
+ 'Animation',
+ 'Children',
+ 'Classics',
+ 'Comedy',
+ 'Documentary',
+ 'Drama',
+ 'Family',
+ 'Foreign',
+ 'Games',
+ 'Horror',
+ 'Music',
+ 'New',
+ 'Sci-Fi',
+ 'Sports',
+ 'Travel',
+ 'Thriller'] ]</msg>
+<msg timestamp="20220620 01:51:24.053" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.053" endtime="20220620 01:51:24.053"/>
+</kw>
+<msg timestamp="20220620 01:51:24.053" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.013" endtime="20220620 01:51:24.053"/>
+</kw>
+<kw name="Test Teardown" library="resource" type="TEARDOWN">
+<msg timestamp="20220620 01:51:24.054" level="TRACE">Arguments: [  ]</msg>
+<kw name="Delete All Sessions" library="Req">
+<doc>Removes all the session objects</doc>
+<msg timestamp="20220620 01:51:24.054" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20220620 01:51:24.054" level="INFO">Deleting All Sessions</msg>
+<msg timestamp="20220620 01:51:24.054" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.054" endtime="20220620 01:51:24.054"/>
+</kw>
+<kw name="Disconnect From Postgresql" library="DB">
+<doc>Close active PostgreSQL connection.
+You will have to manually open or switch to a new connection.
+Due to how ConnectionCache works, connection's index and alias are not removed from cache, so you are able to switch to
+closed connection, if it was closed with Disconnect from Postgresql. It will still remain closed though.</doc>
+<msg timestamp="20220620 01:51:24.054" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20220620 01:51:24.055" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.054" endtime="20220620 01:51:24.055"/>
+</kw>
+<msg timestamp="20220620 01:51:24.056" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:51:24.054" endtime="20220620 01:51:24.056"/>
+</kw>
+<status status="PASS" starttime="20220620 01:51:23.892" endtime="20220620 01:51:24.056"/>
+</test>
+<status status="PASS" starttime="20220620 01:51:23.532" endtime="20220620 01:51:24.057"/>
+</suite>
+<status status="PASS" starttime="20220620 01:51:23.517" endtime="20220620 01:51:24.058"/>
+</suite>
+<status status="PASS" starttime="20220620 01:51:23.515" endtime="20220620 01:51:24.059"/>
+</suite>
+<status status="PASS" starttime="20220620 01:51:23.487" endtime="20220620 01:51:24.060"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="2" fail="0" skip="0" id="s1" name="Sofia">Sofia</stat>
+<stat pass="2" fail="0" skip="0" id="s1-s1" name="PycharmProjects">Sofia.PycharmProjects</stat>
+<stat pass="2" fail="0" skip="0" id="s1-s1-s1" name="Hometask 2">Sofia.PycharmProjects.Hometask 2</stat>
+<stat pass="2" fail="0" skip="0" id="s1-s1-s1-s1" name="Changing Data Categories">Sofia.PycharmProjects.Hometask 2.Changing Data Categories</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

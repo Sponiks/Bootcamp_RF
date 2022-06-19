@@ -1,0 +1,943 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.10.4 on linux)" generated="20220620 01:49:26.297" rpa="false" schemaversion="3">
+<suite id="s1" name="Sofia" source="/home/sofia">
+<suite id="s1-s1" name="PycharmProjects" source="/home/sofia/PycharmProjects">
+<suite id="s1-s1-s1" name="Hometask 2" source="/home/sofia/PycharmProjects/Hometask_2">
+<suite id="s1-s1-s1-s1" name="DDT API function" source="/home/sofia/PycharmProjects/Hometask_2/DDT_API_function.robot">
+<test id="s1-s1-s1-s1-t1" name="Check Search One Table 200" line="8">
+<kw name="Test Setup" library="resource" type="SETUP">
+<msg timestamp="20220620 01:49:26.573" level="TRACE">Arguments: [  ]</msg>
+<kw name="Create Session" library="Req">
+<arg>alias</arg>
+<arg>http://localhost:3000</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20220620 01:49:26.574" level="TRACE">Arguments: [ 'alias' | 'http://localhost:3000' ]</msg>
+<msg timestamp="20220620 01:49:26.574" level="INFO">Creating Session using : alias=alias, url=http://localhost:3000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20220620 01:49:26.574" level="DEBUG">Creating session: alias</msg>
+<msg timestamp="20220620 01:49:26.574" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7f9b0bccd750&gt;</msg>
+<status status="PASS" starttime="20220620 01:49:26.573" endtime="20220620 01:49:26.574"/>
+</kw>
+<kw name="Connect To Postgresql" library="DB">
+<arg>app_db</arg>
+<arg>app_user</arg>
+<arg>password</arg>
+<arg>localhost</arg>
+<arg>5432</arg>
+<doc>Connection to Postgres DB.</doc>
+<msg timestamp="20220620 01:49:26.574" level="TRACE">Arguments: [ 'app_db' | 'app_user' | 'password' | 'localhost' | '5432' ]</msg>
+<msg timestamp="20220620 01:49:26.574" level="DEBUG">Connecting using : dbhost=localhost, dbport=5432, dbname=app_db, dbusername=app_user, dbpassword=password, alias=None</msg>
+<msg timestamp="20220620 01:49:26.592" level="TRACE">Return: 1</msg>
+<status status="PASS" starttime="20220620 01:49:26.574" endtime="20220620 01:49:26.592"/>
+</kw>
+<msg timestamp="20220620 01:49:26.592" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:49:26.573" endtime="20220620 01:49:26.592"/>
+</kw>
+<kw name="Get And Check Response">
+<arg>products</arg>
+<arg>price=gt.15&amp;category=eq.2</arg>
+<msg timestamp="20220620 01:49:26.593" level="TRACE">Arguments: [ ${table}='products' | ${params}='price=gt.15&amp;category=eq.2' ]</msg>
+<kw name="GET On Session" library="Req">
+<var>${response}</var>
+<arg>alias</arg>
+<arg>/${table}?</arg>
+<arg>params=${params}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20220620 01:49:26.594" level="TRACE">Arguments: [ 'alias' | '/products?' | params='price=gt.15&amp;category=eq.2' | expected_status='any' ]</msg>
+<msg timestamp="20220620 01:49:26.596" level="DEBUG">Starting new HTTP connection (1): localhost:3000</msg>
+<msg timestamp="20220620 01:49:26.620" level="DEBUG">http://localhost:3000 "GET /products?price=gt.15&amp;category=eq.2 HTTP/1.1" 200 None</msg>
+<msg timestamp="20220620 01:49:26.621" level="INFO">GET Request : url=http://localhost:3000/products?price=gt.15&amp;category=eq.2 
+ path_url=/products?price=gt.15&amp;category=eq.2 
+ headers={'User-Agent': 'python-requests/2.28.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20220620 01:49:26.624" level="INFO">GET Response : url=http://localhost:3000/products?price=gt.15&amp;category=eq.2 
+ status=200, reason=OK 
+ headers={'Transfer-Encoding': 'chunked', 'Date': 'Sun, 19 Jun 2022 22:49:26 GMT', 'Server': 'postgrest/9.0.0', 'Content-Range': '0-456/*', 'Content-Location': '/products?category=eq.2&amp;price=gt.15', 'Content-Type': 'application/json; charset=utf-8'} 
+ body=[{"prod_id":21,"category":2,"title":"ACADEMY AMERICAN","actor":"JON BULLOCK","price":24.99,"special":0,"common_prod_id":9351}, 
+ {"prod_id":27,"category":2,"title":"ACADEMY ANONYMOUS","actor":"JESSICA DAFOE","price":26.99,"special":0,"common_prod_id":7556}, 
+ {"prod_id":46,"category":2,"title":"ACADEMY AUTUMN","actor":"LAURA GARCIA","price":21.99,"special":0,"common_prod_id":2888}, 
+ {"prod_id":58,"category":2,"title":"ACADEMY BEACH","actor":"GWYNETH MIRANDA","price":15.99,"special":0,"common_prod_id":912}, 
+ {"prod_id":74,"category":2,"title":"ACADEMY BIRCH","actor":"PENELOPE NEWMAN","price":24.99,"special":0,"common_prod_id":4012}, 
+ {"prod_id":179,"category":2,"title":"ACADEMY CONQUERER","actor":"JODIE WILLIS","price":17.99,"special":0,"common_prod_id":9309}, 
+ {"prod_id":199,"category":2,"title":"ACADEMY CUPBOARD","actor":"UMA HORNE","price":27.99,"special":0,"common_prod_id":2665}, 
+ {"prod_id":215,"category":2,"title":"ACADEMY DAWN","actor":"MARY HUDSON","price":27.99,"special":0,"common_prod_id":9860}, 
+ {"prod_id":217,"category":2,"title":"ACADEMY DAZED","actor":"PARKER CAMPBELL","price":29.99,"special":0,"common_prod_id":7692}, 
+ {"prod_id":223,"category":2,"title":"ACADEMY DESIRE","actor":"SIDNEY DERN","price":28.99,"special":0,"common_prod_id":4877}, 
+ {"prod_id":230,"category":2,"title":"ACADEMY DIARY","actor":"THORA CAGE","price":18.99,"special":0,"common_prod_id":7689}, 
+ {"prod_id":238,"category":2,"title":"ACADEMY DOCTOR","actor":"NICOLE DUKAKIS","price":18.99,"special":0,"common_prod_id":8047}, 
+ {"prod_id":283,"category":2,"title":"ACADEMY ENDING","actor":"MADELINE TOMEI","price":19.99,"special":1,"common_prod_id":7486}, 
+ {"prod_id":296,"category":2,"title":"ACADEMY EXPRESS","actor":"LANA DUKAKIS","price":26.99,"special":0,"common_prod_id":6873}, 
+ {"prod_id":314,"category":2,"title":"ACADEMY FIGHT","actor":"PAUL CLOSE","price":19.99,"special":0,"common_prod_id":1553}, 
+ {"prod_id":315,"category":2,"title":"ACADEMY FINDING","actor":"WINONA HOPPER","price":19.99,"special":0,"common_prod_id":7322}, 
+ {"prod_id":338,"category":2,"title":"ACADEMY FRISCO","actor":"JULIETTE STREEP","price":16.99,"special":0,"common_prod_id":486}, 
+ {"prod_id":365,"category":2,"title":"ACADEMY GOLD","actor":"KIRSTEN AFFLECK","price":25.99,"special":0,"common_prod_id":9753}, 
+ {"prod_id":439,"category":2,"title":"ACADEMY HUNCHBACK","actor":"HUME DAY-LEWIS","price":22.99,"special":0,"common_prod_id":5673}, 
+ {"prod_id":470,"category":2,"title":"ACADEMY ISHTAR","actor":"ANTHONY DAY-LEWIS","price":15.99,"special":0,"common_prod_id":4954}, 
+ {"prod_id":495,"category":2,"title":"ACADEMY KENTUCKIAN","actor":"WOODY ROBERTS","price":24.99,"special":0,"common_prod_id":4936}, 
+ {"prod_id":527,"category":2,"title":"ACADEMY LOLA","actor":"RIP PESCI","price":29.99,"special":0,"common_prod_id":9510}, 
+ {"prod_id":557,"category":2,"title":"ACADEMY MANCHURIAN","actor":"CHRISTIAN DEGENERES","price":27.99,"special":0,"common_prod_id":8593}, 
+ {"prod_id":575,"category":2,"title":"ACADEMY MIDSUMMER","actor":"BURT WATSON","price":17.99,"special":0,"common_prod_id":4145}, 
+ {"prod_id":588,"category":2,"title":"ACADEMY MODEL","actor":"RIP DAFOE","price":26.99,"special":0,"common_prod_id":7444}, 
+ {"prod_id":668,"category":2,"title":"ACADEMY PEAK","actor":"DENZEL PITT","price":15.99,"special":0,"common_prod_id":2194}, 
+ {"prod_id":684,"category":2,"title":"ACADEMY PIZZA","actor":"ALEC FIENNES","price":20.99,"special":0,"common_prod_id":5862}, 
+ {"prod_id":723,"category":2,"title":"ACADEMY REIGN","actor":"LANA PINKETT","price":21.99,"special":0,"common_prod_id":8879}, 
+ {"prod_id":742,"category":2,"title":"ACADEMY ROOF","actor":"KIM TOMEI","price":16.99,"special":0,"common_prod_id":3844}, 
+ {"prod_id":771,"category":2,"title":"ACADEMY SCORPION","actor":"MIRA DIETRICH","price":15.99,"special":0,"common_prod_id":7021}, 
+ {"prod_id":774,"category":2,"title":"ACADEMY SEARCHERS","actor":"ANDY WAYNE","price":26.99,"special":0,"common_prod_id":4715}, 
+ {"prod_id":777,"category":2,"title":"ACADEMY SECRETARY","actor":"HARRISON SUVARI","price":18.99,"special":1,"common_prod_id":5921}, 
+ {"prod_id":783,"category":2,"title":"ACADEMY SHANE","actor":"WILLEM TOMEI","price":26.99,"special":0,"common_prod_id":8532}, 
+ {"prod_id":816,"category":2,"title":"ACADEMY SNOWMAN","actor":"AUDREY CHASE","price":26.99,"special":0,"common_prod_id":8209}, 
+ {"prod_id":869,"category":2,"title":"ACADEMY SUSPECTS","actor":"ANNE HAWKE","price":25.99,"special":0,"common_prod_id":8515}, 
+ {"prod_id":887,"category":2,"title":"ACADEMY THIEF","actor":"ELIZABETH GARCIA","price":24.99,"special":0,"common_prod_id":9444}, 
+ {"prod_id":906,"category":2,"title":"ACADEMY TRAMP","actor":"CHARLIZE NORTON","price":22.99,"special":0,"common_prod_id":5370}, 
+ {"prod_id":935,"category":2,"title":"ACADEMY VANISHED","actor":"LISA DRIVER","price":22.99,"special":0,"common_prod_id":7792}, 
+ {"prod_id":943,"category":2,"title":"ACADEMY VILLAIN","actor":"MEG THURMAN","price":20.99,"special":0,"common_prod_id":3945}, 
+ {"prod_id":944,"category":2,"title":"ACADEMY VIRGIN","actor":"JODIE MOORE","price":15.99,"special":0,"common_prod_id":9972}, 
+ {"prod_id":949,"category":2,"title":"ACADEMY VOLCANO","actor":"GROUCHO BEATTY","price":20.99,"special":0,"common_prod_id":1261}, 
+ {"prod_id":953,"category":2,"title":"ACADEMY WAIT","actor":"MEL MCDORMAND","price":26.99,"special":0,"common_prod_id":6280}, 
+ {"prod_id":984,"category":2,"title":"ACADEMY WONDERFUL","actor":"PEARL GOLDBERG","price":22.99,"special":0,"common_prod_id":6483}, 
+ {"prod_id":985,"category":2,"title":"ACADEMY WONDERLAND","actor":"WILLIAM BASINGER","price":26.99,"special":0,"common_prod_id":8110}, 
+ {"prod_id":1006,"category":2,"title":"ACE AGENT","actor":"KIM KILMER","price":26.99,"special":0,"common_prod_id":4865}, 
+ {"prod_id":1053,"category":2,"title":"ACE BANG","actor":"RUSSELL BOGART","price":22.99,"special":0,"common_prod_id":2616}, 
+ {"prod_id":1061,"category":2,"title":"ACE BEAUTY","actor":"BOB WOOD","price":28.99,"special":0,"common_prod_id":1756}, 
+ {"prod_id":1122,"category":2,"title":"ACE CARRIE","actor":"MEG DENIRO","price":20.99,"special":0,"common_prod_id":1081}, 
+ {"prod_id":1183,"category":2,"title":"ACE CONVERSATION","actor":"JUDE HARRIS","price":28.99,"special":0,"common_prod_id":1631}, 
+ {"prod_id":1236,"category":2,"title":"ACE DIVINE","actor":"LIAM CRUZ","price":21.99,"special":0,"common_prod_id":1141}, 
+ {"prod_id":1256,"category":2,"title":"ACE DROP","actor":"BOB HOPE","price":19.99,"special":1,"common_prod_id":7608}, 
+ {"prod_id":1279,"category":2,"title":"ACE ELIZABETH","actor":"WINONA BALL","price":24.99,"special":0,"common_prod_id":2527}, 
+ {"prod_id":1285,"category":2,"title":"ACE ENGLISH","actor":"SUSAN NOLTE","price":26.99,"special":0,"common_prod_id":1309}, 
+ {"prod_id":1303,"category":2,"title":"ACE FANTASY","actor":"MAE AKROYD","price":15.99,"special":0,"common_prod_id":4319}, 
+ {"prod_id":1309,"category":2,"title":"ACE FEUD","actor":"DIANE TORN","price":26.99,"special":1,"common_prod_id":3689}, 
+ {"prod_id":1311,"category":2,"title":"ACE FICTION","actor":"KATE MCCONAUGHEY","price":19.99,"special":0,"common_prod_id":8548}, 
+ {"prod_id":1361,"category":2,"title":"ACE GLEAMING","actor":"MARILYN KEATON","price":25.99,"special":0,"common_prod_id":8489}, 
+ {"prod_id":1379,"category":2,"title":"ACE GREEDY","actor":"KEVIN PHOENIX","price":27.99,"special":0,"common_prod_id":6923}, 
+ {"prod_id":1384,"category":2,"title":"ACE GROSSE","actor":"BRAD RYAN","price":21.99,"special":0,"common_prod_id":4532}, 
+ {"prod_id":1386,"category":2,"title":"ACE GUMP","actor":"GINA TURNER","price":15.99,"special":0,"common_prod_id":8237}, 
+ {"prod_id":1411,"category":2,"title":"ACE HEAVENLY","actor":"ANNETTE HARRIS","price":21.99,"special":0,"common_prod_id":788}, 
+ {"prod_id":1422,"category":2,"title":"ACE HOLLOW","actor":"ANDY WAHLBERG","price":22.99,"special":0,"common_prod_id":5433}, 
+ {"prod_id":1446,"category":2,"title":"ACE HYSTERICAL","actor":"JULIANNE MCCONAUGHEY","price":25.99,"special":0,"common_prod_id":1997}, 
+ {"prod_id":1455,"category":2,"title":"ACE IMPOSSIBLE","actor":"ALEC WAYNE","price":15.99,"special":0,"common_prod_id":7861}, 
+ {"prod_id":1462,"category":2,"title":"ACE INSIDER","actor":"SANDRA PECK","price":15.99,"special":0,"common_prod_id":1439}, 
+ {"prod_id":1488,"category":2,"title":"ACE JOON","actor":"DENZEL STALLONE","price":25.99,"special":0,"common_prod_id":2552}, 
+ {"prod_id":1493,"category":2,"title":"ACE KANE","actor":"ADRIEN PECK","price":16.99,"special":0,"common_prod_id":3433}, 
+ {"prod_id":1496,"category":2,"title":"ACE KICK","actor":"DIANE PINKETT","price":23.99,"special":0,"common_prod_id":5838}, 
+ {"prod_id":1501,"category":2,"title":"ACE KISSING","actor":"KEVIN WAYNE","price":15.99,"special":0,"common_prod_id":5367}, 
+ {"prod_id":1550,"category":2,"title":"ACE MAGUIRE","actor":"HELEN DAFOE","price":19.99,"special":0,"common_prod_id":8047}, 
+ {"prod_id":1576,"category":2,"title":"ACE MIGHTY","actor":"JUDY DEAN","price":17.99,"special":0,"common_prod_id":403}, 
+ {"prod_id":1599,"category":2,"title":"ACE MOTHER","actor":"AUDREY LANSBURY","price":20.99,"special":0,"common_prod_id":4197}, 
+ {"prod_id":1642,"category":2,"title":"ACE ORDER","actor":"HENRY WOOD","price":23.99,"special":0,"common_prod_id":8534}, 
+ {"prod_id":1655,"category":2,"title":"ACE PANTHER","actor":"DANIEL GARLAND","price":28.99,"special":0,"common_prod_id":7547}, 
+ {"prod_id":1671,"category":2,"title":"ACE PERDITION","actor":"SANDRA BERGEN","price":24.99,"special":0,"common_prod_id":5803}, 
+ {"prod_id":1676,"category":2,"title":"ACE PHILADELPHIA","actor":"BELA BRANDO","price":29.99,"special":0,"common_prod_id":5399}, 
+ {"prod_id":1700,"category":2,"title":"ACE PRIX","actor":"JEFF FREEMAN","price":28.99,"special":0,"common_prod_id":9161}, 
+ {"prod_id":1703,"category":2,"title":"ACE PUNK","actor":"ANNETTE DEE","price":26.99,"special":0,"common_prod_id":9879}, 
+ {"prod_id":1747,"category":2,"title":"ACE ROXANNE","actor":"KIM MATTHAU","price":22.99,"special":0,"common_prod_id":9198}, 
+ {"prod_id":1798,"category":2,"title":"ACE SILVERADO","actor":"WILLIAM BLANCHETT","price":22.99,"special":0,"common_prod_id":3875}, 
+ {"prod_id":1838,"category":2,"title":"ACE STAGECOACH","actor":"GARY MANSFIELD","price":18.99,"special":0,"common_prod_id":2758}, 
+ {"prod_id":1851,"category":2,"title":"ACE STRAIGHT","actor":"JEREMY CAINE","price":23.99,"special":0,"common_prod_id":8154}, 
+ {"prod_id":1877,"category":2,"title":"ACE TAXI","actor":"REESE HURT","price":22.99,"special":0,"common_prod_id":2315}, 
+ {"prod_id":1881,"category":2,"title":"ACE TEMPLE","actor":"RIVER FAWCETT","price":18.99,"special":0,"common_prod_id":8277}, 
+ {"prod_id":1890,"category":2,"title":"ACE TIGHTS","actor":"RENEE WEST","price":27.99,"special":0,"common_prod_id":7141}, 
+ {"prod_id":1894,"category":2,"title":"ACE TOMATOES","actor":"DREW BOLGER","price":22.99,"special":0,"common_prod_id":6756}, 
+ {"prod_id":1924,"category":2,"title":"ACE UNFORGIVEN","actor":"GLENN BARRYMORE","price":20.99,"special":0,"common_prod_id":1043}, 
+ {"prod_id":1970,"category":2,"title":"ACE WESTWARD","actor":"LUCILLE DAY","price":15.99,"special":0,"common_prod_id":7300}, 
+ {"prod_id":2008,"category":2,"title":"ADAPTATION AIRPORT","actor":"ANNE WEST","price":19.99,"special":0,"common_prod_id":3019}, 
+ {"prod_id":2016,"category":2,"title":"ADAPTATION ALLEY","actor":"SPENCER BALE","price":29.99,"special":1,"common_prod_id":6052}, 
+ {"prod_id":2085,"category":2,"title":"ADAPTATION BONNIE","actor":"HUME HECHE","price":17.99,"special":0,"common_prod_id":3977}, 
+ {"prod_id":2114,"category":2,"title":"ADAPTATION CAMELOT","actor":"SALMA PHOENIX","price":19.99,"special":0,"common_prod_id":4369}, 
+ {"prod_id":2115,"category":2,"title":"ADAPTATION CAMPUS","actor":"JOHNNY MINELLI","price":16.99,"special":0,"common_prod_id":444}, 
+ {"prod_id":2132,"category":2,"title":"ADAPTATION CHAINSAW","actor":"WARREN GARLAND","price":21.99,"special":0,"common_prod_id":8071}, 
+ {"prod_id":2169,"category":2,"title":"ADAPTATION COMFORTS","actor":"FRED JACKMAN","price":25.99,"special":0,"common_prod_id":9273}, 
+ {"prod_id":2222,"category":2,"title":"ADAPTATION DESERT","actor":"JENNIFER PRESLEY","price":27.99,"special":0,"common_prod_id":6997}, 
+ {"prod_id":2241,"category":2,"title":"ADAPTATION DONNIE","actor":"OPRAH RYDER","price":15.99,"special":0,"common_prod_id":5293}, 
+ {"prod_id":2243,"category":2,"title":"ADAPTATION DOORS","actor":"SOPHIA KEITEL","price":19.99,"special":0,"common_prod_id":428}, 
+ {"prod_id":2245,"category":2,"title":"ADAPTATION DOUBLE","actor":"CARMEN THERON","price":24.99,"special":0,"common_prod_id":5111}, 
+ {"prod_id":2253,"category":2,"title":"ADAPTATION DRIFTER","actor":"HUGH BERGEN","price":25.99,"special":0,"common_prod_id":4509}, 
+ {"prod_id":2268,"category":2,"title":"ADAPTATION EARLY","actor":"ANNETTE DEGENERES","price":21.99,"special":0,"common_prod_id":1497}, 
+ {"prod_id":2296,"category":2,"title":"ADAPTATION EXPRESS","actor":"SIGOURNEY KELLY","price":20.99,"special":0,"common_prod_id":2077}, 
+ {"prod_id":2301,"category":2,"title":"ADAPTATION FAMILY","actor":"MERYL SINATRA","price":29.99,"special":0,"common_prod_id":6210}, 
+ {"prod_id":2361,"category":2,"title":"ADAPTATION GLEAMING","actor":"CHRISTOPHER WALKEN","price":18.99,"special":0,"common_prod_id":2029}, 
+ {"prod_id":2377,"category":2,"title":"ADAPTATION GREASE","actor":"LAUREN DIETRICH","price":16.99,"special":0,"common_prod_id":3374}, 
+ {"prod_id":2384,"category":2,"title":"ADAPTATION GROSSE","actor":"ED KEATON","price":16.99,"special":0,"common_prod_id":2485}, 
+ {"prod_id":2396,"category":2,"title":"ADAPTATION HANGING","actor":"OPRAH LEWIS","price":20.99,"special":0,"common_prod_id":1696}, 
+ {"prod_id":2399,"category":2,"title":"ADAPTATION HAPPINESS","actor":"KEVIN MATTHAU","price":25.99,"special":0,"common_prod_id":3635}, 
+ {"prod_id":2409,"category":2,"title":"ADAPTATION HEARTBREAKERS","actor":"SPENCER ROBBINS","price":28.99,"special":0,"common_prod_id":1502}, 
+ {"prod_id":2412,"category":2,"title":"ADAPTATION HEAVYWEIGHTS","actor":"BETTE FOSTER","price":22.99,"special":0,"common_prod_id":3671}, 
+ {"prod_id":2424,"category":2,"title":"ADAPTATION HOLOCAUST","actor":"BEN BENING","price":23.99,"special":0,"common_prod_id":8817}, 
+ {"prod_id":2446,"category":2,"title":"ADAPTATION HYSTERICAL","actor":"ZERO BRANAGH","price":18.99,"special":0,"common_prod_id":4894}, 
+ {"prod_id":2452,"category":2,"title":"ADAPTATION ILLUSION","actor":"LAUREN CROWE","price":27.99,"special":0,"common_prod_id":3182}, 
+ {"prod_id":2467,"category":2,"title":"ADAPTATION INTRIGUE","actor":"DREW HURT","price":17.99,"special":0,"common_prod_id":3368}, 
+ {"prod_id":2472,"category":2,"title":"ADAPTATION ITALIAN","actor":"RICHARD ROBERTS","price":15.99,"special":0,"common_prod_id":7077}, 
+ {"prod_id":2490,"category":2,"title":"ADAPTATION JUMANJI","actor":"PAUL FISHER","price":28.99,"special":0,"common_prod_id":6890}, 
+ {"prod_id":2500,"category":2,"title":"ADAPTATION KISS","actor":"PEARL WALKEN","price":16.99,"special":0,"common_prod_id":1421}, 
+ {"prod_id":2512,"category":2,"title":"ADAPTATION LEAGUE","actor":"DIANE BIRCH","price":18.99,"special":0,"common_prod_id":3566}, 
+ {"prod_id":2522,"category":2,"title":"ADAPTATION LIFE","actor":"RIP BOLGER","price":18.99,"special":0,"common_prod_id":9698}, 
+ {"prod_id":2530,"category":2,"title":"ADAPTATION LORD","actor":"LEELEE LANCASTER","price":17.99,"special":0,"common_prod_id":9812}, 
+ {"prod_id":2562,"category":2,"title":"ADAPTATION MASKED","actor":"ALEC BERGMAN","price":20.99,"special":0,"common_prod_id":5335}, 
+ {"prod_id":2568,"category":2,"title":"ADAPTATION MEMENTO","actor":"ROBERT MCCONAUGHEY","price":16.99,"special":0,"common_prod_id":8561}, 
+ {"prod_id":2602,"category":2,"title":"ADAPTATION MOURNING","actor":"UMA CHAPLIN","price":27.99,"special":0,"common_prod_id":8738}, 
+ {"prod_id":2604,"category":2,"title":"ADAPTATION MULAN","actor":"JON BIRCH","price":23.99,"special":0,"common_prod_id":6880}, 
+ {"prod_id":2615,"category":2,"title":"ADAPTATION NASH","actor":"FRANCES PHOENIX","price":15.99,"special":0,"common_prod_id":6897}, 
+ {"prod_id":2623,"category":2,"title":"ADAPTATION NEWTON","actor":"ELIZABETH KEATON","price":28.99,"special":0,"common_prod_id":7014}, 
+ {"prod_id":2640,"category":2,"title":"ADAPTATION OPUS","actor":"JUDE CRUISE","price":29.99,"special":0,"common_prod_id":6214}, 
+ {"prod_id":2645,"category":2,"title":"ADAPTATION OTHERS","actor":"JOE DAY","price":21.99,"special":0,"common_prod_id":151}, 
+ {"prod_id":2651,"category":2,"title":"ADAPTATION PACKER","actor":"LISA STALLONE","price":15.99,"special":0,"common_prod_id":6352}, 
+ {"prod_id":2684,"category":2,"title":"ADAPTATION PIZZA","actor":"ALBERT MCCONAUGHEY","price":28.99,"special":0,"common_prod_id":5049}, 
+ {"prod_id":2755,"category":2,"title":"ADAPTATION SABRINA","actor":"GENE DAY","price":19.99,"special":0,"common_prod_id":6735}, 
+ {"prod_id":2795,"category":2,"title":"ADAPTATION SIEGE","actor":"BOB DAMON","price":16.99,"special":0,"common_prod_id":4587}, 
+ {"prod_id":2814,"category":2,"title":"ADAPTATION SNATCH","actor":"DREW BEATTY","price":27.99,"special":0,"common_prod_id":4479}, 
+ {"prod_id":2824,"category":2,"title":"ADAPTATION SPARTACUS","actor":"RAY PFEIFFER","price":27.99,"special":0,"common_prod_id":1557}, 
+ {"prod_id":2845,"category":2,"title":"ADAPTATION STEPMOM","actor":"LIZA JOVOVICH","price":24.99,"special":0,"common_prod_id":3520}, 
+ {"prod_id":2871,"category":2,"title":"ADAPTATION SWEDEN","actor":"NICK HARRIS","price":22.99,"special":0,"common_prod_id":179}, 
+ {"prod_id":2888,"category":2,"title":"ADAPTATION THIN","actor":"CLARK HANNAH","price":17.99,"special":0,"common_prod_id":6954}, 
+ {"prod_id":2892,"category":2,"title":"ADAPTATION TITANIC","actor":"HUME FONDA","price":22.99,"special":0,"common_prod_id":3771}, 
+ {"prod_id":2907,"category":2,"title":"ADAPTATION TRANSLATION","actor":"BETTE ASTAIRE","price":27.99,"special":0,"common_prod_id":8745}, 
+ {"prod_id":2909,"category":2,"title":"ADAPTATION TREASURE","actor":"SALLY MARX","price":18.99,"special":0,"common_prod_id":6183}, 
+ {"prod_id":2917,"category":2,"title":"ADAPTATION TUXEDO","actor":"LAURENCE WATSON","price":25.99,"special":0,"common_prod_id":9590}, 
+ {"prod_id":2927,"category":2,"title":"ADAPTATION UPRISING","actor":"DORIS TEMPLE","price":18.99,"special":0,"common_prod_id":9808}, 
+ {"prod_id":2993,"category":2,"title":"ADAPTATION WRONG","actor":"WHOOPI BRODY","price":29.99,"special":0,"common_prod_id":7628}, 
+ {"prod_id":2994,"category":2,"title":"ADAPTATION WYOMING","actor":"RAY DEAN","price":27.99,"special":0,"common_prod_id":1257}, 
+ {"prod_id":3024,"category":2,"title":"AFFAIR ANALYZE","actor":"LAURA POITIER","price":21.99,"special":0,"common_prod_id":8345}, 
+ {"prod_id":3071,"category":2,"title":"AFFAIR BILKO","actor":"ALAN DEPP","price":26.99,"special":0,"common_prod_id":2591}, 
+ {"prod_id":3078,"category":2,"title":"AFFAIR BLACKOUT","actor":"KATE FIENNES","price":23.99,"special":0,"common_prod_id":5333}, 
+ {"prod_id":3103,"category":2,"title":"AFFAIR BUCKET","actor":"BRAD SWANK","price":25.99,"special":0,"common_prod_id":2696}, 
+ {"prod_id":3127,"category":2,"title":"AFFAIR CAT","actor":"MATTHEW BASINGER","price":23.99,"special":0,"common_prod_id":4894}, 
+ {"prod_id":3134,"category":2,"title":"AFFAIR CHAMPION","actor":"SOPHIA WINSLET","price":26.99,"special":0,"common_prod_id":1694}, 
+ {"prod_id":3138,"category":2,"title":"AFFAIR CHARIOTS","actor":"GARY SPACEK","price":19.99,"special":0,"common_prod_id":9653}, 
+ {"prod_id":3149,"category":2,"title":"AFFAIR CHRISTMAS","actor":"AUDREY HACKMAN","price":21.99,"special":0,"common_prod_id":3059}, 
+ {"prod_id":3181,"category":2,"title":"AFFAIR CONTACT","actor":"GROUCHO ASTAIRE","price":24.99,"special":0,"common_prod_id":5421}, 
+ {"prod_id":3300,"category":2,"title":"AFFAIR FALCON","actor":"EWAN WRAY","price":17.99,"special":0,"common_prod_id":315}, 
+ {"prod_id":3350,"category":2,"title":"AFFAIR GARDEN","actor":"SANDRA JACKMAN","price":15.99,"special":0,"common_prod_id":99}, 
+ {"prod_id":3361,"category":2,"title":"AFFAIR GLEAMING","actor":"MICHAEL LEIGH","price":29.99,"special":0,"common_prod_id":8229}, 
+ {"prod_id":3362,"category":2,"title":"AFFAIR GLORY","actor":"CARY JOLIE","price":18.99,"special":0,"common_prod_id":8383}, 
+ {"prod_id":3386,"category":2,"title":"AFFAIR GUMP","actor":"AUDREY LOREN","price":22.99,"special":0,"common_prod_id":2161}, 
+ {"prod_id":3409,"category":2,"title":"AFFAIR HEARTBREAKERS","actor":"CHARLES BRANDO","price":28.99,"special":0,"common_prod_id":830}, 
+ {"prod_id":3418,"category":2,"title":"AFFAIR HOBBIT","actor":"WARREN FIENNES","price":15.99,"special":0,"common_prod_id":1285}, 
+ {"prod_id":3486,"category":2,"title":"AFFAIR JET","actor":"BEN JOLIE","price":16.99,"special":0,"common_prod_id":3455}, 
+ {"prod_id":3509,"category":2,"title":"AFFAIR LANGUAGE","actor":"IAN SWANK","price":22.99,"special":0,"common_prod_id":5885}, 
+ {"prod_id":3512,"category":2,"title":"AFFAIR LEAGUE","actor":"DARYL CLOSE","price":22.99,"special":0,"common_prod_id":8007}, 
+ {"prod_id":3547,"category":2,"title":"AFFAIR MAGIC","actor":"HENRY TANDY","price":21.99,"special":0,"common_prod_id":4}, 
+ {"prod_id":3622,"category":2,"title":"AFFAIR NEWSIES","actor":"THORA ALLEN","price":17.99,"special":0,"common_prod_id":8759}, 
+ {"prod_id":3628,"category":2,"title":"AFFAIR NORTHWEST","actor":"HELEN WOOD","price":27.99,"special":0,"common_prod_id":3508}, 
+ {"prod_id":3658,"category":2,"title":"AFFAIR PARIS","actor":"JUDE DEGENERES","price":22.99,"special":0,"common_prod_id":2263}, 
+ {"prod_id":3699,"category":2,"title":"AFFAIR PRIVATE","actor":"KIRK DRIVER","price":27.99,"special":0,"common_prod_id":819}, 
+ {"prod_id":3703,"category":2,"title":"AFFAIR PUNK","actor":"JUDI DUNST","price":24.99,"special":0,"common_prod_id":5320}, 
+ {"prod_id":3716,"category":2,"title":"AFFAIR REAP","actor":"DANIEL ROBERTS","price":18.99,"special":0,"common_prod_id":1177}, 
+ {"prod_id":3724,"category":2,"title":"AFFAIR REMEMBER","actor":"SPENCER LOLLOBRIGIDA","price":20.99,"special":0,"common_prod_id":2920}, 
+ {"prod_id":3726,"category":2,"title":"AFFAIR RESERVOIR","actor":"MARY KIDMAN","price":22.99,"special":0,"common_prod_id":263}, 
+ {"prod_id":3807,"category":2,"title":"AFFAIR SLEUTH","actor":"MAE JACKMAN","price":28.99,"special":0,"common_prod_id":8432}, 
+ {"prod_id":3818,"category":2,"title":"AFFAIR SOMETHING","actor":"GWYNETH LOLLOBRIGIDA","price":23.99,"special":0,"common_prod_id":3829}, 
+ {"prod_id":3819,"category":2,"title":"AFFAIR SONG","actor":"JESSICA MINELLI","price":23.99,"special":0,"common_prod_id":2802}, 
+ {"prod_id":3822,"category":2,"title":"AFFAIR SOUP","actor":"CHRISTOPHER EASTWOOD","price":29.99,"special":0,"common_prod_id":5623}, 
+ {"prod_id":3840,"category":2,"title":"AFFAIR STAMPEDE","actor":"KIM JOHANSSON","price":25.99,"special":0,"common_prod_id":1035}, 
+ {"prod_id":3843,"category":2,"title":"AFFAIR STEEL","actor":"DARYL ROBBINS","price":29.99,"special":0,"common_prod_id":8055}, 
+ {"prod_id":3845,"category":2,"title":"AFFAIR STEPMOM","actor":"JOHN MANSFIELD","price":22.99,"special":0,"common_prod_id":7291}, 
+ {"prod_id":3857,"category":2,"title":"AFFAIR STRICTLY","actor":"DARYL WASHINGTON","price":15.99,"special":0,"common_prod_id":13}, 
+ {"prod_id":3864,"category":2,"title":"AFFAIR SUNDANCE","actor":"JADA MCCONAUGHEY","price":15.99,"special":0,"common_prod_id":2456}, 
+ {"prod_id":3867,"category":2,"title":"AFFAIR SUPER","actor":"MARY DIETRICH","price":23.99,"special":0,"common_prod_id":4906}, 
+ {"prod_id":3896,"category":2,"title":"AFFAIR TOOTSIE","actor":"OLYMPIA DAVIS","price":25.99,"special":0,"common_prod_id":7161}, 
+ {"prod_id":3902,"category":2,"title":"AFFAIR TRADING","actor":"SANDRA NOLTE","price":29.99,"special":0,"common_prod_id":7489}, 
+ {"prod_id":3905,"category":2,"title":"AFFAIR TRAINSPOTTING","actor":"JOE PFEIFFER","price":16.99,"special":0,"common_prod_id":5213}, 
+ {"prod_id":3982,"category":2,"title":"AFFAIR WOMEN","actor":"GENE RYAN","price":15.99,"special":0,"common_prod_id":7027}, 
+ {"prod_id":4025,"category":2,"title":"AFRICAN ANGELS","actor":"LAURA HOPKINS","price":25.99,"special":0,"common_prod_id":777}, 
+ {"prod_id":4048,"category":2,"title":"AFRICAN BACKLASH","actor":"ROBERT MIRANDA","price":19.99,"special":0,"common_prod_id":4552}, 
+ {"prod_id":4111,"category":2,"title":"AFRICAN CADDYSHACK","actor":"ROCK BLOOM","price":15.99,"special":0,"common_prod_id":5903}, 
+ {"prod_id":4138,"category":2,"title":"AFRICAN CHARIOTS","actor":"HILARY BERGEN","price":26.99,"special":0,"common_prod_id":9816}, 
+ {"prod_id":4141,"category":2,"title":"AFRICAN CHICAGO","actor":"ANGELA MOORE","price":15.99,"special":0,"common_prod_id":6439}, 
+ {"prod_id":4195,"category":2,"title":"AFRICAN CROWDS","actor":"HENRY PRESLEY","price":24.99,"special":0,"common_prod_id":9467}, 
+ {"prod_id":4200,"category":2,"title":"AFRICAN CURTAIN","actor":"DENZEL CAMPBELL","price":18.99,"special":0,"common_prod_id":2781}, 
+ {"prod_id":4202,"category":2,"title":"AFRICAN DADDY","actor":"RUSSELL JOHANSSON","price":22.99,"special":0,"common_prod_id":7014}, 
+ {"prod_id":4256,"category":2,"title":"AFRICAN DROP","actor":"MERYL GARLAND","price":24.99,"special":0,"common_prod_id":8770}, 
+ {"prod_id":4278,"category":2,"title":"AFRICAN ELF","actor":"LIV DREYFUSS","price":29.99,"special":0,"common_prod_id":4758}, 
+ {"prod_id":4334,"category":2,"title":"AFRICAN FREDDY","actor":"MINNIE JACKMAN","price":20.99,"special":0,"common_prod_id":2495}, 
+ {"prod_id":4339,"category":2,"title":"AFRICAN FROGMEN","actor":"EMILY MCGREGOR","price":25.99,"special":0,"common_prod_id":5373}, 
+ {"prod_id":4359,"category":2,"title":"AFRICAN GLADIATOR","actor":"SCARLETT RYAN","price":21.99,"special":0,"common_prod_id":2592}, 
+ {"prod_id":4394,"category":2,"title":"AFRICAN HAMLET","actor":"ALBERT MINELLI","price":22.99,"special":0,"common_prod_id":8639}, 
+ {"prod_id":4421,"category":2,"title":"AFRICAN HOLIDAY","actor":"HUME AFFLECK","price":22.99,"special":0,"common_prod_id":5185}, 
+ {"prod_id":4424,"category":2,"title":"AFRICAN HOLOCAUST","actor":"LANA HEPBURN","price":24.99,"special":0,"common_prod_id":4392}, 
+ {"prod_id":4427,"category":2,"title":"AFRICAN HOMEWARD","actor":"LEONARDO BOLGER","price":25.99,"special":0,"common_prod_id":4096}, 
+ {"prod_id":4429,"category":2,"title":"AFRICAN HONEY","actor":"ROBERT CRUZ","price":23.99,"special":0,"common_prod_id":6547}, 
+ {"prod_id":4448,"category":2,"title":"AFRICAN IDAHO","actor":"RITA WILLIAMS","price":22.99,"special":0,"common_prod_id":347}, 
+ {"prod_id":4451,"category":2,"title":"AFRICAN IGBY","actor":"CUBA DREYFUSS","price":17.99,"special":0,"common_prod_id":2607}, 
+ {"prod_id":4465,"category":2,"title":"AFRICAN INTERVIEW","actor":"IAN TURNER","price":28.99,"special":0,"common_prod_id":5602}, 
+ {"prod_id":4466,"category":2,"title":"AFRICAN INTOLERABLE","actor":"PENELOPE WALKEN","price":23.99,"special":0,"common_prod_id":2609}, 
+ {"prod_id":4490,"category":2,"title":"AFRICAN JUMANJI","actor":"DARYL DOUGLAS","price":24.99,"special":0,"common_prod_id":870}, 
+ {"prod_id":4509,"category":2,"title":"AFRICAN LANGUAGE","actor":"GROUCHO DEPP","price":24.99,"special":0,"common_prod_id":4692}, 
+ {"prod_id":4510,"category":2,"title":"AFRICAN LAWLESS","actor":"ANJELICA JACKMAN","price":20.99,"special":0,"common_prod_id":3343}, 
+ {"prod_id":4518,"category":2,"title":"AFRICAN LIAISONS","actor":"CUBA WATSON","price":19.99,"special":0,"common_prod_id":7687}, 
+ {"prod_id":4524,"category":2,"title":"AFRICAN LION","actor":"LIV MCGREGOR","price":21.99,"special":0,"common_prod_id":3406}, 
+ {"prod_id":4566,"category":2,"title":"AFRICAN MAUDE","actor":"HILARY MONROE","price":26.99,"special":0,"common_prod_id":2523}, 
+ {"prod_id":4575,"category":2,"title":"AFRICAN MIDSUMMER","actor":"GARY PALTROW","price":19.99,"special":0,"common_prod_id":1200}, 
+ {"prod_id":4582,"category":2,"title":"AFRICAN MIRACLE","actor":"ADRIEN DEGENERES","price":27.99,"special":0,"common_prod_id":5847}, 
+ {"prod_id":4619,"category":2,"title":"AFRICAN NEIGHBORS","actor":"BURT CRONYN","price":27.99,"special":0,"common_prod_id":2672}, 
+ {"prod_id":4621,"category":2,"title":"AFRICAN NETWORK","actor":"CARY SPACEK","price":18.99,"special":0,"common_prod_id":1309}, 
+ {"prod_id":4653,"category":2,"title":"AFRICAN PANIC","actor":"AL BERRY","price":20.99,"special":0,"common_prod_id":1343}, 
+ {"prod_id":4680,"category":2,"title":"AFRICAN PINOCCHIO","actor":"MEG DIETRICH","price":18.99,"special":0,"common_prod_id":7282}, 
+ {"prod_id":4701,"category":2,"title":"AFRICAN PSYCHO","actor":"CHARLES SWANK","price":17.99,"special":0,"common_prod_id":6173}, 
+ {"prod_id":4720,"category":2,"title":"AFRICAN REDEMPTION","actor":"CUBA CAINE","price":18.99,"special":0,"common_prod_id":4760}, 
+ {"prod_id":4792,"category":2,"title":"AFRICAN SHREK","actor":"JESSICA DICAPRIO","price":24.99,"special":0,"common_prod_id":8854}, 
+ {"prod_id":4835,"category":2,"title":"AFRICAN SPY","actor":"GREGORY CRAWFORD","price":27.99,"special":0,"common_prod_id":6260}, 
+ {"prod_id":4844,"category":2,"title":"AFRICAN STEERS","actor":"JESSICA AFFLECK","price":26.99,"special":0,"common_prod_id":8561}, 
+ {"prod_id":4851,"category":2,"title":"AFRICAN STRAIGHT","actor":"SISSY MCGREGOR","price":27.99,"special":0,"common_prod_id":1408}, 
+ {"prod_id":4852,"category":2,"title":"AFRICAN STRANGELOVE","actor":"ORLANDO WRAY","price":17.99,"special":0,"common_prod_id":890}, 
+ {"prod_id":4854,"category":2,"title":"AFRICAN STRANGERS","actor":"MIRA TAYLOR","price":28.99,"special":0,"common_prod_id":9719}, 
+ {"prod_id":4893,"category":2,"title":"AFRICAN TITANS","actor":"ALAN KEATON","price":19.99,"special":0,"common_prod_id":9880}, 
+ {"prod_id":4916,"category":2,"title":"AFRICAN TURN","actor":"CAMERON BERGMAN","price":26.99,"special":0,"common_prod_id":1814}, 
+ {"prod_id":4954,"category":2,"title":"AFRICAN WAKE","actor":"LIAM BALE","price":22.99,"special":0,"common_prod_id":2953}, 
+ {"prod_id":4969,"category":2,"title":"AFRICAN WEST","actor":"HUGH REYNOLDS","price":29.99,"special":0,"common_prod_id":3646}, 
+ {"prod_id":5000,"category":2,"title":"AFRICAN ZORRO","actor":"HELEN NOLTE","price":15.99,"special":0,"common_prod_id":8681}, 
+ {"prod_id":5001,"category":2,"title":"AGENT ACADEMY","actor":"JULIA BRANAGH","price":29.99,"special":0,"common_prod_id":6160}, 
+ {"prod_id":5014,"category":2,"title":"AGENT ALICE","actor":"SCARLETT LEWIS","price":25.99,"special":0,"common_prod_id":1898}, 
+ {"prod_id":5035,"category":2,"title":"AGENT ARACHNOPHOBIA","actor":"MATTHEW RYAN","price":29.99,"special":0,"common_prod_id":7284}, 
+ {"prod_id":5045,"category":2,"title":"AGENT ATTRACTION","actor":"MERYL PHOENIX","price":18.99,"special":0,"common_prod_id":3054}, 
+ {"prod_id":5071,"category":2,"title":"AGENT BILKO","actor":"KATE JACKMAN","price":21.99,"special":0,"common_prod_id":4499}, 
+ {"prod_id":5074,"category":2,"title":"AGENT BIRCH","actor":"AL BALL","price":26.99,"special":0,"common_prod_id":585}, 
+ {"prod_id":5078,"category":2,"title":"AGENT BLACKOUT","actor":"CUBA POITIER","price":26.99,"special":0,"common_prod_id":5360}, 
+ {"prod_id":5084,"category":2,"title":"AGENT BOILED","actor":"MATT MARX","price":22.99,"special":0,"common_prod_id":9997}, 
+ {"prod_id":5108,"category":2,"title":"AGENT BUTCH","actor":"CARY HORNE","price":27.99,"special":0,"common_prod_id":895}, 
+ {"prod_id":5111,"category":2,"title":"AGENT CADDYSHACK","actor":"CLARK MALDEN","price":16.99,"special":0,"common_prod_id":5153}, 
+ {"prod_id":5121,"category":2,"title":"AGENT CAROL","actor":"KIRK MARX","price":22.99,"special":0,"common_prod_id":5394}, 
+ {"prod_id":5128,"category":2,"title":"AGENT CATCH","actor":"JON BRODY","price":27.99,"special":0,"common_prod_id":1083}, 
+ {"prod_id":5159,"category":2,"title":"AGENT CLOSER","actor":"MATTHEW WALKEN","price":29.99,"special":0,"common_prod_id":6774}, 
+ {"prod_id":5170,"category":2,"title":"AGENT COMMAND","actor":"KARL TYLER","price":28.99,"special":0,"common_prod_id":3336}, 
+ {"prod_id":5171,"category":2,"title":"AGENT COMMANDMENTS","actor":"RUSSELL STALLONE","price":23.99,"special":0,"common_prod_id":7927}, 
+ {"prod_id":5182,"category":2,"title":"AGENT CONTROL","actor":"ZERO CAGE","price":28.99,"special":0,"common_prod_id":8786}, 
+ {"prod_id":5197,"category":2,"title":"AGENT CRUSADE","actor":"KIM SMITH","price":20.99,"special":0,"common_prod_id":7280}, 
+ {"prod_id":5203,"category":2,"title":"AGENT DAISY","actor":"LIV DEAN","price":16.99,"special":0,"common_prod_id":9507}, 
+ {"prod_id":5227,"category":2,"title":"AGENT DETAILS","actor":"SYLVESTER HECHE","price":25.99,"special":0,"common_prod_id":7215}, 
+ {"prod_id":5251,"category":2,"title":"AGENT DRAGONFLY","actor":"HILARY PECK","price":20.99,"special":0,"common_prod_id":9675}, 
+ {"prod_id":5252,"category":2,"title":"AGENT DREAM","actor":"WHOOPI IRONS","price":22.99,"special":0,"common_prod_id":6185}, 
+ {"prod_id":5267,"category":2,"title":"AGENT EAGLES","actor":"JANE BALL","price":26.99,"special":0,"common_prod_id":8407}, 
+ {"prod_id":5282,"category":2,"title":"AGENT ENCOUNTERS","actor":"ADRIEN AFFLECK","price":29.99,"special":0,"common_prod_id":3732}, 
+ {"prod_id":5319,"category":2,"title":"AGENT FISH","actor":"SIDNEY GABLE","price":16.99,"special":0,"common_prod_id":6914}, 
+ {"prod_id":5327,"category":2,"title":"AGENT FOOL","actor":"MEG ALLEN","price":25.99,"special":0,"common_prod_id":1079}, 
+ {"prod_id":5334,"category":2,"title":"AGENT FREDDY","actor":"HELEN SOBIESKI","price":17.99,"special":0,"common_prod_id":2510}, 
+ {"prod_id":5343,"category":2,"title":"AGENT FULL","actor":"ALAN BERRY","price":22.99,"special":0,"common_prod_id":4628}, 
+ {"prod_id":5384,"category":2,"title":"AGENT GROSSE","actor":"CAMERON NEWMAN","price":25.99,"special":0,"common_prod_id":9092}, 
+ {"prod_id":5387,"category":2,"title":"AGENT GUN","actor":"OPRAH CAMPBELL","price":29.99,"special":0,"common_prod_id":3417}, 
+ {"prod_id":5413,"category":2,"title":"AGENT HEDWIG","actor":"NICOLAS COSTNER","price":20.99,"special":0,"common_prod_id":5401}, 
+ {"prod_id":5427,"category":2,"title":"AGENT HOMEWARD","actor":"CATE HAWKE","price":21.99,"special":0,"common_prod_id":4017}, 
+ {"prod_id":5438,"category":2,"title":"AGENT HUMAN","actor":"DARYL WILLIAMS","price":29.99,"special":0,"common_prod_id":2537}, 
+ {"prod_id":5449,"category":2,"title":"AGENT IDENTITY","actor":"HILARY RUSSELL","price":21.99,"special":0,"common_prod_id":6347}, 
+ {"prod_id":5457,"category":2,"title":"AGENT INDEPENDENCE","actor":"HENRY CARREY","price":22.99,"special":0,"common_prod_id":1909}, 
+ {"prod_id":5463,"category":2,"title":"AGENT INSTINCT","actor":"MARISA HOPE","price":21.99,"special":0,"common_prod_id":5690}, 
+ {"prod_id":5512,"category":2,"title":"AGENT LEAGUE","actor":"RICHARD DAVIS","price":29.99,"special":0,"common_prod_id":5156}, 
+ {"prod_id":5554,"category":2,"title":"AGENT MALKOVICH","actor":"SALMA BASINGER","price":15.99,"special":0,"common_prod_id":782}, 
+ {"prod_id":5555,"category":2,"title":"AGENT MALLRATS","actor":"KARL ALLEN","price":21.99,"special":0,"common_prod_id":7688}, 
+ {"prod_id":5616,"category":2,"title":"AGENT NATIONAL","actor":"HENRY CRAWFORD","price":19.99,"special":0,"common_prod_id":1935}, 
+ {"prod_id":5621,"category":2,"title":"AGENT NETWORK","actor":"CARY PINKETT","price":18.99,"special":0,"common_prod_id":1134}, 
+ {"prod_id":5635,"category":2,"title":"AGENT OKLAHOMA","actor":"CARRIE TYLER","price":21.99,"special":0,"common_prod_id":2071}, 
+ {"prod_id":5660,"category":2,"title":"AGENT PARTY","actor":"ADAM DEE","price":18.99,"special":0,"common_prod_id":8011}, 
+ {"prod_id":5707,"category":2,"title":"AGENT QUEST","actor":"RALPH MALDEN","price":15.99,"special":0,"common_prod_id":622}, 
+ {"prod_id":5726,"category":2,"title":"AGENT RESERVOIR","actor":"ORLANDO GARBO","price":19.99,"special":0,"common_prod_id":9503}, 
+ {"prod_id":5736,"category":2,"title":"AGENT ROBBERY","actor":"MORGAN GRANT","price":22.99,"special":0,"common_prod_id":5297}, 
+ {"prod_id":5757,"category":2,"title":"AGENT SAGEBRUSH","actor":"GENE HOPKINS","price":18.99,"special":0,"common_prod_id":7746}, 
+ {"prod_id":5766,"category":2,"title":"AGENT SAVANNAH","actor":"CHEVY BACALL","price":18.99,"special":0,"common_prod_id":472}, 
+ {"prod_id":5788,"category":2,"title":"AGENT SHIP","actor":"OLYMPIA HOPKINS","price":15.99,"special":0,"common_prod_id":4699}, 
+ {"prod_id":5798,"category":2,"title":"AGENT SILVERADO","actor":"SIDNEY DEPP","price":18.99,"special":0,"common_prod_id":7220}, 
+ {"prod_id":5800,"category":2,"title":"AGENT SINNERS","actor":"CHEVY REYNOLDS","price":18.99,"special":0,"common_prod_id":9125}, 
+ {"prod_id":5867,"category":2,"title":"AGENT SUPER","actor":"CATE FIENNES","price":18.99,"special":0,"common_prod_id":4095}, 
+ {"prod_id":5878,"category":2,"title":"AGENT TEEN","actor":"DREW DEAN","price":19.99,"special":0,"common_prod_id":2645}, 
+ {"prod_id":5883,"category":2,"title":"AGENT TEQUILA","actor":"CHRISTIAN JACKMAN","price":15.99,"special":0,"common_prod_id":2830}, 
+ {"prod_id":5945,"category":2,"title":"AGENT VIRGINIAN","actor":"ANNETTE GABLE","price":21.99,"special":0,"common_prod_id":3927}, 
+ {"prod_id":5948,"category":2,"title":"AGENT VOICE","actor":"SHIRLEY CARREY","price":19.99,"special":0,"common_prod_id":3389}, 
+ {"prod_id":6010,"category":2,"title":"AIRPLANE ALADDIN","actor":"MORGAN SORVINO","price":19.99,"special":0,"common_prod_id":9532}, 
+ {"prod_id":6016,"category":2,"title":"AIRPLANE ALLEY","actor":"LIV DERN","price":16.99,"special":0,"common_prod_id":1585}, 
+ {"prod_id":6022,"category":2,"title":"AIRPLANE AMISTAD","actor":"WOODY KELLY","price":21.99,"special":0,"common_prod_id":1252}, 
+ {"prod_id":6028,"category":2,"title":"AIRPLANE ANTHEM","actor":"HARVEY STREEP","price":17.99,"special":0,"common_prod_id":4254}, 
+ {"prod_id":6031,"category":2,"title":"AIRPLANE APACHE","actor":"KATE POITIER","price":26.99,"special":0,"common_prod_id":1790}, 
+ {"prod_id":6043,"category":2,"title":"AIRPLANE ATLANTIS","actor":"WALTER KEITEL","price":25.99,"special":0,"common_prod_id":9762}, 
+ {"prod_id":6122,"category":2,"title":"AIRPLANE CARRIE","actor":"PEARL HECHE","price":20.99,"special":0,"common_prod_id":3361}, 
+ {"prod_id":6155,"category":2,"title":"AIRPLANE CLEOPATRA","actor":"LENA FOSTER","price":17.99,"special":1,"common_prod_id":5846}, 
+ {"prod_id":6168,"category":2,"title":"AIRPLANE COMANCHEROS","actor":"AUDREY AKROYD","price":23.99,"special":0,"common_prod_id":1714}, 
+ {"prod_id":6194,"category":2,"title":"AIRPLANE CROW","actor":"MICHAEL FONDA","price":24.99,"special":0,"common_prod_id":4231}, 
+ {"prod_id":6221,"category":2,"title":"AIRPLANE DELIVERANCE","actor":"DAN GUINESS","price":22.99,"special":0,"common_prod_id":140}, 
+ {"prod_id":6228,"category":2,"title":"AIRPLANE DETECTIVE","actor":"HUME IRONS","price":17.99,"special":0,"common_prod_id":8023}, 
+ {"prod_id":6316,"category":2,"title":"AIRPLANE FIRE","actor":"WILLEM FIELD","price":26.99,"special":0,"common_prod_id":7778}, 
+ {"prod_id":6343,"category":2,"title":"AIRPLANE FULL","actor":"EMILY DEE","price":26.99,"special":0,"common_prod_id":5576}, 
+ {"prod_id":6351,"category":2,"title":"AIRPLANE GASLIGHT","actor":"WILLIAM HAYEK","price":19.99,"special":0,"common_prod_id":9827}, 
+ {"prod_id":6378,"category":2,"title":"AIRPLANE GREATEST","actor":"MARLON COSTNER","price":25.99,"special":0,"common_prod_id":25}, 
+ {"prod_id":6406,"category":2,"title":"AIRPLANE HAUNTING","actor":"DARYL CRAWFORD","price":21.99,"special":0,"common_prod_id":5305}, 
+ {"prod_id":6446,"category":2,"title":"AIRPLANE HYSTERICAL","actor":"JIM RYAN","price":27.99,"special":0,"common_prod_id":2458}, 
+ {"prod_id":6466,"category":2,"title":"AIRPLANE INTOLERABLE","actor":"ROBIN BRODY","price":24.99,"special":0,"common_prod_id":5668}, 
+ {"prod_id":6480,"category":2,"title":"AIRPLANE JEEPERS","actor":"MICHAEL MCKELLEN","price":23.99,"special":0,"common_prod_id":2727}, 
+ {"prod_id":6497,"category":2,"title":"AIRPLANE KILL","actor":"CHARLES PHOENIX","price":19.99,"special":0,"common_prod_id":1919}, 
+ {"prod_id":6571,"category":2,"title":"AIRPLANE METAL","actor":"RALPH JOHANSSON","price":20.99,"special":0,"common_prod_id":7046}, 
+ {"prod_id":6600,"category":2,"title":"AIRPLANE MOTIONS","actor":"ALEC NORTON","price":23.99,"special":0,"common_prod_id":721}, 
+ {"prod_id":6624,"category":2,"title":"AIRPLANE NIGHTMARE","actor":"WARREN FISHER","price":21.99,"special":0,"common_prod_id":9919}, 
+ {"prod_id":6633,"category":2,"title":"AIRPLANE OCTOBER","actor":"EWAN WATSON","price":27.99,"special":0,"common_prod_id":6497}, 
+ {"prod_id":6651,"category":2,"title":"AIRPLANE PACKER","actor":"DEBBIE DEPP","price":29.99,"special":0,"common_prod_id":9220}, 
+ {"prod_id":6689,"category":2,"title":"AIRPLANE POLLOCK","actor":"DANIEL GARLAND","price":29.99,"special":0,"common_prod_id":7983}, 
+ {"prod_id":6726,"category":2,"title":"AIRPLANE RESERVOIR","actor":"MORGAN GOODING","price":15.99,"special":0,"common_prod_id":129}, 
+ {"prod_id":6752,"category":2,"title":"AIRPLANE RUNNER","actor":"CHRISTIAN HAWN","price":25.99,"special":0,"common_prod_id":7657}, 
+ {"prod_id":6773,"category":2,"title":"AIRPLANE SEABISCUIT","actor":"OLYMPIA PRESLEY","price":24.99,"special":0,"common_prod_id":9373}, 
+ {"prod_id":6775,"category":2,"title":"AIRPLANE SEATTLE","actor":"LISA TURNER","price":20.99,"special":0,"common_prod_id":4499}, 
+ {"prod_id":6831,"category":2,"title":"AIRPLANE SPIRITED","actor":"RENEE ANISTON","price":18.99,"special":0,"common_prod_id":5189}, 
+ {"prod_id":6847,"category":2,"title":"AIRPLANE STOCK","actor":"STEVE WAYNE","price":27.99,"special":0,"common_prod_id":2667}, 
+ {"prod_id":6851,"category":2,"title":"AIRPLANE STRAIGHT","actor":"AUDREY JOVOVICH","price":20.99,"special":0,"common_prod_id":3324}, 
+ {"prod_id":6859,"category":2,"title":"AIRPLANE SUGAR","actor":"MIRA DUNST","price":29.99,"special":0,"common_prod_id":5344}, 
+ {"prod_id":6865,"category":2,"title":"AIRPLANE SUNRISE","actor":"MILLA BEATTY","price":17.99,"special":0,"common_prod_id":5000}, 
+ {"prod_id":6884,"category":2,"title":"AIRPLANE TERMINATOR","actor":"CHRISTOPHER DUNST","price":23.99,"special":0,"common_prod_id":6078}, 
+ {"prod_id":6887,"category":2,"title":"AIRPLANE THIEF","actor":"RAY LANCASTER","price":26.99,"special":0,"common_prod_id":8738}, 
+ {"prod_id":6898,"category":2,"title":"AIRPLANE TOURIST","actor":"DEBBIE TURNER","price":23.99,"special":0,"common_prod_id":9609}, 
+ {"prod_id":6951,"category":2,"title":"AIRPLANE VOYAGE","actor":"CARMEN BRANAGH","price":18.99,"special":0,"common_prod_id":1441}, 
+ {"prod_id":7015,"category":2,"title":"AIRPORT ALIEN","actor":"CAMERON TORN","price":25.99,"special":0,"common_prod_id":8246}, 
+ {"prod_id":7024,"category":2,"title":"AIRPORT ANALYZE","actor":"SISSY ASTAIRE","price":23.99,"special":0,"common_prod_id":524}, 
+ {"prod_id":7027,"category":2,"title":"AIRPORT ANONYMOUS","actor":"FAY HESTON","price":15.99,"special":0,"common_prod_id":5053}, 
+ {"prod_id":7033,"category":2,"title":"AIRPORT APOLLO","actor":"DEBBIE FIENNES","price":28.99,"special":0,"common_prod_id":1894}, 
+ {"prod_id":7101,"category":2,"title":"AIRPORT BROTHERHOOD","actor":"JUDI DENCH","price":23.99,"special":0,"common_prod_id":1194}, 
+ {"prod_id":7139,"category":2,"title":"AIRPORT CHASING","actor":"KARL CRAWFORD","price":25.99,"special":0,"common_prod_id":1281}, 
+ {"prod_id":7158,"category":2,"title":"AIRPORT CLONES","actor":"MARILYN BRANDO","price":25.99,"special":0,"common_prod_id":274}, 
+ {"prod_id":7175,"category":2,"title":"AIRPORT CONFUSED","actor":"ALBERT JOHANSSON","price":15.99,"special":0,"common_prod_id":2517}, 
+ {"prod_id":7179,"category":2,"title":"AIRPORT CONQUERER","actor":"CAMERON PESCI","price":29.99,"special":0,"common_prod_id":6929}, 
+ {"prod_id":7199,"category":2,"title":"AIRPORT CUPBOARD","actor":"DARYL TYLER","price":16.99,"special":0,"common_prod_id":860}, 
+ {"prod_id":7200,"category":2,"title":"AIRPORT CURTAIN","actor":"PENELOPE DERN","price":18.99,"special":0,"common_prod_id":7662}, 
+ {"prod_id":7217,"category":2,"title":"AIRPORT DAZED","actor":"VAL PALTROW","price":20.99,"special":0,"common_prod_id":9832}, 
+ {"prod_id":7219,"category":2,"title":"AIRPORT DEEP","actor":"ALEC WINFREY","price":21.99,"special":0,"common_prod_id":3616}, 
+ {"prod_id":7257,"category":2,"title":"AIRPORT DRUMLINE","actor":"LIZA LOREN","price":18.99,"special":0,"common_prod_id":9162}, 
+ {"prod_id":7307,"category":2,"title":"AIRPORT FELLOWSHIP","actor":"WOODY SOBIESKI","price":23.99,"special":0,"common_prod_id":1683}, 
+ {"prod_id":7343,"category":2,"title":"AIRPORT FULL","actor":"PAUL SINATRA","price":17.99,"special":0,"common_prod_id":442}, 
+ {"prod_id":7366,"category":2,"title":"AIRPORT GOLDFINGER","actor":"GEOFFREY LEWIS","price":16.99,"special":0,"common_prod_id":1975}, 
+ {"prod_id":7424,"category":2,"title":"AIRPORT HOLOCAUST","actor":"TIM NEESON","price":16.99,"special":0,"common_prod_id":7193}, 
+ {"prod_id":7429,"category":2,"title":"AIRPORT HONEY","actor":"VIVIEN HECHE","price":29.99,"special":0,"common_prod_id":4719}, 
+ {"prod_id":7433,"category":2,"title":"AIRPORT HORN","actor":"KATE SMITH","price":15.99,"special":0,"common_prod_id":8898}, 
+ {"prod_id":7447,"category":2,"title":"AIRPORT ICE","actor":"CARY OLIVIER","price":21.99,"special":0,"common_prod_id":1383}, 
+ {"prod_id":7494,"category":2,"title":"AIRPORT KARATE","actor":"RIVER LOREN","price":17.99,"special":0,"common_prod_id":223}, 
+ {"prod_id":7513,"category":2,"title":"AIRPORT LEATHERNECKS","actor":"WILLEM GARBO","price":24.99,"special":0,"common_prod_id":4841}, 
+ {"prod_id":7540,"category":2,"title":"AIRPORT LUCKY","actor":"GARY AKROYD","price":27.99,"special":0,"common_prod_id":963}, 
+ {"prod_id":7549,"category":2,"title":"AIRPORT MAGNOLIA","actor":"KARL SUVARI","price":26.99,"special":0,"common_prod_id":7183}, 
+ {"prod_id":7592,"category":2,"title":"AIRPORT MONSTER","actor":"LAURA BRODY","price":16.99,"special":0,"common_prod_id":1840}, 
+ {"prod_id":7611,"category":2,"title":"AIRPORT MUSKETEERS","actor":"VAL FINNEY","price":25.99,"special":0,"common_prod_id":3853}, 
+ {"prod_id":7629,"category":2,"title":"AIRPORT NOTORIOUS","actor":"MADELINE BERGMAN","price":27.99,"special":0,"common_prod_id":9697}, 
+ {"prod_id":7632,"category":2,"title":"AIRPORT NUTS","actor":"ALICIA HARRIS","price":25.99,"special":0,"common_prod_id":9027}, 
+ {"prod_id":7657,"category":2,"title":"AIRPORT PARADISE","actor":"WILL WINFREY","price":15.99,"special":0,"common_prod_id":8569}, 
+ {"prod_id":7683,"category":2,"title":"AIRPORT PITY","actor":"LIAM CAGE","price":20.99,"special":0,"common_prod_id":9117}, 
+ {"prod_id":7691,"category":2,"title":"AIRPORT POSEIDON","actor":"SOPHIA HACKMAN","price":28.99,"special":0,"common_prod_id":1161}, 
+ {"prod_id":7699,"category":2,"title":"AIRPORT PRIVATE","actor":"GLENN MCKELLEN","price":20.99,"special":0,"common_prod_id":7238}, 
+ {"prod_id":7726,"category":2,"title":"AIRPORT RESERVOIR","actor":"UMA HECHE","price":17.99,"special":0,"common_prod_id":8301}, 
+ {"prod_id":7771,"category":2,"title":"AIRPORT SCORPION","actor":"KIM FORD","price":16.99,"special":0,"common_prod_id":1471}, 
+ {"prod_id":7800,"category":2,"title":"AIRPORT SINNERS","actor":"GREGORY SUVARI","price":23.99,"special":0,"common_prod_id":6474}, 
+ {"prod_id":7846,"category":2,"title":"AIRPORT STING","actor":"ANNETTE BAILEY","price":26.99,"special":0,"common_prod_id":2061}, 
+ {"prod_id":7861,"category":2,"title":"AIRPORT SUIT","actor":"ANJELICA NICHOLSON","price":19.99,"special":0,"common_prod_id":8687}, 
+ {"prod_id":7864,"category":2,"title":"AIRPORT SUNDANCE","actor":"ROBERT DIAZ","price":21.99,"special":0,"common_prod_id":7870}, 
+ {"prod_id":7874,"category":2,"title":"AIRPORT TADPOLE","actor":"NICOLE TYLER","price":19.99,"special":0,"common_prod_id":1291}, 
+ {"prod_id":7876,"category":2,"title":"AIRPORT TARZAN","actor":"MAE DAMON","price":20.99,"special":0,"common_prod_id":6227}, 
+ {"prod_id":7908,"category":2,"title":"AIRPORT TRAP","actor":"JANE CROWE","price":19.99,"special":0,"common_prod_id":5295}, 
+ {"prod_id":7945,"category":2,"title":"AIRPORT VIRGINIAN","actor":"FRANK DAY","price":28.99,"special":0,"common_prod_id":9554}, 
+ {"prod_id":7956,"category":2,"title":"AIRPORT WANDA","actor":"MATT WAHLBERG","price":24.99,"special":0,"common_prod_id":2658}, 
+ {"prod_id":7959,"category":2,"title":"AIRPORT WARLOCK","actor":"RITA DAFOE","price":15.99,"special":0,"common_prod_id":7522}, 
+ {"prod_id":7972,"category":2,"title":"AIRPORT WHISPERER","actor":"ETHAN DEGENERES","price":23.99,"special":0,"common_prod_id":6537}, 
+ {"prod_id":7990,"category":2,"title":"AIRPORT WORLD","actor":"ANTHONY JOVOVICH","price":18.99,"special":0,"common_prod_id":6343}, 
+ {"prod_id":8016,"category":2,"title":"ALABAMA ALLEY","actor":"EWAN TURNER","price":16.99,"special":0,"common_prod_id":4320}, 
+ {"prod_id":8017,"category":2,"title":"ALABAMA ALONE","actor":"NICOLAS POITIER","price":15.99,"special":0,"common_prod_id":2658}, 
+ {"prod_id":8026,"category":2,"title":"ALABAMA ANNIE","actor":"CARMEN BAILEY","price":15.99,"special":0,"common_prod_id":4784}, 
+ {"prod_id":8058,"category":2,"title":"ALABAMA BEACH","actor":"WALTER HOFFMAN","price":22.99,"special":0,"common_prod_id":9620}, 
+ {"prod_id":8066,"category":2,"title":"ALABAMA BENEATH","actor":"MICHAEL CRONYN","price":15.99,"special":0,"common_prod_id":6286}, 
+ {"prod_id":8069,"category":2,"title":"ALABAMA BEVERLY","actor":"JUDI EASTWOOD","price":27.99,"special":0,"common_prod_id":9713}, 
+ {"prod_id":8091,"category":2,"title":"ALABAMA BOUND","actor":"MINNIE TOMEI","price":24.99,"special":0,"common_prod_id":5686}, 
+ {"prod_id":8096,"category":2,"title":"ALABAMA BREAKING","actor":"PARKER DAMON","price":25.99,"special":0,"common_prod_id":2807}, 
+ {"prod_id":8126,"category":2,"title":"ALABAMA CASUALTIES","actor":"IAN DENIRO","price":23.99,"special":0,"common_prod_id":6430}, 
+ {"prod_id":8216,"category":2,"title":"ALABAMA DAY","actor":"VIVIEN FONDA","price":24.99,"special":0,"common_prod_id":8228}, 
+ {"prod_id":8259,"category":2,"title":"ALABAMA DUCK","actor":"HALLE CAMPBELL","price":18.99,"special":0,"common_prod_id":5120}, 
+ {"prod_id":8273,"category":2,"title":"ALABAMA EFFECT","actor":"CHRIS HACKMAN","price":27.99,"special":0,"common_prod_id":9503}, 
+ {"prod_id":8281,"category":2,"title":"ALABAMA ENCINO","actor":"KATE FINNEY","price":20.99,"special":0,"common_prod_id":2046}, 
+ {"prod_id":8297,"category":2,"title":"ALABAMA EXTRAORDINARY","actor":"KIRSTEN BRIDGES","price":22.99,"special":0,"common_prod_id":1769}, 
+ {"prod_id":8299,"category":2,"title":"ALABAMA FACTORY","actor":"ANNETTE FONDA","price":23.99,"special":0,"common_prod_id":7953}, 
+ {"prod_id":8306,"category":2,"title":"ALABAMA FEATHERS","actor":"JUDY SUVARI","price":19.99,"special":0,"common_prod_id":4231}, 
+ {"prod_id":8307,"category":2,"title":"ALABAMA FELLOWSHIP","actor":"JACK BASINGER","price":27.99,"special":0,"common_prod_id":891}, 
+ {"prod_id":8336,"category":2,"title":"ALABAMA FRENCH","actor":"BELA HOPE","price":15.99,"special":0,"common_prod_id":1233}, 
+ {"prod_id":8398,"category":2,"title":"ALABAMA HANOVER","actor":"JIM WILLIS","price":21.99,"special":0,"common_prod_id":3135}, 
+ {"prod_id":8433,"category":2,"title":"ALABAMA HORN","actor":"LEONARDO SANDLER","price":17.99,"special":0,"common_prod_id":2108}, 
+ {"prod_id":8439,"category":2,"title":"ALABAMA HUNCHBACK","actor":"KATE BACALL","price":16.99,"special":0,"common_prod_id":8232}, 
+ {"prod_id":8480,"category":2,"title":"ALABAMA JEEPERS","actor":"SOPHIA FORD","price":28.99,"special":0,"common_prod_id":8283}, 
+ {"prod_id":8515,"category":2,"title":"ALABAMA LEGALLY","actor":"BOB TEMPLE","price":25.99,"special":0,"common_prod_id":8432}, 
+ {"prod_id":8530,"category":2,"title":"ALABAMA LORD","actor":"JOHN DAFOE","price":24.99,"special":0,"common_prod_id":8891}, 
+ {"prod_id":8568,"category":2,"title":"ALABAMA MEMENTO","actor":"LUCILLE HECHE","price":28.99,"special":0,"common_prod_id":6668}, 
+ {"prod_id":8570,"category":2,"title":"ALABAMA MERMAID","actor":"NICK HEPBURN","price":23.99,"special":0,"common_prod_id":5985}, 
+ {"prod_id":8582,"category":2,"title":"ALABAMA MIRACLE","actor":"ANGELINA CHASE","price":29.99,"special":0,"common_prod_id":3362}, 
+ {"prod_id":8625,"category":2,"title":"ALABAMA NONE","actor":"MADELINE GOODING","price":16.99,"special":0,"common_prod_id":9751}, 
+ {"prod_id":8630,"category":2,"title":"ALABAMA NOTTING","actor":"STEVE SUVARI","price":24.99,"special":0,"common_prod_id":9730}, 
+ {"prod_id":8658,"category":2,"title":"ALABAMA PARIS","actor":"GRETA DICAPRIO","price":20.99,"special":0,"common_prod_id":1737}, 
+ {"prod_id":8693,"category":2,"title":"ALABAMA POTTER","actor":"HALLE BAILEY","price":19.99,"special":0,"common_prod_id":796}, 
+ {"prod_id":8709,"category":2,"title":"ALABAMA RACER","actor":"OPRAH MCQUEEN","price":28.99,"special":0,"common_prod_id":2640}, 
+ {"prod_id":8742,"category":2,"title":"ALABAMA ROOF","actor":"ALAN DREYFUSS","price":22.99,"special":0,"common_prod_id":8545}, 
+ {"prod_id":8760,"category":2,"title":"ALABAMA SAMURAI","actor":"WILLIAM HACKMAN","price":17.99,"special":0,"common_prod_id":6972}, 
+ {"prod_id":8791,"category":2,"title":"ALABAMA SHOW","actor":"ANTHONY KINNEAR","price":17.99,"special":0,"common_prod_id":8150}, 
+ {"prod_id":8799,"category":2,"title":"ALABAMA SIMON","actor":"SIDNEY GOLDBERG","price":24.99,"special":0,"common_prod_id":7226}, 
+ {"prod_id":8874,"category":2,"title":"ALABAMA TADPOLE","actor":"TOM MINELLI","price":28.99,"special":0,"common_prod_id":9889}, 
+ {"prod_id":8902,"category":2,"title":"ALABAMA TRADING","actor":"AUDREY MOORE","price":20.99,"special":0,"common_prod_id":9315}, 
+ {"prod_id":8911,"category":2,"title":"ALABAMA TRIP","actor":"GLENN LUGOSI","price":28.99,"special":0,"common_prod_id":258}, 
+ {"prod_id":8928,"category":2,"title":"ALABAMA UPTOWN","actor":"SEAN BOGART","price":18.99,"special":0,"common_prod_id":2823}, 
+ {"prod_id":8956,"category":2,"title":"ALABAMA WANDA","actor":"WOODY PESCI","price":24.99,"special":0,"common_prod_id":368}, 
+ {"prod_id":8986,"category":2,"title":"ALABAMA WONKA","actor":"SANDRA KILMER","price":22.99,"special":0,"common_prod_id":7117}, 
+ {"prod_id":9010,"category":2,"title":"ALADDIN ALADDIN","actor":"SHIRLEY CAGE","price":28.99,"special":0,"common_prod_id":6447}, 
+ {"prod_id":9028,"category":2,"title":"ALADDIN ANTHEM","actor":"UMA CRUZ","price":29.99,"special":0,"common_prod_id":453}, 
+ {"prod_id":9030,"category":2,"title":"ALADDIN ANYTHING","actor":"MINNIE DERN","price":17.99,"special":0,"common_prod_id":9604}, 
+ {"prod_id":9052,"category":2,"title":"ALADDIN BALLROOM","actor":"RICHARD PRESLEY","price":29.99,"special":0,"common_prod_id":5226}, 
+ {"prod_id":9067,"category":2,"title":"ALADDIN BERETS","actor":"SALLY LANSBURY","price":28.99,"special":0,"common_prod_id":8137}, 
+ {"prod_id":9152,"category":2,"title":"ALADDIN CIRCUS","actor":"HELEN FISHER","price":18.99,"special":0,"common_prod_id":4707}, 
+ {"prod_id":9158,"category":2,"title":"ALADDIN CLONES","actor":"MORGAN HOPKINS","price":29.99,"special":0,"common_prod_id":2310}, 
+ {"prod_id":9169,"category":2,"title":"ALADDIN COMFORTS","actor":"DANIEL TANDY","price":16.99,"special":0,"common_prod_id":7865}, 
+ {"prod_id":9221,"category":2,"title":"ALADDIN DELIVERANCE","actor":"FRANCES HORNE","price":18.99,"special":0,"common_prod_id":1761}, 
+ {"prod_id":9229,"category":2,"title":"ALADDIN DEVIL","actor":"WINONA BOGART","price":20.99,"special":0,"common_prod_id":9912}, 
+ {"prod_id":9235,"category":2,"title":"ALADDIN DIVIDE","actor":"CHARLIZE GRANT","price":18.99,"special":0,"common_prod_id":9231}, 
+ {"prod_id":9303,"category":2,"title":"ALADDIN FANTASY","actor":"PENELOPE HUDSON","price":21.99,"special":0,"common_prod_id":561}, 
+ {"prod_id":9329,"category":2,"title":"ALADDIN FORREST","actor":"JEFF FIENNES","price":17.99,"special":0,"common_prod_id":1827}, 
+ {"prod_id":9336,"category":2,"title":"ALADDIN FRENCH","actor":"ETHAN HAWN","price":23.99,"special":0,"common_prod_id":2859}, 
+ {"prod_id":9435,"category":2,"title":"ALADDIN HOTEL","actor":"REESE CROWE","price":23.99,"special":0,"common_prod_id":5283}, 
+ {"prod_id":9437,"category":2,"title":"ALADDIN HOUSE","actor":"HUGH EASTWOOD","price":23.99,"special":0,"common_prod_id":4243}, 
+ {"prod_id":9444,"category":2,"title":"ALADDIN HUSTLER","actor":"JESSICA RYDER","price":29.99,"special":0,"common_prod_id":6971}, 
+ {"prod_id":9464,"category":2,"title":"ALADDIN INTENTIONS","actor":"MILLA HARRIS","price":15.99,"special":0,"common_prod_id":9212}, 
+ {"prod_id":9492,"category":2,"title":"ALADDIN JUNGLE","actor":"BRUCE LUGOSI","price":23.99,"special":0,"common_prod_id":728}, 
+ {"prod_id":9519,"category":2,"title":"ALADDIN LIBERTY","actor":"SALLY DAY-LEWIS","price":17.99,"special":0,"common_prod_id":6482}, 
+ {"prod_id":9526,"category":2,"title":"ALADDIN LOCK","actor":"RIP MALDEN","price":25.99,"special":0,"common_prod_id":4660}, 
+ {"prod_id":9531,"category":2,"title":"ALADDIN LOSE","actor":"BELA CLOSE","price":27.99,"special":0,"common_prod_id":6051}, 
+ {"prod_id":9533,"category":2,"title":"ALADDIN LOST","actor":"ZERO MOSTEL","price":28.99,"special":0,"common_prod_id":4996}, 
+ {"prod_id":9591,"category":2,"title":"ALADDIN MONSOON","actor":"MEG SINATRA","price":16.99,"special":0,"common_prod_id":3636}, 
+ {"prod_id":9625,"category":2,"title":"ALADDIN NONE","actor":"RENEE GRANT","price":27.99,"special":0,"common_prod_id":7423}, 
+ {"prod_id":9680,"category":2,"title":"ALADDIN PINOCCHIO","actor":"DANIEL STALLONE","price":28.99,"special":0,"common_prod_id":3284}, 
+ {"prod_id":9690,"category":2,"title":"ALADDIN POND","actor":"MADELINE BENING","price":27.99,"special":0,"common_prod_id":9414}, 
+ {"prod_id":9695,"category":2,"title":"ALADDIN PRESIDENT","actor":"HUMPHREY ALLEN","price":23.99,"special":0,"common_prod_id":4779}, 
+ {"prod_id":9763,"category":2,"title":"ALADDIN SATISFACTION","actor":"RAY SINATRA","price":16.99,"special":0,"common_prod_id":9155}, 
+ {"prod_id":9782,"category":2,"title":"ALADDIN SHAKESPEARE","actor":"GRACE MINELLI","price":23.99,"special":0,"common_prod_id":2173}, 
+ {"prod_id":9823,"category":2,"title":"ALADDIN SOUTH","actor":"MARLENE MONROE","price":26.99,"special":0,"common_prod_id":7762}, 
+ {"prod_id":9833,"category":2,"title":"ALADDIN SPLENDOR","actor":"MARILYN THERON","price":24.99,"special":0,"common_prod_id":188}, 
+ {"prod_id":9850,"category":2,"title":"ALADDIN STORY","actor":"MEG DAY-LEWIS","price":18.99,"special":0,"common_prod_id":2963}, 
+ {"prod_id":9854,"category":2,"title":"ALADDIN STRANGERS","actor":"LENA BALL","price":23.99,"special":0,"common_prod_id":8283}, 
+ {"prod_id":9893,"category":2,"title":"ALADDIN TITANS","actor":"ELLEN KELLY","price":18.99,"special":0,"common_prod_id":22}, 
+ {"prod_id":9937,"category":2,"title":"ALADDIN VARSITY","actor":"ZERO GOLDBERG","price":26.99,"special":0,"common_prod_id":5930}, 
+ {"prod_id":9949,"category":2,"title":"ALADDIN VOLCANO","actor":"CHEVY HUNT","price":26.99,"special":0,"common_prod_id":5893}, 
+ {"prod_id":9953,"category":2,"title":"ALADDIN WAIT","actor":"SALMA HESTON","price":15.99,"special":0,"common_prod_id":8255}, 
+ {"prod_id":9961,"category":2,"title":"ALADDIN WASH","actor":"HELEN DUKAKIS","price":24.99,"special":0,"common_prod_id":9175}, 
+ {"prod_id":9997,"category":2,"title":"ALADDIN YOUTH","actor":"RALPH BASINGER","price":26.99,"special":1,"common_prod_id":7003}] 
+ </msg>
+<msg timestamp="20220620 01:49:26.626" level="TRACE">Return: &lt;Response [200]&gt;</msg>
+<msg timestamp="20220620 01:49:26.627" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220620 01:49:26.593" endtime="20220620 01:49:26.627"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${response_number}</var>
+<arg>${response}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20220620 01:49:26.627" level="TRACE">Arguments: [ &lt;Response [200]&gt; ]</msg>
+<msg timestamp="20220620 01:49:26.627" level="DEBUG">Argument types are:
+&lt;class 'requests.models.Response'&gt;</msg>
+<msg timestamp="20220620 01:49:26.627" level="TRACE">Return: '&lt;Response [200]&gt;'</msg>
+<msg timestamp="20220620 01:49:26.627" level="INFO">${response_number} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220620 01:49:26.627" endtime="20220620 01:49:26.627"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>${response_number}[11:14] != 200</arg>
+<arg>BuiltIn.Set Test Message</arg>
+<arg>Error ${response_number}[11:14]</arg>
+<arg>ELSE</arg>
+<arg>BuiltIn.Set Test Message</arg>
+<arg>Correct</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<msg timestamp="20220620 01:49:26.628" level="TRACE">Arguments: [ '200 != 200' | 'BuiltIn.Set Test Message' | 'Error ${response_number}[11:14]' | 'ELSE' | 'BuiltIn.Set Test Message' | 'Correct' ]</msg>
+<kw name="Set Test Message" library="BuiltIn">
+<arg>Correct</arg>
+<doc>Sets message for the current test case.</doc>
+<msg timestamp="20220620 01:49:26.629" level="TRACE">Arguments: [ 'Correct' ]</msg>
+<msg timestamp="20220620 01:49:26.629" level="INFO">Set test message to:
+Correct</msg>
+<msg timestamp="20220620 01:49:26.629" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:49:26.628" endtime="20220620 01:49:26.629"/>
+</kw>
+<msg timestamp="20220620 01:49:26.638" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:49:26.628" endtime="20220620 01:49:26.639"/>
+</kw>
+<msg timestamp="20220620 01:49:26.639" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:49:26.593" endtime="20220620 01:49:26.639"/>
+</kw>
+<kw name="Test Teardown" library="resource" type="TEARDOWN">
+<msg timestamp="20220620 01:49:26.640" level="TRACE">Arguments: [  ]</msg>
+<kw name="Delete All Sessions" library="Req">
+<doc>Removes all the session objects</doc>
+<msg timestamp="20220620 01:49:26.640" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20220620 01:49:26.640" level="INFO">Deleting All Sessions</msg>
+<msg timestamp="20220620 01:49:26.640" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:49:26.640" endtime="20220620 01:49:26.641"/>
+</kw>
+<kw name="Disconnect From Postgresql" library="DB">
+<doc>Close active PostgreSQL connection.
+You will have to manually open or switch to a new connection.
+Due to how ConnectionCache works, connection's index and alias are not removed from cache, so you are able to switch to
+closed connection, if it was closed with Disconnect from Postgresql. It will still remain closed though.</doc>
+<msg timestamp="20220620 01:49:26.641" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20220620 01:49:26.641" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:49:26.641" endtime="20220620 01:49:26.642"/>
+</kw>
+<msg timestamp="20220620 01:49:26.642" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:49:26.639" endtime="20220620 01:49:26.642"/>
+</kw>
+<status status="PASS" starttime="20220620 01:49:26.572" endtime="20220620 01:49:26.642">Correct</status>
+</test>
+<test id="s1-s1-s1-s1-t2" name="Check Search One Table 404" line="9">
+<kw name="Test Setup" library="resource" type="SETUP">
+<msg timestamp="20220620 01:49:26.644" level="TRACE">Arguments: [  ]</msg>
+<kw name="Create Session" library="Req">
+<arg>alias</arg>
+<arg>http://localhost:3000</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20220620 01:49:26.645" level="TRACE">Arguments: [ 'alias' | 'http://localhost:3000' ]</msg>
+<msg timestamp="20220620 01:49:26.645" level="INFO">Creating Session using : alias=alias, url=http://localhost:3000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20220620 01:49:26.645" level="DEBUG">Creating session: alias</msg>
+<msg timestamp="20220620 01:49:26.645" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7f9b0bccf5b0&gt;</msg>
+<status status="PASS" starttime="20220620 01:49:26.645" endtime="20220620 01:49:26.645"/>
+</kw>
+<kw name="Connect To Postgresql" library="DB">
+<arg>app_db</arg>
+<arg>app_user</arg>
+<arg>password</arg>
+<arg>localhost</arg>
+<arg>5432</arg>
+<doc>Connection to Postgres DB.</doc>
+<msg timestamp="20220620 01:49:26.646" level="TRACE">Arguments: [ 'app_db' | 'app_user' | 'password' | 'localhost' | '5432' ]</msg>
+<msg timestamp="20220620 01:49:26.647" level="DEBUG">Connecting using : dbhost=localhost, dbport=5432, dbname=app_db, dbusername=app_user, dbpassword=password, alias=None</msg>
+<msg timestamp="20220620 01:49:26.670" level="TRACE">Return: 2</msg>
+<status status="PASS" starttime="20220620 01:49:26.645" endtime="20220620 01:49:26.671"/>
+</kw>
+<msg timestamp="20220620 01:49:26.671" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:49:26.644" endtime="20220620 01:49:26.672"/>
+</kw>
+<kw name="Get And Check Response">
+<arg>prod1uctss</arg>
+<arg>price=gt.15&amp;category=eq.2</arg>
+<msg timestamp="20220620 01:49:26.675" level="TRACE">Arguments: [ ${table}='prod1uctss' | ${params}='price=gt.15&amp;category=eq.2' ]</msg>
+<kw name="GET On Session" library="Req">
+<var>${response}</var>
+<arg>alias</arg>
+<arg>/${table}?</arg>
+<arg>params=${params}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20220620 01:49:26.676" level="TRACE">Arguments: [ 'alias' | '/prod1uctss?' | params='price=gt.15&amp;category=eq.2' | expected_status='any' ]</msg>
+<msg timestamp="20220620 01:49:26.678" level="DEBUG">Starting new HTTP connection (1): localhost:3000</msg>
+<msg timestamp="20220620 01:49:26.681" level="DEBUG">http://localhost:3000 "GET /prod1uctss?price=gt.15&amp;category=eq.2 HTTP/1.1" 404 None</msg>
+<msg timestamp="20220620 01:49:26.682" level="INFO">GET Request : url=http://localhost:3000/prod1uctss?price=gt.15&amp;category=eq.2 
+ path_url=/prod1uctss?price=gt.15&amp;category=eq.2 
+ headers={'User-Agent': 'python-requests/2.28.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20220620 01:49:26.682" level="INFO">GET Response : url=http://localhost:3000/prod1uctss?price=gt.15&amp;category=eq.2 
+ status=404, reason=Not Found 
+ headers={'Transfer-Encoding': 'chunked', 'Date': 'Sun, 19 Jun 2022 22:49:26 GMT', 'Server': 'postgrest/9.0.0', 'Content-Type': 'application/json; charset=utf-8'} 
+ body={"hint":null,"details":null,"code":"42P01","message":"relation \"bootcamp.prod1uctss\" does not exist"} 
+ </msg>
+<msg timestamp="20220620 01:49:26.682" level="TRACE">Return: &lt;Response [404]&gt;</msg>
+<msg timestamp="20220620 01:49:26.682" level="INFO">${response} = &lt;Response [404]&gt;</msg>
+<status status="PASS" starttime="20220620 01:49:26.675" endtime="20220620 01:49:26.682"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${response_number}</var>
+<arg>${response}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20220620 01:49:26.683" level="TRACE">Arguments: [ &lt;Response [404]&gt; ]</msg>
+<msg timestamp="20220620 01:49:26.683" level="DEBUG">Argument types are:
+&lt;class 'requests.models.Response'&gt;</msg>
+<msg timestamp="20220620 01:49:26.683" level="TRACE">Return: '&lt;Response [404]&gt;'</msg>
+<msg timestamp="20220620 01:49:26.683" level="INFO">${response_number} = &lt;Response [404]&gt;</msg>
+<status status="PASS" starttime="20220620 01:49:26.683" endtime="20220620 01:49:26.683"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>${response_number}[11:14] != 200</arg>
+<arg>BuiltIn.Set Test Message</arg>
+<arg>Error ${response_number}[11:14]</arg>
+<arg>ELSE</arg>
+<arg>BuiltIn.Set Test Message</arg>
+<arg>Correct</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<msg timestamp="20220620 01:49:26.684" level="TRACE">Arguments: [ '404 != 200' | 'BuiltIn.Set Test Message' | 'Error ${response_number}[11:14]' | 'ELSE' | 'BuiltIn.Set Test Message' | 'Correct' ]</msg>
+<kw name="Set Test Message" library="BuiltIn">
+<arg>Error ${response_number}[11:14]</arg>
+<doc>Sets message for the current test case.</doc>
+<msg timestamp="20220620 01:49:26.685" level="TRACE">Arguments: [ 'Error 404' ]</msg>
+<msg timestamp="20220620 01:49:26.685" level="INFO">Set test message to:
+Error 404</msg>
+<msg timestamp="20220620 01:49:26.686" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:49:26.684" endtime="20220620 01:49:26.686"/>
+</kw>
+<msg timestamp="20220620 01:49:26.686" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:49:26.683" endtime="20220620 01:49:26.686"/>
+</kw>
+<msg timestamp="20220620 01:49:26.686" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:49:26.674" endtime="20220620 01:49:26.686"/>
+</kw>
+<kw name="Test Teardown" library="resource" type="TEARDOWN">
+<msg timestamp="20220620 01:49:26.687" level="TRACE">Arguments: [  ]</msg>
+<kw name="Delete All Sessions" library="Req">
+<doc>Removes all the session objects</doc>
+<msg timestamp="20220620 01:49:26.687" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20220620 01:49:26.687" level="INFO">Deleting All Sessions</msg>
+<msg timestamp="20220620 01:49:26.687" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:49:26.687" endtime="20220620 01:49:26.687"/>
+</kw>
+<kw name="Disconnect From Postgresql" library="DB">
+<doc>Close active PostgreSQL connection.
+You will have to manually open or switch to a new connection.
+Due to how ConnectionCache works, connection's index and alias are not removed from cache, so you are able to switch to
+closed connection, if it was closed with Disconnect from Postgresql. It will still remain closed though.</doc>
+<msg timestamp="20220620 01:49:26.687" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20220620 01:49:26.688" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:49:26.687" endtime="20220620 01:49:26.689"/>
+</kw>
+<msg timestamp="20220620 01:49:26.689" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:49:26.686" endtime="20220620 01:49:26.690"/>
+</kw>
+<status status="PASS" starttime="20220620 01:49:26.643" endtime="20220620 01:49:26.690">Error 404</status>
+</test>
+<test id="s1-s1-s1-s1-t3" name="Check Search One Table 400" line="10">
+<kw name="Test Setup" library="resource" type="SETUP">
+<msg timestamp="20220620 01:49:26.691" level="TRACE">Arguments: [  ]</msg>
+<kw name="Create Session" library="Req">
+<arg>alias</arg>
+<arg>http://localhost:3000</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20220620 01:49:26.692" level="TRACE">Arguments: [ 'alias' | 'http://localhost:3000' ]</msg>
+<msg timestamp="20220620 01:49:26.692" level="INFO">Creating Session using : alias=alias, url=http://localhost:3000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20220620 01:49:26.692" level="DEBUG">Creating session: alias</msg>
+<msg timestamp="20220620 01:49:26.692" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7f9b0bccd000&gt;</msg>
+<status status="PASS" starttime="20220620 01:49:26.691" endtime="20220620 01:49:26.692"/>
+</kw>
+<kw name="Connect To Postgresql" library="DB">
+<arg>app_db</arg>
+<arg>app_user</arg>
+<arg>password</arg>
+<arg>localhost</arg>
+<arg>5432</arg>
+<doc>Connection to Postgres DB.</doc>
+<msg timestamp="20220620 01:49:26.692" level="TRACE">Arguments: [ 'app_db' | 'app_user' | 'password' | 'localhost' | '5432' ]</msg>
+<msg timestamp="20220620 01:49:26.693" level="DEBUG">Connecting using : dbhost=localhost, dbport=5432, dbname=app_db, dbusername=app_user, dbpassword=password, alias=None</msg>
+<msg timestamp="20220620 01:49:26.710" level="TRACE">Return: 3</msg>
+<status status="PASS" starttime="20220620 01:49:26.692" endtime="20220620 01:49:26.710"/>
+</kw>
+<msg timestamp="20220620 01:49:26.710" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:49:26.691" endtime="20220620 01:49:26.710"/>
+</kw>
+<kw name="Get And Check Response">
+<arg>products</arg>
+<arg>price=gt15&amp;category=eq.2</arg>
+<msg timestamp="20220620 01:49:26.710" level="TRACE">Arguments: [ ${table}='products' | ${params}='price=gt15&amp;category=eq.2' ]</msg>
+<kw name="GET On Session" library="Req">
+<var>${response}</var>
+<arg>alias</arg>
+<arg>/${table}?</arg>
+<arg>params=${params}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20220620 01:49:26.711" level="TRACE">Arguments: [ 'alias' | '/products?' | params='price=gt15&amp;category=eq.2' | expected_status='any' ]</msg>
+<msg timestamp="20220620 01:49:26.712" level="DEBUG">Starting new HTTP connection (1): localhost:3000</msg>
+<msg timestamp="20220620 01:49:26.714" level="DEBUG">http://localhost:3000 "GET /products?price=gt15&amp;category=eq.2 HTTP/1.1" 400 None</msg>
+<msg timestamp="20220620 01:49:26.714" level="INFO">GET Request : url=http://localhost:3000/products?price=gt15&amp;category=eq.2 
+ path_url=/products?price=gt15&amp;category=eq.2 
+ headers={'User-Agent': 'python-requests/2.28.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20220620 01:49:26.714" level="INFO">GET Response : url=http://localhost:3000/products?price=gt15&amp;category=eq.2 
+ status=400, reason=Bad Request 
+ headers={'Transfer-Encoding': 'chunked', 'Date': 'Sun, 19 Jun 2022 22:49:26 GMT', 'Server': 'postgrest/9.0.0', 'Content-Type': 'application/json; charset=utf-8'} 
+ body={"details":"unexpected \"1\" expecting operator (eq, gt, ...)","message":"\"failed to parse filter (gt15)\" (line 1, column 3)"} 
+ </msg>
+<msg timestamp="20220620 01:49:26.715" level="TRACE">Return: &lt;Response [400]&gt;</msg>
+<msg timestamp="20220620 01:49:26.715" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<status status="PASS" starttime="20220620 01:49:26.711" endtime="20220620 01:49:26.715"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${response_number}</var>
+<arg>${response}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20220620 01:49:26.715" level="TRACE">Arguments: [ &lt;Response [400]&gt; ]</msg>
+<msg timestamp="20220620 01:49:26.715" level="DEBUG">Argument types are:
+&lt;class 'requests.models.Response'&gt;</msg>
+<msg timestamp="20220620 01:49:26.715" level="TRACE">Return: '&lt;Response [400]&gt;'</msg>
+<msg timestamp="20220620 01:49:26.715" level="INFO">${response_number} = &lt;Response [400]&gt;</msg>
+<status status="PASS" starttime="20220620 01:49:26.715" endtime="20220620 01:49:26.715"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>${response_number}[11:14] != 200</arg>
+<arg>BuiltIn.Set Test Message</arg>
+<arg>Error ${response_number}[11:14]</arg>
+<arg>ELSE</arg>
+<arg>BuiltIn.Set Test Message</arg>
+<arg>Correct</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<msg timestamp="20220620 01:49:26.716" level="TRACE">Arguments: [ '400 != 200' | 'BuiltIn.Set Test Message' | 'Error ${response_number}[11:14]' | 'ELSE' | 'BuiltIn.Set Test Message' | 'Correct' ]</msg>
+<kw name="Set Test Message" library="BuiltIn">
+<arg>Error ${response_number}[11:14]</arg>
+<doc>Sets message for the current test case.</doc>
+<msg timestamp="20220620 01:49:26.716" level="TRACE">Arguments: [ 'Error 400' ]</msg>
+<msg timestamp="20220620 01:49:26.716" level="INFO">Set test message to:
+Error 400</msg>
+<msg timestamp="20220620 01:49:26.716" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:49:26.716" endtime="20220620 01:49:26.716"/>
+</kw>
+<msg timestamp="20220620 01:49:26.716" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:49:26.716" endtime="20220620 01:49:26.717"/>
+</kw>
+<msg timestamp="20220620 01:49:26.717" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:49:26.710" endtime="20220620 01:49:26.717"/>
+</kw>
+<kw name="Test Teardown" library="resource" type="TEARDOWN">
+<msg timestamp="20220620 01:49:26.717" level="TRACE">Arguments: [  ]</msg>
+<kw name="Delete All Sessions" library="Req">
+<doc>Removes all the session objects</doc>
+<msg timestamp="20220620 01:49:26.717" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20220620 01:49:26.718" level="INFO">Deleting All Sessions</msg>
+<msg timestamp="20220620 01:49:26.718" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:49:26.717" endtime="20220620 01:49:26.718"/>
+</kw>
+<kw name="Disconnect From Postgresql" library="DB">
+<doc>Close active PostgreSQL connection.
+You will have to manually open or switch to a new connection.
+Due to how ConnectionCache works, connection's index and alias are not removed from cache, so you are able to switch to
+closed connection, if it was closed with Disconnect from Postgresql. It will still remain closed though.</doc>
+<msg timestamp="20220620 01:49:26.718" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20220620 01:49:26.718" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:49:26.718" endtime="20220620 01:49:26.718"/>
+</kw>
+<msg timestamp="20220620 01:49:26.719" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:49:26.717" endtime="20220620 01:49:26.719"/>
+</kw>
+<status status="PASS" starttime="20220620 01:49:26.690" endtime="20220620 01:49:26.719">Error 400</status>
+</test>
+<test id="s1-s1-s1-s1-t4" name="Check Search One Table 400" line="11">
+<kw name="Test Setup" library="resource" type="SETUP">
+<msg timestamp="20220620 01:49:26.720" level="TRACE">Arguments: [  ]</msg>
+<kw name="Create Session" library="Req">
+<arg>alias</arg>
+<arg>http://localhost:3000</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20220620 01:49:26.720" level="TRACE">Arguments: [ 'alias' | 'http://localhost:3000' ]</msg>
+<msg timestamp="20220620 01:49:26.720" level="INFO">Creating Session using : alias=alias, url=http://localhost:3000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20220620 01:49:26.720" level="DEBUG">Creating session: alias</msg>
+<msg timestamp="20220620 01:49:26.721" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7f9b0bb32020&gt;</msg>
+<status status="PASS" starttime="20220620 01:49:26.720" endtime="20220620 01:49:26.721"/>
+</kw>
+<kw name="Connect To Postgresql" library="DB">
+<arg>app_db</arg>
+<arg>app_user</arg>
+<arg>password</arg>
+<arg>localhost</arg>
+<arg>5432</arg>
+<doc>Connection to Postgres DB.</doc>
+<msg timestamp="20220620 01:49:26.721" level="TRACE">Arguments: [ 'app_db' | 'app_user' | 'password' | 'localhost' | '5432' ]</msg>
+<msg timestamp="20220620 01:49:26.721" level="DEBUG">Connecting using : dbhost=localhost, dbport=5432, dbname=app_db, dbusername=app_user, dbpassword=password, alias=None</msg>
+<msg timestamp="20220620 01:49:26.736" level="TRACE">Return: 4</msg>
+<status status="PASS" starttime="20220620 01:49:26.721" endtime="20220620 01:49:26.736"/>
+</kw>
+<msg timestamp="20220620 01:49:26.736" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:49:26.720" endtime="20220620 01:49:26.736"/>
+</kw>
+<kw name="Get And Check Response">
+<arg>products</arg>
+<arg>price=gt.1ooe5&amp;category=eq.2t</arg>
+<msg timestamp="20220620 01:49:26.736" level="TRACE">Arguments: [ ${table}='products' | ${params}='price=gt.1ooe5&amp;category=eq.2t' ]</msg>
+<kw name="GET On Session" library="Req">
+<var>${response}</var>
+<arg>alias</arg>
+<arg>/${table}?</arg>
+<arg>params=${params}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20220620 01:49:26.737" level="TRACE">Arguments: [ 'alias' | '/products?' | params='price=gt.1ooe5&amp;category=eq.2t' | expected_status='any' ]</msg>
+<msg timestamp="20220620 01:49:26.738" level="DEBUG">Starting new HTTP connection (1): localhost:3000</msg>
+<msg timestamp="20220620 01:49:26.740" level="DEBUG">http://localhost:3000 "GET /products?price=gt.1ooe5&amp;category=eq.2t HTTP/1.1" 400 None</msg>
+<msg timestamp="20220620 01:49:26.741" level="INFO">GET Request : url=http://localhost:3000/products?price=gt.1ooe5&amp;category=eq.2t 
+ path_url=/products?price=gt.1ooe5&amp;category=eq.2t 
+ headers={'User-Agent': 'python-requests/2.28.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20220620 01:49:26.741" level="INFO">GET Response : url=http://localhost:3000/products?price=gt.1ooe5&amp;category=eq.2t 
+ status=400, reason=Bad Request 
+ headers={'Transfer-Encoding': 'chunked', 'Date': 'Sun, 19 Jun 2022 22:49:26 GMT', 'Server': 'postgrest/9.0.0', 'Content-Type': 'application/json; charset=utf-8'} 
+ body={"hint":null,"details":null,"code":"22P02","message":"invalid input syntax for type numeric: \"1ooe5\""} 
+ </msg>
+<msg timestamp="20220620 01:49:26.741" level="TRACE">Return: &lt;Response [400]&gt;</msg>
+<msg timestamp="20220620 01:49:26.741" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<status status="PASS" starttime="20220620 01:49:26.737" endtime="20220620 01:49:26.741"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${response_number}</var>
+<arg>${response}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20220620 01:49:26.741" level="TRACE">Arguments: [ &lt;Response [400]&gt; ]</msg>
+<msg timestamp="20220620 01:49:26.742" level="DEBUG">Argument types are:
+&lt;class 'requests.models.Response'&gt;</msg>
+<msg timestamp="20220620 01:49:26.742" level="TRACE">Return: '&lt;Response [400]&gt;'</msg>
+<msg timestamp="20220620 01:49:26.742" level="INFO">${response_number} = &lt;Response [400]&gt;</msg>
+<status status="PASS" starttime="20220620 01:49:26.741" endtime="20220620 01:49:26.742"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>${response_number}[11:14] != 200</arg>
+<arg>BuiltIn.Set Test Message</arg>
+<arg>Error ${response_number}[11:14]</arg>
+<arg>ELSE</arg>
+<arg>BuiltIn.Set Test Message</arg>
+<arg>Correct</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<msg timestamp="20220620 01:49:26.742" level="TRACE">Arguments: [ '400 != 200' | 'BuiltIn.Set Test Message' | 'Error ${response_number}[11:14]' | 'ELSE' | 'BuiltIn.Set Test Message' | 'Correct' ]</msg>
+<kw name="Set Test Message" library="BuiltIn">
+<arg>Error ${response_number}[11:14]</arg>
+<doc>Sets message for the current test case.</doc>
+<msg timestamp="20220620 01:49:26.743" level="TRACE">Arguments: [ 'Error 400' ]</msg>
+<msg timestamp="20220620 01:49:26.743" level="INFO">Set test message to:
+Error 400</msg>
+<msg timestamp="20220620 01:49:26.743" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:49:26.742" endtime="20220620 01:49:26.743"/>
+</kw>
+<msg timestamp="20220620 01:49:26.743" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:49:26.742" endtime="20220620 01:49:26.743"/>
+</kw>
+<msg timestamp="20220620 01:49:26.743" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:49:26.736" endtime="20220620 01:49:26.743"/>
+</kw>
+<kw name="Test Teardown" library="resource" type="TEARDOWN">
+<msg timestamp="20220620 01:49:26.744" level="TRACE">Arguments: [  ]</msg>
+<kw name="Delete All Sessions" library="Req">
+<doc>Removes all the session objects</doc>
+<msg timestamp="20220620 01:49:26.744" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20220620 01:49:26.744" level="INFO">Deleting All Sessions</msg>
+<msg timestamp="20220620 01:49:26.744" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:49:26.744" endtime="20220620 01:49:26.744"/>
+</kw>
+<kw name="Disconnect From Postgresql" library="DB">
+<doc>Close active PostgreSQL connection.
+You will have to manually open or switch to a new connection.
+Due to how ConnectionCache works, connection's index and alias are not removed from cache, so you are able to switch to
+closed connection, if it was closed with Disconnect from Postgresql. It will still remain closed though.</doc>
+<msg timestamp="20220620 01:49:26.744" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20220620 01:49:26.744" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:49:26.744" endtime="20220620 01:49:26.744"/>
+</kw>
+<msg timestamp="20220620 01:49:26.745" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220620 01:49:26.744" endtime="20220620 01:49:26.745"/>
+</kw>
+<status status="PASS" starttime="20220620 01:49:26.719" endtime="20220620 01:49:26.745">Error 400</status>
+</test>
+<status status="PASS" starttime="20220620 01:49:26.346" endtime="20220620 01:49:26.745"/>
+</suite>
+<status status="PASS" starttime="20220620 01:49:26.330" endtime="20220620 01:49:26.746"/>
+</suite>
+<status status="PASS" starttime="20220620 01:49:26.329" endtime="20220620 01:49:26.748"/>
+</suite>
+<status status="PASS" starttime="20220620 01:49:26.304" endtime="20220620 01:49:26.748"/>
+</suite>
+<statistics>
+<total>
+<stat pass="4" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="4" fail="0" skip="0" id="s1" name="Sofia">Sofia</stat>
+<stat pass="4" fail="0" skip="0" id="s1-s1" name="PycharmProjects">Sofia.PycharmProjects</stat>
+<stat pass="4" fail="0" skip="0" id="s1-s1-s1" name="Hometask 2">Sofia.PycharmProjects.Hometask 2</stat>
+<stat pass="4" fail="0" skip="0" id="s1-s1-s1-s1" name="DDT API function">Sofia.PycharmProjects.Hometask 2.DDT API function</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20220620 01:49:26.719" level="WARN">Multiple tests with name 'Check Search One Table 400' executed in suite 'Sofia.PycharmProjects.Hometask 2.DDT API function'.</msg>
+</errors>
+</robot>
