@@ -13,7 +13,7 @@ Test Timeout  10s
 Changing data
     [tags]      New data
     ${new_data}    Create Dictionary    category=17   categoryname=Thriller
-    cat.Add New Data    alias    ${new_data}    application/json
+    cat.Add New Data    alias    new_data=${new_data}    application/json
 Check Horizontal Filtering
     [tags]      Сategory and Сategoryname
     ${category}     ${categoryname}  cat.Get category and categoryname From PostgRest  alias    200
