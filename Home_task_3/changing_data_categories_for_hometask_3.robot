@@ -23,4 +23,3 @@ Check Horizontal Filtering
 
     Col.Lists Should Be Equal   ${category}    ${category_db}
     Col.Lists Should Be Equal   ${categoryname}      ${categoryname_db}
-
