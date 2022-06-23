@@ -13,13 +13,13 @@ Test Timeout  10s
 Changing data
     [tags]      New data
     ${new_data}    Create Dictionary    category=17   categoryname=Thriller
-    cat.Add New Data    alias    ${new_data}    application/json
+    cat.Add New Data    alias    new_data=${new_data}    json=application/json
 Check Horizontal Filtering
     [tags]      Сategory and Сategoryname
-    ${category}     ${categoryname}  cat.Get category and categoryname From PostgRest  alias    200
+    ${category}     ${categoryname}  cat.Get category and categoryname From PostgRest  alias    expected_status=200
 
     ${result}   cat.Get category and categoryname From DB
-    ${category_db}     ${categoryname_db}   cat.Get Columns  ${result}
+    ${category_db}     ${categoryname_db}   cat.Get Columns  data=${result}
 
     Col.Lists Should Be Equal   ${category}    ${category_db}
     Col.Lists Should Be Equal   ${categoryname}      ${categoryname_db}

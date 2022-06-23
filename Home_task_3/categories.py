@@ -11,7 +11,7 @@ class Category:
     def get_requests_lib(self):
         return self.builtin_lib.get_library_instance("Req")
 
-    def add_new_data(self, alias, new_data,json):
+    def add_new_data(self, alias, new_data, json):
         self.get_requests_lib().post_on_session(alias=alias, url='/categories?', data=new_data, json=json)
 
     def get_category_and_categoryname_from_postgRest(self, alias, expected_status):

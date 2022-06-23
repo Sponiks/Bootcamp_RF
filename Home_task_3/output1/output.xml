@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 5.0.1 (Python 3.10.4 on linux)" generated="20220623 13:48:40.377" rpa="false" schemaversion="3">
+<robot generator="Robot 5.0.1 (Python 3.10.4 on linux)" generated="20220623 14:28:54.294" rpa="false" schemaversion="3">
 <suite id="s1" name="Sofia" source="/home/sofia">
 <suite id="s1-s1" name="PycharmProjects" source="/home/sofia/PycharmProjects">
 <suite id="s1-s1-s1" name="Home task 3" source="/home/sofia/PycharmProjects/Home_task_3">
 <suite id="s1-s1-s1-s1" name="Finding data from multiple tables for hometask 3" source="/home/sofia/PycharmProjects/Home_task_3/Finding_data_from_multiple_tables_for_hometask_3.robot">
 <test id="s1-s1-s1-s1-t1" name="Check Horizontal Filtering" line="13">
 <kw name="Test Setup" library="resource" type="SETUP">
-<msg timestamp="20220623 13:48:40.885" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20220623 14:28:54.674" level="TRACE">Arguments: [  ]</msg>
 <kw name="Create Session" library="Req">
 <arg>alias</arg>
 <arg>http://localhost:3000</arg>
 <doc>Create Session: create a HTTP session to a server</doc>
-<msg timestamp="20220623 13:48:40.885" level="TRACE">Arguments: [ 'alias' | 'http://localhost:3000' ]</msg>
-<msg timestamp="20220623 13:48:40.885" level="DEBUG">Test timeout 10 seconds active. 9.999 seconds left.</msg>
-<msg timestamp="20220623 13:48:40.885" level="INFO">Creating Session using : alias=alias, url=http://localhost:3000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<msg timestamp="20220623 13:48:40.885" level="DEBUG">Creating session: alias</msg>
-<msg timestamp="20220623 13:48:40.886" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7f2f2dcae4d0&gt;</msg>
-<status status="PASS" starttime="20220623 13:48:40.885" endtime="20220623 13:48:40.886"/>
+<msg timestamp="20220623 14:28:54.674" level="TRACE">Arguments: [ 'alias' | 'http://localhost:3000' ]</msg>
+<msg timestamp="20220623 14:28:54.675" level="DEBUG">Test timeout 10 seconds active. 9.999 seconds left.</msg>
+<msg timestamp="20220623 14:28:54.675" level="INFO">Creating Session using : alias=alias, url=http://localhost:3000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20220623 14:28:54.675" level="DEBUG">Creating session: alias</msg>
+<msg timestamp="20220623 14:28:54.675" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7f2fb42ee380&gt;</msg>
+<status status="PASS" starttime="20220623 14:28:54.674" endtime="20220623 14:28:54.675"/>
 </kw>
 <kw name="Connect To Postgresql" library="DB">
 <arg>app_db</arg>
@@ -25,14 +25,14 @@
 <arg>localhost</arg>
 <arg>5432</arg>
 <doc>Connection to Postgres DB.</doc>
-<msg timestamp="20220623 13:48:40.886" level="TRACE">Arguments: [ 'app_db' | 'app_user' | 'password' | 'localhost' | '5432' ]</msg>
-<msg timestamp="20220623 13:48:40.886" level="DEBUG">Test timeout 10 seconds active. 9.998 seconds left.</msg>
-<msg timestamp="20220623 13:48:40.886" level="DEBUG">Connecting using : dbhost=localhost, dbport=5432, dbname=app_db, dbusername=app_user, dbpassword=password, alias=None</msg>
-<msg timestamp="20220623 13:48:40.906" level="TRACE">Return: 1</msg>
-<status status="PASS" starttime="20220623 13:48:40.886" endtime="20220623 13:48:40.906"/>
+<msg timestamp="20220623 14:28:54.675" level="TRACE">Arguments: [ 'app_db' | 'app_user' | 'password' | 'localhost' | '5432' ]</msg>
+<msg timestamp="20220623 14:28:54.675" level="DEBUG">Test timeout 10 seconds active. 9.998 seconds left.</msg>
+<msg timestamp="20220623 14:28:54.675" level="DEBUG">Connecting using : dbhost=localhost, dbport=5432, dbname=app_db, dbusername=app_user, dbpassword=password, alias=None</msg>
+<msg timestamp="20220623 14:28:54.692" level="TRACE">Return: 1</msg>
+<status status="PASS" starttime="20220623 14:28:54.675" endtime="20220623 14:28:54.692"/>
 </kw>
-<msg timestamp="20220623 13:48:40.907" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20220623 13:48:40.885" endtime="20220623 13:48:40.907"/>
+<msg timestamp="20220623 14:28:54.692" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220623 14:28:54.674" endtime="20220623 14:28:54.692"/>
 </kw>
 <kw name="Get Columns From Customers And Products From PostgRest" library="cust_prod">
 <var>${address}</var>
@@ -40,20 +40,20 @@
 <var>${title}</var>
 <var>${price}</var>
 <arg>alias</arg>
-<arg>select=customers!inner(address1,email),products!inner(title,price)&amp;customers.age=gt.40&amp;customers.state=eq.NV</arg>
-<arg>200</arg>
-<msg timestamp="20220623 13:48:40.907" level="TRACE">Arguments: [ 'alias' | 'select=customers!inner(address1,email),products!inner(title,price)&amp;customers.age=gt.40&amp;customers.state=eq.NV' | '200' ]</msg>
-<msg timestamp="20220623 13:48:40.907" level="DEBUG">Test timeout 10 seconds active. 9.977 seconds left.</msg>
-<msg timestamp="20220623 13:48:40.910" level="DEBUG">Starting new HTTP connection (1): localhost:3000</msg>
-<msg timestamp="20220623 13:48:40.964" level="DEBUG">http://localhost:3000 "GET /cust_hist?select=customers!inner(address1,email),products!inner(title,price)&amp;customers.age=gt.40&amp;customers.state=eq.NV HTTP/1.1" 200 None</msg>
-<msg timestamp="20220623 13:48:40.964" level="INFO">GET Request : url=http://localhost:3000/cust_hist?select=customers!inner(address1,email),products!inner(title,price)&amp;customers.age=gt.40&amp;customers.state=eq.NV 
+<arg>params=select=customers!inner(address1,email),products!inner(title,price)&amp;customers.age=gt.40&amp;customers.state=eq.NV</arg>
+<arg>expected_status=200</arg>
+<msg timestamp="20220623 14:28:54.693" level="TRACE">Arguments: [ 'alias' | params='select=customers!inner(address1,email),products!inner(title,price)&amp;customers.age=gt.40&amp;customers.state=eq.NV' | expected_status='200' ]</msg>
+<msg timestamp="20220623 14:28:54.693" level="DEBUG">Test timeout 10 seconds active. 9.98 seconds left.</msg>
+<msg timestamp="20220623 14:28:54.695" level="DEBUG">Starting new HTTP connection (1): localhost:3000</msg>
+<msg timestamp="20220623 14:28:55.200" level="DEBUG">http://localhost:3000 "GET /cust_hist?select=customers!inner(address1,email),products!inner(title,price)&amp;customers.age=gt.40&amp;customers.state=eq.NV HTTP/1.1" 200 None</msg>
+<msg timestamp="20220623 14:28:55.204" level="INFO">GET Request : url=http://localhost:3000/cust_hist?select=customers!inner(address1,email),products!inner(title,price)&amp;customers.age=gt.40&amp;customers.state=eq.NV 
  path_url=/cust_hist?select=customers!inner(address1,email),products!inner(title,price)&amp;customers.age=gt.40&amp;customers.state=eq.NV 
  headers={'User-Agent': 'python-requests/2.28.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
  body=None 
  </msg>
-<msg timestamp="20220623 13:48:40.964" level="INFO">GET Response : url=http://localhost:3000/cust_hist?select=customers!inner(address1,email),products!inner(title,price)&amp;customers.age=gt.40&amp;customers.state=eq.NV 
+<msg timestamp="20220623 14:28:55.205" level="INFO">GET Response : url=http://localhost:3000/cust_hist?select=customers!inner(address1,email),products!inner(title,price)&amp;customers.age=gt.40&amp;customers.state=eq.NV 
  status=200, reason=OK 
- headers={'Transfer-Encoding': 'chunked', 'Date': 'Thu, 23 Jun 2022 10:48:40 GMT', 'Server': 'postgrest/9.0.0', 'Content-Range': '0-392/*', 'Content-Location': '/cust_hist?customers.age=gt.40&amp;customers.state=eq.NV&amp;select=customers%21inner%28address1%2Cemail%29%2Cproducts%21inner%28title%2Cprice%29', 'Content-Type': 'application/json; charset=utf-8'} 
+ headers={'Transfer-Encoding': 'chunked', 'Date': 'Thu, 23 Jun 2022 11:28:55 GMT', 'Server': 'postgrest/9.0.0', 'Content-Range': '0-392/*', 'Content-Location': '/cust_hist?customers.age=gt.40&amp;customers.state=eq.NV&amp;select=customers%21inner%28address1%2Cemail%29%2Cproducts%21inner%28title%2Cprice%29', 'Content-Type': 'application/json; charset=utf-8'} 
  body=[{"customers":{"address1":"1574391649 Dell Way","email":"SMSKOAYJRA@dell.com"},"products":{"title":"AFFAIR METROPOLIS","price":12.99}}, 
  {"customers":{"address1":"1574391649 Dell Way","email":"SMSKOAYJRA@dell.com"},"products":{"title":"AFFAIR HURRICANE","price":25.99}}, 
  {"customers":{"address1":"1574391649 Dell Way","email":"SMSKOAYJRA@dell.com"},"products":{"title":"AIRPLANE MONSTER","price":25.99}}, 
@@ -448,7 +448,7 @@
  {"customers":{"address1":"9289990314 Dell Way","email":"YJIVIXOUDH@dell.com"},"products":{"title":"ACE NUTS","price":29.99}}, 
  {"customers":{"address1":"9289990314 Dell Way","email":"YJIVIXOUDH@dell.com"},"products":{"title":"AIRPORT SLACKER","price":14.99}}] 
  </msg>
-<msg timestamp="20220623 13:48:41.187" level="TRACE">Return: (['1574391649 Dell Way',
+<msg timestamp="20220623 14:28:55.516" level="TRACE">Return: (['1574391649 Dell Way',
   '1574391649 Dell Way',
   '1574391649 Dell Way',
   '1687371996 Dell Way',
@@ -2020,35 +2020,35 @@
   20.99,
   29.99,
   14.99])</msg>
-<msg timestamp="20220623 13:48:41.198" level="INFO">${address} = ['1574391649 Dell Way', '1574391649 Dell Way', '1574391649 Dell Way', '1687371996 Dell Way', '1687371996 Dell Way', '1687371996 Dell Way', '1687371996 Dell Way', '1687371996 Dell Way', '5473219555 Del...</msg>
-<msg timestamp="20220623 13:48:41.198" level="INFO">${email} = ['SMSKOAYJRA@dell.com', 'SMSKOAYJRA@dell.com', 'SMSKOAYJRA@dell.com', 'FAJOCKOVZM@dell.com', 'FAJOCKOVZM@dell.com', 'FAJOCKOVZM@dell.com', 'FAJOCKOVZM@dell.com', 'FAJOCKOVZM@dell.com', 'RRCTTIYSPH@del...</msg>
-<msg timestamp="20220623 13:48:41.199" level="INFO">${title} = ['AFFAIR METROPOLIS', 'AFFAIR HURRICANE', 'AIRPLANE MONSTER', 'ALADDIN HOBBIT', 'AFFAIR EARRING', 'AIRPORT WILD', 'AFFAIR DARKO', 'AGENT MERMAID', 'AGENT DISTURBING', 'AGENT NASH', 'AGENT HOLIDAY', 'A...</msg>
-<msg timestamp="20220623 13:48:41.199" level="INFO">${price} = [12.99, 25.99, 25.99, 17.99, 25.99, 17.99, 24.99, 27.99, 17.99, 17.99, 22.99, 14.99, 9.99, 20.99, 25.99, 18.99, 29.99, 20.99, 15.99, 28.99, 16.99, 16.99, 20.99, 27.99, 18.99, 19.99, 22.99, 16.99, 10.9...</msg>
-<status status="PASS" starttime="20220623 13:48:40.907" endtime="20220623 13:48:41.199"/>
+<msg timestamp="20220623 14:28:55.527" level="INFO">${address} = ['1574391649 Dell Way', '1574391649 Dell Way', '1574391649 Dell Way', '1687371996 Dell Way', '1687371996 Dell Way', '1687371996 Dell Way', '1687371996 Dell Way', '1687371996 Dell Way', '5473219555 Del...</msg>
+<msg timestamp="20220623 14:28:55.527" level="INFO">${email} = ['SMSKOAYJRA@dell.com', 'SMSKOAYJRA@dell.com', 'SMSKOAYJRA@dell.com', 'FAJOCKOVZM@dell.com', 'FAJOCKOVZM@dell.com', 'FAJOCKOVZM@dell.com', 'FAJOCKOVZM@dell.com', 'FAJOCKOVZM@dell.com', 'RRCTTIYSPH@del...</msg>
+<msg timestamp="20220623 14:28:55.527" level="INFO">${title} = ['AFFAIR METROPOLIS', 'AFFAIR HURRICANE', 'AIRPLANE MONSTER', 'ALADDIN HOBBIT', 'AFFAIR EARRING', 'AIRPORT WILD', 'AFFAIR DARKO', 'AGENT MERMAID', 'AGENT DISTURBING', 'AGENT NASH', 'AGENT HOLIDAY', 'A...</msg>
+<msg timestamp="20220623 14:28:55.528" level="INFO">${price} = [12.99, 25.99, 25.99, 17.99, 25.99, 17.99, 24.99, 27.99, 17.99, 17.99, 22.99, 14.99, 9.99, 20.99, 25.99, 18.99, 29.99, 20.99, 15.99, 28.99, 16.99, 16.99, 20.99, 27.99, 18.99, 19.99, 22.99, 16.99, 10.9...</msg>
+<status status="PASS" starttime="20220623 14:28:54.693" endtime="20220623 14:28:55.528"/>
 </kw>
 <kw name="Create Dictionary" library="BuiltIn">
 <var>${params}</var>
 <arg>age=40</arg>
 <arg>state=NV</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20220623 13:48:41.199" level="TRACE">Arguments: [ 'age=40' | 'state=NV' ]</msg>
-<msg timestamp="20220623 13:48:41.199" level="TRACE">Return: {'age': '40', 'state': 'NV'}</msg>
-<msg timestamp="20220623 13:48:41.200" level="INFO">${params} = {'age': '40', 'state': 'NV'}</msg>
-<status status="PASS" starttime="20220623 13:48:41.199" endtime="20220623 13:48:41.200"/>
+<msg timestamp="20220623 14:28:55.528" level="TRACE">Arguments: [ 'age=40' | 'state=NV' ]</msg>
+<msg timestamp="20220623 14:28:55.528" level="TRACE">Return: {'age': '40', 'state': 'NV'}</msg>
+<msg timestamp="20220623 14:28:55.528" level="INFO">${params} = {'age': '40', 'state': 'NV'}</msg>
+<status status="PASS" starttime="20220623 14:28:55.528" endtime="20220623 14:28:55.528"/>
 </kw>
 <kw name="Get Columns From Customers And Products From DB" library="cust_prod">
 <var>${result}</var>
-<arg>${params}[age]</arg>
-<arg>${params}[state]</arg>
-<msg timestamp="20220623 13:48:41.200" level="TRACE">Arguments: [ '40' | 'NV' ]</msg>
-<msg timestamp="20220623 13:48:41.200" level="DEBUG">Test timeout 10 seconds active. 9.684 seconds left.</msg>
-<msg timestamp="20220623 13:48:41.200" level="INFO" html="true">&lt;details&gt;&lt;summary&gt;Running PL/PGSQL statement&lt;/summary&gt;&lt;p&gt;SELECT customers.address1, customers.email, products.title, products.price
+<arg>age=${params}[age]</arg>
+<arg>state=${params}[state]</arg>
+<msg timestamp="20220623 14:28:55.529" level="TRACE">Arguments: [ age='40' | state='NV' ]</msg>
+<msg timestamp="20220623 14:28:55.529" level="DEBUG">Test timeout 10 seconds active. 9.144 seconds left.</msg>
+<msg timestamp="20220623 14:28:55.529" level="INFO" html="true">&lt;details&gt;&lt;summary&gt;Running PL/PGSQL statement&lt;/summary&gt;&lt;p&gt;SELECT customers.address1, customers.email, products.title, products.price
                             FROM bootcamp.customers
                             JOIN bootcamp.cust_hist ON customers.customerid = cust_hist.customerid
                             JOIN bootcamp.products ON cust_hist.prod_id = products.prod_id
                             WHERE customers.age &amp;gt; %(age)s AND customers.state = %(state)s&lt;/p&gt;&lt;/details&gt;</msg>
-<msg timestamp="20220623 13:48:41.221" level="INFO" html="true">&lt;details&gt;&lt;summary&gt;SQL Query Result&lt;/summary&gt;&lt;p&gt;[{&amp;#x27;address1&amp;#x27;: &amp;#x27;1574391649 Dell Way&amp;#x27;, &amp;#x27;email&amp;#x27;: &amp;#x27;SMSKOAYJRA@dell.com&amp;#x27;, &amp;#x27;title&amp;#x27;: &amp;#x27;AFFAIR METROPOLIS&amp;#x27;, &amp;#x27;price&amp;#x27;: Decimal(&amp;#x27;12.99&amp;#x27;)}, {&amp;#x27;address1&amp;#x27;: &amp;#x27;1574391649 Dell Way&amp;#x27;, &amp;#x27;email&amp;#x27;: &amp;#x27;SMSKOAYJRA@dell.com&amp;#x27;, &amp;#x27;title&amp;#x27;: &amp;#x27;AFFAIR HURRICANE&amp;#x27;, &amp;#x27;price&amp;#x27;: Decimal(&amp;#x27;25.99&amp;#x27;)}, {&amp;#x27;address1&amp;#x27;: &amp;#x27;1574391649 Dell Way&amp;#x27;, &amp;#x27;email&amp;#x27;: &amp;#x27;SMSKOAYJRA@dell.com&amp;#x27;, &amp;#x27;title&amp;#x27;: &amp;#x27;AIRPLANE MONSTER&amp;#x27;, &amp;#x27;price&amp;#x27;: Decimal(&amp;#x27;25.99&amp;#x27;)}, {&amp;#x27;address1&amp;#x27;: &amp;#x27;1687371996 Dell Way&amp;#x27;, &amp;#x27;email&amp;#x27;: &amp;#x27;FAJOCKOVZM@dell.com&amp;#x27;, &amp;#x27;title&amp;#x27;: &amp;#x27;ALADDIN HOBBIT&amp;#x27;, &amp;#x27;price&amp;#x27;: Decimal(&amp;#x27;17.99&amp;#x27;)}, {&amp;#x27;address1&amp;#x27;: &amp;#x27;1687371996 Dell Way&amp;#x27;, &amp;#x27;email&amp;#x27;: &amp;#x27;FAJOCKOVZM@dell.com&amp;#x27;, &amp;#x27;title&amp;#x27;: &amp;#x27;AFFAIR EARRING&amp;#x27;, &amp;#x27;price&amp;#x27;: Decimal(&amp;#x27;25.99&amp;#x27;)}, {&amp;#x27;address1&amp;#x27;: &amp;#x27;1687371996 Dell Way&amp;#x27;, &amp;#x27;email&amp;#x27;: &amp;#x27;FAJOCKOVZM@dell.com&amp;#x27;, &amp;#x27;title&amp;#x27;: &amp;#x27;AIRPORT WILD&amp;#x27;, &amp;#x27;price&amp;#x27;: Decimal(&amp;#x27;17.99&amp;#x27;)}, {&amp;#x27;address1&amp;#x27;: &amp;#x27;1687371996 Dell Way&amp;#x27;, &amp;#x27;email&amp;#x27;: &amp;#x27;FAJOCKOVZM@dell.com&amp;#x27;, &amp;#x27;title&amp;#x27;: &amp;#x27;AFFAIR DARKO&amp;#x27;, &amp;#x27;price&amp;#x27;: Decimal(&amp;#x27;24.99&amp;#x27;)}, {&amp;#x27;address1&amp;#x27;: &amp;#x27;1687371996 Dell Way&amp;#x27;, &amp;#x27;email&amp;#x27;: &amp;#x27;FAJOCKOVZM@dell.com&amp;#x27;, &amp;#x27;title&amp;#x27;: &amp;#x27;AGENT MERMAID&amp;#x27;, &amp;#x27;price&amp;#x27;: Decimal(&amp;#x27;27.99&amp;#x27;)}, {&amp;#x27;address1&amp;#x27;: &amp;#x27;5473219555 Dell Way&amp;#x27;, &amp;#x27;email&amp;#x27;: &amp;#x27;RRCTTIYSPH@dell.com&amp;#x27;, &amp;#x27;title&amp;#x27;: &amp;#x27;AGENT DISTURBING&amp;#x27;, &amp;#x27;price&amp;#x27;: Decimal(&amp;#x27;17.99&amp;#x27;)}, {&amp;#x27;address1&amp;#x27;: &amp;#x27;5473219555 Dell Way&amp;#x27;, &amp;#x27;email&amp;#x27;: &amp;#x27;RRCTTIYSPH@dell.com&amp;#x27;, &amp;#x27;title&amp;#x27;: &amp;#x27;AGENT NASH&amp;#x27;, &amp;#x27;price&amp;#x27;: Decimal(&amp;#x27;17.99&amp;#x27;)}]&lt;/p&gt;&lt;/details&gt;</msg>
-<msg timestamp="20220623 13:48:41.222" level="TRACE">Return: [{'address1': '1574391649 Dell Way',
+<msg timestamp="20220623 14:28:55.550" level="INFO" html="true">&lt;details&gt;&lt;summary&gt;SQL Query Result&lt;/summary&gt;&lt;p&gt;[{&amp;#x27;address1&amp;#x27;: &amp;#x27;1574391649 Dell Way&amp;#x27;, &amp;#x27;email&amp;#x27;: &amp;#x27;SMSKOAYJRA@dell.com&amp;#x27;, &amp;#x27;title&amp;#x27;: &amp;#x27;AFFAIR METROPOLIS&amp;#x27;, &amp;#x27;price&amp;#x27;: Decimal(&amp;#x27;12.99&amp;#x27;)}, {&amp;#x27;address1&amp;#x27;: &amp;#x27;1574391649 Dell Way&amp;#x27;, &amp;#x27;email&amp;#x27;: &amp;#x27;SMSKOAYJRA@dell.com&amp;#x27;, &amp;#x27;title&amp;#x27;: &amp;#x27;AFFAIR HURRICANE&amp;#x27;, &amp;#x27;price&amp;#x27;: Decimal(&amp;#x27;25.99&amp;#x27;)}, {&amp;#x27;address1&amp;#x27;: &amp;#x27;1574391649 Dell Way&amp;#x27;, &amp;#x27;email&amp;#x27;: &amp;#x27;SMSKOAYJRA@dell.com&amp;#x27;, &amp;#x27;title&amp;#x27;: &amp;#x27;AIRPLANE MONSTER&amp;#x27;, &amp;#x27;price&amp;#x27;: Decimal(&amp;#x27;25.99&amp;#x27;)}, {&amp;#x27;address1&amp;#x27;: &amp;#x27;1687371996 Dell Way&amp;#x27;, &amp;#x27;email&amp;#x27;: &amp;#x27;FAJOCKOVZM@dell.com&amp;#x27;, &amp;#x27;title&amp;#x27;: &amp;#x27;ALADDIN HOBBIT&amp;#x27;, &amp;#x27;price&amp;#x27;: Decimal(&amp;#x27;17.99&amp;#x27;)}, {&amp;#x27;address1&amp;#x27;: &amp;#x27;1687371996 Dell Way&amp;#x27;, &amp;#x27;email&amp;#x27;: &amp;#x27;FAJOCKOVZM@dell.com&amp;#x27;, &amp;#x27;title&amp;#x27;: &amp;#x27;AFFAIR EARRING&amp;#x27;, &amp;#x27;price&amp;#x27;: Decimal(&amp;#x27;25.99&amp;#x27;)}, {&amp;#x27;address1&amp;#x27;: &amp;#x27;1687371996 Dell Way&amp;#x27;, &amp;#x27;email&amp;#x27;: &amp;#x27;FAJOCKOVZM@dell.com&amp;#x27;, &amp;#x27;title&amp;#x27;: &amp;#x27;AIRPORT WILD&amp;#x27;, &amp;#x27;price&amp;#x27;: Decimal(&amp;#x27;17.99&amp;#x27;)}, {&amp;#x27;address1&amp;#x27;: &amp;#x27;1687371996 Dell Way&amp;#x27;, &amp;#x27;email&amp;#x27;: &amp;#x27;FAJOCKOVZM@dell.com&amp;#x27;, &amp;#x27;title&amp;#x27;: &amp;#x27;AFFAIR DARKO&amp;#x27;, &amp;#x27;price&amp;#x27;: Decimal(&amp;#x27;24.99&amp;#x27;)}, {&amp;#x27;address1&amp;#x27;: &amp;#x27;1687371996 Dell Way&amp;#x27;, &amp;#x27;email&amp;#x27;: &amp;#x27;FAJOCKOVZM@dell.com&amp;#x27;, &amp;#x27;title&amp;#x27;: &amp;#x27;AGENT MERMAID&amp;#x27;, &amp;#x27;price&amp;#x27;: Decimal(&amp;#x27;27.99&amp;#x27;)}, {&amp;#x27;address1&amp;#x27;: &amp;#x27;5473219555 Dell Way&amp;#x27;, &amp;#x27;email&amp;#x27;: &amp;#x27;RRCTTIYSPH@dell.com&amp;#x27;, &amp;#x27;title&amp;#x27;: &amp;#x27;AGENT DISTURBING&amp;#x27;, &amp;#x27;price&amp;#x27;: Decimal(&amp;#x27;17.99&amp;#x27;)}, {&amp;#x27;address1&amp;#x27;: &amp;#x27;5473219555 Dell Way&amp;#x27;, &amp;#x27;email&amp;#x27;: &amp;#x27;RRCTTIYSPH@dell.com&amp;#x27;, &amp;#x27;title&amp;#x27;: &amp;#x27;AGENT NASH&amp;#x27;, &amp;#x27;price&amp;#x27;: Decimal(&amp;#x27;17.99&amp;#x27;)}]&lt;/p&gt;&lt;/details&gt;</msg>
+<msg timestamp="20220623 14:28:55.551" level="TRACE">Return: [{'address1': '1574391649 Dell Way',
   'email': 'SMSKOAYJRA@dell.com',
   'price': Decimal('12.99'),
   'title': 'AFFAIR METROPOLIS'},
@@ -3620,16 +3620,16 @@
   'email': 'YJIVIXOUDH@dell.com',
   'price': Decimal('14.99'),
   'title': 'AIRPORT SLACKER'}]</msg>
-<msg timestamp="20220623 13:48:41.256" level="INFO">${result} = [{'address1': '1574391649 Dell Way', 'email': 'SMSKOAYJRA@dell.com', 'title': 'AFFAIR METROPOLIS', 'price': Decimal('12.99')}, {'address1': '1574391649 Dell Way', 'email': 'SMSKOAYJRA@dell.com', 'titl...</msg>
-<status status="PASS" starttime="20220623 13:48:41.200" endtime="20220623 13:48:41.256"/>
+<msg timestamp="20220623 14:28:55.590" level="INFO">${result} = [{'address1': '1574391649 Dell Way', 'email': 'SMSKOAYJRA@dell.com', 'title': 'AFFAIR METROPOLIS', 'price': Decimal('12.99')}, {'address1': '1574391649 Dell Way', 'email': 'SMSKOAYJRA@dell.com', 'titl...</msg>
+<status status="PASS" starttime="20220623 14:28:55.528" endtime="20220623 14:28:55.590"/>
 </kw>
 <kw name="Get Columns" library="cust_prod">
 <var>${address_db}</var>
 <var>${email_db}</var>
 <var>${title_db}</var>
 <var>${price_db}</var>
-<arg>${result}</arg>
-<msg timestamp="20220623 13:48:41.256" level="TRACE">Arguments: [ [{'address1': '1574391649 Dell Way',
+<arg>data=${result}</arg>
+<msg timestamp="20220623 14:28:55.590" level="TRACE">Arguments: [ data=[{'address1': '1574391649 Dell Way',
   'email': 'SMSKOAYJRA@dell.com',
   'price': Decimal('12.99'),
   'title': 'AFFAIR METROPOLIS'},
@@ -5201,8 +5201,8 @@
   'email': 'YJIVIXOUDH@dell.com',
   'price': Decimal('14.99'),
   'title': 'AIRPORT SLACKER'}] ]</msg>
-<msg timestamp="20220623 13:48:41.294" level="DEBUG">Test timeout 10 seconds active. 9.589 seconds left.</msg>
-<msg timestamp="20220623 13:48:41.295" level="TRACE">Return: (['1574391649 Dell Way',
+<msg timestamp="20220623 14:28:55.628" level="DEBUG">Test timeout 10 seconds active. 9.045 seconds left.</msg>
+<msg timestamp="20220623 14:28:55.628" level="TRACE">Return: (['1574391649 Dell Way',
   '1574391649 Dell Way',
   '1574391649 Dell Way',
   '1687371996 Dell Way',
@@ -6774,17 +6774,17 @@
   20.99,
   29.99,
   14.99])</msg>
-<msg timestamp="20220623 13:48:41.308" level="INFO">${address_db} = ['1574391649 Dell Way', '1574391649 Dell Way', '1574391649 Dell Way', '1687371996 Dell Way', '1687371996 Dell Way', '1687371996 Dell Way', '1687371996 Dell Way', '1687371996 Dell Way', '5473219555 Del...</msg>
-<msg timestamp="20220623 13:48:41.308" level="INFO">${email_db} = ['SMSKOAYJRA@dell.com', 'SMSKOAYJRA@dell.com', 'SMSKOAYJRA@dell.com', 'FAJOCKOVZM@dell.com', 'FAJOCKOVZM@dell.com', 'FAJOCKOVZM@dell.com', 'FAJOCKOVZM@dell.com', 'FAJOCKOVZM@dell.com', 'RRCTTIYSPH@del...</msg>
-<msg timestamp="20220623 13:48:41.308" level="INFO">${title_db} = ['AFFAIR METROPOLIS', 'AFFAIR HURRICANE', 'AIRPLANE MONSTER', 'ALADDIN HOBBIT', 'AFFAIR EARRING', 'AIRPORT WILD', 'AFFAIR DARKO', 'AGENT MERMAID', 'AGENT DISTURBING', 'AGENT NASH', 'AGENT HOLIDAY', 'A...</msg>
-<msg timestamp="20220623 13:48:41.309" level="INFO">${price_db} = [12.99, 25.99, 25.99, 17.99, 25.99, 17.99, 24.99, 27.99, 17.99, 17.99, 22.99, 14.99, 9.99, 20.99, 25.99, 18.99, 29.99, 20.99, 15.99, 28.99, 16.99, 16.99, 20.99, 27.99, 18.99, 19.99, 22.99, 16.99, 10.9...</msg>
-<status status="PASS" starttime="20220623 13:48:41.256" endtime="20220623 13:48:41.309"/>
+<msg timestamp="20220623 14:28:55.642" level="INFO">${address_db} = ['1574391649 Dell Way', '1574391649 Dell Way', '1574391649 Dell Way', '1687371996 Dell Way', '1687371996 Dell Way', '1687371996 Dell Way', '1687371996 Dell Way', '1687371996 Dell Way', '5473219555 Del...</msg>
+<msg timestamp="20220623 14:28:55.642" level="INFO">${email_db} = ['SMSKOAYJRA@dell.com', 'SMSKOAYJRA@dell.com', 'SMSKOAYJRA@dell.com', 'FAJOCKOVZM@dell.com', 'FAJOCKOVZM@dell.com', 'FAJOCKOVZM@dell.com', 'FAJOCKOVZM@dell.com', 'FAJOCKOVZM@dell.com', 'RRCTTIYSPH@del...</msg>
+<msg timestamp="20220623 14:28:55.642" level="INFO">${title_db} = ['AFFAIR METROPOLIS', 'AFFAIR HURRICANE', 'AIRPLANE MONSTER', 'ALADDIN HOBBIT', 'AFFAIR EARRING', 'AIRPORT WILD', 'AFFAIR DARKO', 'AGENT MERMAID', 'AGENT DISTURBING', 'AGENT NASH', 'AGENT HOLIDAY', 'A...</msg>
+<msg timestamp="20220623 14:28:55.642" level="INFO">${price_db} = [12.99, 25.99, 25.99, 17.99, 25.99, 17.99, 24.99, 27.99, 17.99, 17.99, 22.99, 14.99, 9.99, 20.99, 25.99, 18.99, 29.99, 20.99, 15.99, 28.99, 16.99, 16.99, 20.99, 27.99, 18.99, 19.99, 22.99, 16.99, 10.9...</msg>
+<status status="PASS" starttime="20220623 14:28:55.590" endtime="20220623 14:28:55.642"/>
 </kw>
 <kw name="Lists Should Be Equal" library="Col">
 <arg>${address}</arg>
 <arg>${address_db}</arg>
 <doc>Fails if given lists are unequal.</doc>
-<msg timestamp="20220623 13:48:41.309" level="TRACE">Arguments: [ ['1574391649 Dell Way',
+<msg timestamp="20220623 14:28:55.643" level="TRACE">Arguments: [ ['1574391649 Dell Way',
  '1574391649 Dell Way',
  '1574391649 Dell Way',
  '1687371996 Dell Way',
@@ -7569,15 +7569,15 @@
  '9289990314 Dell Way',
  '9289990314 Dell Way',
  '9289990314 Dell Way'] ]</msg>
-<msg timestamp="20220623 13:48:41.314" level="DEBUG">Test timeout 10 seconds active. 9.57 seconds left.</msg>
-<msg timestamp="20220623 13:48:41.315" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20220623 13:48:41.309" endtime="20220623 13:48:41.315"/>
+<msg timestamp="20220623 14:28:55.647" level="DEBUG">Test timeout 10 seconds active. 9.026 seconds left.</msg>
+<msg timestamp="20220623 14:28:55.648" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220623 14:28:55.642" endtime="20220623 14:28:55.648"/>
 </kw>
 <kw name="Lists Should Be Equal" library="Col">
 <arg>${email}</arg>
 <arg>${email_db}</arg>
 <doc>Fails if given lists are unequal.</doc>
-<msg timestamp="20220623 13:48:41.315" level="TRACE">Arguments: [ ['SMSKOAYJRA@dell.com',
+<msg timestamp="20220623 14:28:55.648" level="TRACE">Arguments: [ ['SMSKOAYJRA@dell.com',
  'SMSKOAYJRA@dell.com',
  'SMSKOAYJRA@dell.com',
  'FAJOCKOVZM@dell.com',
@@ -8362,15 +8362,15 @@
  'YJIVIXOUDH@dell.com',
  'YJIVIXOUDH@dell.com',
  'YJIVIXOUDH@dell.com'] ]</msg>
-<msg timestamp="20220623 13:48:41.320" level="DEBUG">Test timeout 10 seconds active. 9.564 seconds left.</msg>
-<msg timestamp="20220623 13:48:41.321" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20220623 13:48:41.315" endtime="20220623 13:48:41.321"/>
+<msg timestamp="20220623 14:28:55.653" level="DEBUG">Test timeout 10 seconds active. 9.021 seconds left.</msg>
+<msg timestamp="20220623 14:28:55.653" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220623 14:28:55.648" endtime="20220623 14:28:55.653"/>
 </kw>
 <kw name="Lists Should Be Equal" library="Col">
 <arg>${title}</arg>
 <arg>${title_db}</arg>
 <doc>Fails if given lists are unequal.</doc>
-<msg timestamp="20220623 13:48:41.321" level="TRACE">Arguments: [ ['AFFAIR METROPOLIS',
+<msg timestamp="20220623 14:28:55.653" level="TRACE">Arguments: [ ['AFFAIR METROPOLIS',
  'AFFAIR HURRICANE',
  'AIRPLANE MONSTER',
  'ALADDIN HOBBIT',
@@ -9155,15 +9155,15 @@
  'AFFAIR TEEN',
  'ACE NUTS',
  'AIRPORT SLACKER'] ]</msg>
-<msg timestamp="20220623 13:48:41.326" level="DEBUG">Test timeout 10 seconds active. 9.558 seconds left.</msg>
-<msg timestamp="20220623 13:48:41.326" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20220623 13:48:41.321" endtime="20220623 13:48:41.326"/>
+<msg timestamp="20220623 14:28:55.658" level="DEBUG">Test timeout 10 seconds active. 9.015 seconds left.</msg>
+<msg timestamp="20220623 14:28:55.658" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220623 14:28:55.653" endtime="20220623 14:28:55.658"/>
 </kw>
 <kw name="Lists Should Be Equal" library="Col">
 <arg>${price}</arg>
 <arg>${price_db}</arg>
 <doc>Fails if given lists are unequal.</doc>
-<msg timestamp="20220623 13:48:41.327" level="TRACE">Arguments: [ [12.99,
+<msg timestamp="20220623 14:28:55.659" level="TRACE">Arguments: [ [12.99,
  25.99,
  25.99,
  17.99,
@@ -9948,46 +9948,46 @@
  20.99,
  29.99,
  14.99] ]</msg>
-<msg timestamp="20220623 13:48:41.333" level="DEBUG">Test timeout 10 seconds active. 9.551 seconds left.</msg>
-<msg timestamp="20220623 13:48:41.334" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20220623 13:48:41.327" endtime="20220623 13:48:41.334"/>
+<msg timestamp="20220623 14:28:55.663" level="DEBUG">Test timeout 10 seconds active. 9.01 seconds left.</msg>
+<msg timestamp="20220623 14:28:55.664" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220623 14:28:55.658" endtime="20220623 14:28:55.664"/>
 </kw>
 <kw name="Test Teardown" library="resource" type="TEARDOWN">
-<msg timestamp="20220623 13:48:41.335" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20220623 14:28:55.664" level="TRACE">Arguments: [  ]</msg>
 <kw name="Delete All Sessions" library="Req">
 <doc>Removes all the session objects</doc>
-<msg timestamp="20220623 13:48:41.335" level="TRACE">Arguments: [  ]</msg>
-<msg timestamp="20220623 13:48:41.335" level="INFO">Deleting All Sessions</msg>
-<msg timestamp="20220623 13:48:41.335" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20220623 13:48:41.335" endtime="20220623 13:48:41.335"/>
+<msg timestamp="20220623 14:28:55.664" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20220623 14:28:55.664" level="INFO">Deleting All Sessions</msg>
+<msg timestamp="20220623 14:28:55.665" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220623 14:28:55.664" endtime="20220623 14:28:55.665"/>
 </kw>
 <kw name="Disconnect From Postgresql" library="DB">
 <doc>Close active PostgreSQL connection.
 You will have to manually open or switch to a new connection.
 Due to how ConnectionCache works, connection's index and alias are not removed from cache, so you are able to switch to
 closed connection, if it was closed with Disconnect from Postgresql. It will still remain closed though.</doc>
-<msg timestamp="20220623 13:48:41.335" level="TRACE">Arguments: [  ]</msg>
-<msg timestamp="20220623 13:48:41.336" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20220623 13:48:41.335" endtime="20220623 13:48:41.336"/>
+<msg timestamp="20220623 14:28:55.665" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20220623 14:28:55.665" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220623 14:28:55.665" endtime="20220623 14:28:55.665"/>
 </kw>
-<msg timestamp="20220623 13:48:41.336" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20220623 13:48:41.335" endtime="20220623 13:48:41.336"/>
+<msg timestamp="20220623 14:28:55.665" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220623 14:28:55.664" endtime="20220623 14:28:55.665"/>
 </kw>
 <tag>Customers and Products</tag>
 <timeout value="10 seconds"/>
-<status status="PASS" starttime="20220623 13:48:40.884" endtime="20220623 13:48:41.336"/>
+<status status="PASS" starttime="20220623 14:28:54.673" endtime="20220623 14:28:55.665"/>
 </test>
 <doc>Проверка поиска данных из нескольких таблиц</doc>
 <meta name="Автор">Чекмарева Софья</meta>
 <meta name="Номер домашнего задания">3.1</meta>
 <meta name="Папка с логами">output1</meta>
-<status status="PASS" starttime="20220623 13:48:40.451" endtime="20220623 13:48:41.337"/>
+<status status="PASS" starttime="20220623 14:28:54.359" endtime="20220623 14:28:55.666"/>
 </suite>
-<status status="PASS" starttime="20220623 13:48:40.421" endtime="20220623 13:48:41.339"/>
+<status status="PASS" starttime="20220623 14:28:54.337" endtime="20220623 14:28:55.668"/>
 </suite>
-<status status="PASS" starttime="20220623 13:48:40.419" endtime="20220623 13:48:41.340"/>
+<status status="PASS" starttime="20220623 14:28:54.335" endtime="20220623 14:28:55.669"/>
 </suite>
-<status status="PASS" starttime="20220623 13:48:40.391" endtime="20220623 13:48:41.341"/>
+<status status="PASS" starttime="20220623 14:28:54.306" endtime="20220623 14:28:55.670"/>
 </suite>
 <statistics>
 <total>

@@ -12,11 +12,11 @@ Test Timeout  10s
 *** Test Cases ***
 Check Horizontal Filtering
     [tags]      Customers and Products
-    ${address}   ${email}   ${title}   ${price}  cust_prod.Get columns from Customers and Products From PostgRest  alias   select=customers!inner(address1,email),products!inner(title,price)&customers.age=gt.40&customers.state=eq.NV   200
+    ${address}   ${email}   ${title}   ${price}  cust_prod.Get columns from Customers and Products From PostgRest  alias   params=select=customers!inner(address1,email),products!inner(title,price)&customers.age=gt.40&customers.state=eq.NV   expected_status=200
 
     ${params}    create dictionary    age=40     state=NV
-    ${result}   cust_prod.Get columns from Customers and Products From DB      ${params}[age]   ${params}[state]
-    ${address_db}   ${email_db}   ${title_db}   ${price_db}   cust_prod.Get Columns  ${result}
+    ${result}   cust_prod.Get columns from Customers and Products From DB      age=${params}[age]   state=${params}[state]
+    ${address_db}   ${email_db}   ${title_db}   ${price_db}   cust_prod.Get Columns  data=${result}
 
     Col.Lists Should Be Equal   ${address}    ${address_db}
     Col.Lists Should Be Equal   ${email}      ${email_db}
